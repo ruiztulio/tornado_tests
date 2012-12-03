@@ -1,4 +1,5 @@
 import ConfigParser
+import os
 
 def generate_get(config):
     vals = {'name':config.get('model', 'name'), 'format':'%'}
@@ -82,14 +83,10 @@ def generate_delete(config):
     return res
     
 def generate_put(config):
-    vals = {'name':config.get('database', 'table'), 'format':'%'}
+    vals = {'name':config.get('database', 'table'), 'format':'%', 'mandatory':config.get('put', 'mandatory')}
     res = """
     def put(self, p):
-        obligatorios = ['name', 'code']
-        name = self.get_argument('name', '')
-        quantity = self.get_argument('quantity', 0)
-        code = self.get_argument('code')
-        price = self.get_argument('price', 0)
+        obligatorios = [%(mandatory)s]
         fields = self.request.arguments.keys()
         f = []
         for field in obligatorios:
@@ -97,8 +94,12 @@ def generate_put(config):
                 f.append(field)
         res = {'status' : {'id' : 'OK', 'message' : ''}}
         if not f:
+            name = self.get_argument('name', '')
+            quantity = self.get_argument('quantity', 0)
+            code = self.get_argument('code')
+            price = self.get_argument('price', 0)
             try:
-                self.cursor.execute("INSERT INTO products (name, quantity, code, price) VALUES (%(format)ss,%(format)ss,%(format)ss,%(format)ss)",
+                self.cursor.execute("INSERT INTO %(name)s (name, quantity, code, price) VALUES (%(format)ss,%(format)ss,%(format)ss,%(format)ss)",
                                         (name, quantity, code, price))
             except Exception as e:
                 res.update({'status':{'id' : 'ERROR', 'message' : 'Hubo un error, no se pudo crear el registro'}})
@@ -109,6 +110,13 @@ def generate_put(config):
         self._send_response(res)
 
     """
+path = os.path.dirname(os.path.realpath(__file__)) + '/output'
+
+if not os.path.isdir(path):
+    print 'No existe el directorio de salida'
+    os.mkdir('output')
+if not os.path.isfile('config.ini'):
+    print 'No existe archivo de configuracion'
 config = ConfigParser.ConfigParser()
 config.read('config.ini')
 methods=config.get('model', 'methods').split(',')
@@ -116,15 +124,20 @@ class_name=config.get('model', 'name')
 imports=config.get('model', 'imports')
 base=config.get('model', 'base')
 
-text_file = open("output.py", "w")
+text_file = open("output/%s.py"%config.get('database', 'table'), "w")
 text_file.write(imports)
 text_file.write("\n\ngen_log = logging.getLogger(\"tornado.general\")\n\n")
 text_file.write("")
 text_file.write("class %s(%s):"%(class_name, base))
 text_file.write("\n    SUPPORTED_METHODS = (\"%s\")"%'","'.join(methods))
-text_file.write(generate_get(config))
-text_file.write(generate_post(config))
-text_file.write(generate_delete(config))
+if 'GET' in methods:
+    text_file.write(generate_get(config))
+if 'POST' in methods:
+    text_file.write(generate_post(config))
+if 'DELETE' in methods:
+    text_file.write(generate_delete(config))
+if 'PUT' in methods:
+    text_file.write(generate_put(config))
 
 text_file.close()
 
