@@ -116,9 +116,9 @@ def generate_put(config):
     return res
 
 def generate_insert(table, fields):
-    sql = 'INSERT INTO %(name)s (%(fields)s) VALUES (%(values)s) RETURNING id'
-    f = ', '.join(fields)
-    v = '%s, '*len(fields)
+    sql = 'INSERT INTO %(name)s %(fields)s VALUES %(values)s RETURNING id'
+    f = str(tuple(fields))
+    v = str(tuple(['%s']*len(fields)))
     return sql%{'name':table, 'fields': f, 'values':v[:-2]}
 
 path = os.path.dirname(os.path.realpath(__file__)) + '/output'
