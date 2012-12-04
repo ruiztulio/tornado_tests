@@ -83,7 +83,9 @@ def generate_delete(config):
     return res
     
 def generate_put(config):
-    vals = {'name':config.get('database', 'table'), 'format':'%', 'mandatory':config.get('put', 'mandatory')}
+    vals = {'name':config.get('database', 'table'), 
+            'format':'%', 
+            'mandatory':config.get('put', 'mandatory')}
     res = """
     def put(self, p):
         obligatorios = [%(mandatory)s]
@@ -99,8 +101,9 @@ def generate_put(config):
             code = self.get_argument('code')
             price = self.get_argument('price', 0)
             try:
-                self.cursor.execute("INSERT INTO %(name)s (name, quantity, code, price) VALUES (%(format)ss,%(format)ss,%(format)ss,%(format)ss)",
-                                        (name, quantity, code, price))
+                sql = generate_insert('%(name)s', fields)
+                values = (self.get_argument(f) for f in fields)
+                self.cursor.execute(sql,values)                                        
             except Exception as e:
                 res.update({'status':{'id' : 'ERROR', 'message' : 'Hubo un error, no se pudo crear el registro'}})
                 gen_log.error("Error agregando el registro", exc_info=True)
@@ -109,7 +112,15 @@ def generate_put(config):
             
         self._send_response(res)
 
-    """
+    """%vals
+    return res
+
+def generate_insert(table, fields):
+    sql = 'INSERT INTO %(name)s (%(fields)s) VALUES (%(values)s) RETURNING id'
+    f = ', '.join(fields)
+    v = '%s, '*len(fields)
+    return sql%{'name':table, 'fields': f, 'values':v[:-2]}
+
 path = os.path.dirname(os.path.realpath(__file__)) + '/output'
 
 if not os.path.isdir(path):
