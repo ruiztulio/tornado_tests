@@ -2,7 +2,7 @@ import ConfigParser
 import os
 
 def generate_get(config):
-    vals = {'name':config.get('model', 'name'), 'format':'%'}
+    vals = {'name':config.get('database', 'table'), 'format':'%'}
     res = """
     def get(self, p):
         field_id = self.get_argument('id', False)
@@ -14,12 +14,11 @@ def generate_get(config):
             res = copyListDicts( self.cursor.fetchall() )
             for r in res:
                 r.update({'ref' : 'http://%(format)ss/%(name)s?id=%(format)ss'%(format)s(self.request.host, r.get('id'))})
-            res.update({'status':{'id' : 'OK', 'message' : ''}})
-            res.update({'products':res, 'status':{'id' : 'OK', 'message' : ''}})
-            self._send_response(res)
-        except e:
-            res.update({'status':{'id' : 'ERROR', 'message' : 'Hubo un error, no se pudo realizar la consulta'}})
+            res = {'%(name)s':res, 'status':{'id' : 'OK', 'message' : ''}}
+        except Exception as e:
+            res = {'status':{'id' : 'ERROR', 'message' : 'Hubo un error, no se pudo realizar la consulta'}}
             gen_log.error("Error consultando", exc_info=True)
+        self._send_response(res)
     
     """%vals
     return res
@@ -85,10 +84,10 @@ def generate_delete(config):
 def generate_put(config):
     vals = {'name':config.get('database', 'table'), 
             'format':'%', 
-            'mandatory':config.get('put', 'mandatory')}
+            'mandatory':'","'.join(config.get('put', 'mandatory').split(','))}
     res = """
     def put(self, p):
-        obligatorios = [%(mandatory)s]
+        obligatorios = ["%(mandatory)s"]
         fields = self.request.arguments.keys()
         f = []
         for field in obligatorios:
