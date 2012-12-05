@@ -23,10 +23,12 @@ def generate_get(config):
     """%vals
     return res
     
-def generate_post(config):
-    vals = {'name':config.get('database', 'table'), 'format':'%'}
+def generate_put(config):
+    vals = {'name':config.get('database', 'table'), 
+            'format':'%',
+            'mandatory':'","'.join(config.get('post', 'mandatory').split(','))}
     res = """
-    def post(self, p):
+    def put(self, p):
         field_id = self.get_argument('id', False)
        
         fields = self.request.arguments.keys() 
@@ -81,12 +83,12 @@ def generate_delete(config):
     """%vals
     return res
     
-def generate_put(config):
+def generate_post(config):
     vals = {'name':config.get('database', 'table'), 
             'format':'%', 
-            'mandatory':'","'.join(config.get('put', 'mandatory').split(','))}
+            'mandatory':'","'.join(config.get('post', 'mandatory').split(','))}
     res = """
-    def put(self, p):
+    def post(self, p):
         obligatorios = ["%(mandatory)s"]
         fields = self.request.arguments.keys()
         f = []
@@ -95,13 +97,9 @@ def generate_put(config):
                 f.append(field)
         res = {'status' : {'id' : 'OK', 'message' : ''}}
         if not f:
-            name = self.get_argument('name', '')
-            quantity = self.get_argument('quantity', 0)
-            code = self.get_argument('code')
-            price = self.get_argument('price', 0)
             try:
                 sql = generate_insert('%(name)s', fields)
-                values = (self.get_argument(f) for f in fields)
+                values = [self.get_argument(f) for f in fields]
                 self.cursor.execute(sql,values)                                        
             except Exception as e:
                 res.update({'status':{'id' : 'ERROR', 'message' : 'Hubo un error, no se pudo crear el registro'}})
