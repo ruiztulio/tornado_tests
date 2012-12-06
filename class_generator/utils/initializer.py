@@ -4,9 +4,9 @@ import sqlite3
 
 def create_tables():
     config = ConfigParser.ConfigParser()
-    config.read('config.ini')
+    config.read('../config.ini')
 
-    conn = sqlite3.connect(config.get('application', 'dbname'))
+    conn = sqlite3.connect('../%s'%config.get('application', 'dbname'))
     cursor = conn.cursor()
     cursor.execute("DROP TABLE IF EXISTS methods")
     cursor.execute("DROP TABLE IF EXISTS tables")
@@ -17,7 +17,7 @@ def create_tables():
                             name character varying NOT NULL,
                             PRIMARY KEY (id)
                             )""")
-    
+
     cursor.execute("""CREATE TABLE methods
                             (
                             id integer NOT NULL,

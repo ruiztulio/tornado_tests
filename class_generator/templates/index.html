@@ -11,16 +11,18 @@
         <meta http-equiv="Content-Language" content="en" />
         <meta name="description" content="" />
         <meta name="keywords" content="" />
-        <link rel="stylesheet" type="text/css" media="screen" href="/static/css/styles.css" />
-        <script type="text/javascript" src="/static/jscript/jquery.js"></script>
-        <script type="text/javascript" src="/static/jscript/functions.js"></script>
+        <link rel="stylesheet" type="text/css" media="screen" href="/static/stylesheets/foundation.min.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="/static/stylesheets/app.css" />
+        <script type="text/javascript" src="/static/javascripts/jquery.js"></script>
+        <script type="text/javascript" src="/static/javascripts/modernizr.foundation.js"></script>
+        <script type="text/javascript" src="/static/javascripts/functions.js"></script>
     </head>
 
     <body id="body">
         <div id="menu">
-            <a id="lnk_products" href="#"/>Reiniciar proyecto</a>
-            <a id="lnk_create" href="#"/>Lista de tablas</a>
-            <a id="lnk_edit" href="#"/>Generar Archivos</a>
+            <a id="lnk_reset" href="#"/>Reiniciar proyecto</a>
+            <a id="lnk_list" href="#"/>Lista de tablas</a>
+            <a id="lnk_generate" href="#"/>Generar Archivos</a>
         </div>
         <div id="products" class="products">
         </div>
@@ -28,7 +30,7 @@
     <script type="text/javascript">
         jQuery(document).ready(function()
         {
-            jQuery('#lnk_create').bind('click', function (event)
+            jQuery('#lnk_reset').bind('click', function (event)
             {
                 event.preventDefault();
                 jQuery.ajax({
@@ -40,7 +42,7 @@
                 });
             });
 
-            jQuery('#lnk_edit').bind('click', function (event)
+            jQuery('#lnk_list').bind('click', function (event)
             {
                 event.preventDefault();
                 jQuery.ajax({
@@ -52,7 +54,7 @@
                 });
             });
 
-            jQuery('#lnk_products').bind('click', function (event)
+            jQuery('#lnk_generate').bind('click', function (event)
             {
                 event.preventDefault();
                 get_products();
