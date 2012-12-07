@@ -37,10 +37,14 @@
     </div>
     <div class="nine columns">
       <ul class="nav-bar right">
-        <li><a href="#">Reiniciar proyecto</a></li>
-        <li><a href="#">Lista de tablas</a></li>
-        <li><a href="#">Generar Archivos</a></li>
-        <li><a id="lnk_config" href="#">Configuracion</a></li>
+        {% if config.get('show_initialize') == True %}
+          <li><a id="lnk_initialize" href="#">Inicializar sistema</a></li>
+        {% else %}
+          <li><a href="#">Reiniciar proyecto</a></li>
+          <li><a id="lnk_list_tables" href="#">Lista de tablas</a></li>
+          <li><a href="#">Generar Archivos</a></li>
+          <li><a id="lnk_config" href="#">Configuracion</a></li>
+        {% end %}
       </ul>
     </div>
   </div>
@@ -177,6 +181,29 @@
                 jQuery('#main_content').html(result);
             }
         });
+    });
+
+    jQuery('#lnk_list_tables').bind('click', function (event)
+    {
+      event.preventDefault();
+      jQuery.get("/database", 
+                  {action:"list_tables"}, 
+                  function(data) 
+                  {
+                    jQuery('#main_content').html(data);
+                  });
+    });
+
+
+    jQuery('#lnk_initialize').bind('click', function (event)
+    {
+      event.preventDefault();
+      jQuery.get("/database", 
+                  {action:"initialize"}, 
+                  function(data) 
+                  {
+                    window.location.reload()
+                  });
     });
   </script>
 

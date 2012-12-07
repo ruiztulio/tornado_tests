@@ -1,0 +1,24 @@
+<form name="tables_form" id="tables_form" class="custom">
+    {% for table in tables %}
+        <label for="{{ table }}"><input type="checkbox" id="{{ table }}" style="display: none;"><span class="custom checkbox"></span>{{ table }}</label>
+    {% end %}
+  <div class="row">
+    <div class="ten mobile-three columns">
+      <a id="lnk_save" class="button" href="#">Guardar</a>
+    </div>
+  </div>
+
+</form>
+<script type="text/javascript">
+  jQuery('#lnk_save').bind('click', function (event)
+  {
+    event.preventDefault();
+    jQuery.post("/config", 
+                jQuery("#config_form").serialize(), 
+                function(data) 
+                {
+                  jQuery("#notifications").html(data);
+                  jQuery("#main_content").html(""); 
+                });
+  });
+</script>

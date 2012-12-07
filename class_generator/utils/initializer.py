@@ -1,12 +1,11 @@
 import ConfigParser
 import sqlite3
-
+import os.path
 
 def create_tables():
     config = ConfigParser.ConfigParser()
-    config.read('../config.ini')
-
-    conn = sqlite3.connect('../%s'%config.get('application', 'dbname'))
+    config.read('config.ini')
+    conn = sqlite3.connect(config.get('application', 'dbname'))
     cursor = conn.cursor()
     cursor.execute("DROP TABLE IF EXISTS config")
     cursor.execute("DROP TABLE IF EXISTS methods")
@@ -37,6 +36,6 @@ def create_tables():
                             field_name character varying NOT NULL,
                             PRIMARY KEY (id),
                             UNIQUE(method_name, field_name)
-                            FOREIGN KEY(table_id) REFERENCES tables(id),
+                            FOREIGN KEY(table_id) REFERENCES tables(id)
                             )""")
     conn.commit()

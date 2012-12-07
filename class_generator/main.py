@@ -7,13 +7,12 @@ import sys
 sys.path.append('./lib')
 from tornado.options import (define, options)
 #sys.path.append('./')
-from utils.utils import copyListDicts
 from utils.list_tables import list_databases
+from utils.initializer import create_tables
 import psycopg2
 import psycopg2.extras
-import json
-import urllib
-import urllib2
+from utils.list_tables import list_tables
+import ConfigParser
 
 define("title", default="Generador de clases", help="Page title", type=str)
 define("company_name", default="La compania", help="Company name", type=str)
@@ -57,7 +56,12 @@ class Application(tornado.web.Application):
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
-        self.render("orbit.html", common = common)
+        config = ConfigParser.ConfigParser()
+        config.read('config.ini')
+        configs = {'show_initialize' : False}
+        if not os.path.isfile(config.get('application', 'dbname')):
+            configs.update({'show_initialize' : True})
+        self.render("orbit.html", common = common, config=configs)
 
 class DatabaseHandler(tornado.web.RequestHandler):
     def get(self):
@@ -68,6 +72,13 @@ class DatabaseHandler(tornado.web.RequestHandler):
             for db in dbs:
                 html = "%s <option value=\"%s\">%s</option>"%(html, db.get('name'), db.get('name'))
             html = "%s</select>"%html
+        elif action == 'initialize':
+            create_tables()
+            html = ''
+        elif action == 'list_tables':
+            tables = list_tables('rest_sales')
+            html = self.render_string("table_list.html", tables=tables)
+
         self.write(html)
         
 
