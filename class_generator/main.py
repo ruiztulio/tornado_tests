@@ -34,6 +34,7 @@ class Application(tornado.web.Application):
 
         handlers = [
             (r"/", MainHandler),
+            (r"/config", ConfigHandler),
         ]
 
         settings = dict(
@@ -55,6 +56,10 @@ class Application(tornado.web.Application):
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
         self.render("orbit.html", common = common)
+
+class ConfigHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.render("frm_config.html", common = common)
 
 
 def main():

@@ -11,7 +11,9 @@
   <!-- Set the viewport width to device width for mobile -->
   <meta name="viewport" content="width=device-width" />
 
-  <title{{ common.get('title') }}</title>
+  {% block title %}
+      <title>{{ common.get('title') }}</title>
+  {% end %}
   
   <!-- Included CSS Files (Uncompressed) -->
   <!--
@@ -38,41 +40,15 @@
         <li><a href="#">Reiniciar proyecto</a></li>
         <li><a href="#">Lista de tablas</a></li>
         <li><a href="#">Generar Archivos</a></li>
-        <li><a href="#">Configuracion</a></li>
+        <li><a id="lnk_config" href="#">Configuracion</a></li>
       </ul>
     </div>
   </div>
   
   <!-- End Header and Nav -->
   
-    <div class="row">
+  <div id="main_content" class="row">
     <div class="twelve columns">
-      <form>
-        <div class="row">
-          <div class="two mobile-one columns">
-            <label class="right inline">Address Name:</label>
-          </div>
-          <div class="ten mobile-three columns">
-            <input type="text" placeholder="e.g. Home" class="eight" />
-          </div>
-        </div>
-        <div class="row">
-          <div class="two mobile-one columns">
-            <label class="right inline">City:</label>
-          </div>
-          <div class="ten mobile-three columns">
-            <input type="text" class="eight" />
-          </div>
-        </div>
-        <div class="row">
-          <div class="two mobile-one columns">
-            <label class="right inline">ZIP:</label>
-          </div>
-          <div class="ten mobile-three columns">
-            <input type="text" class="three" />
-          </div>
-        </div>
-    </form>
 
       <hr />
     </div>
@@ -184,11 +160,24 @@
   -->
   
   <!-- Included JS Files (Compressed) -->
-  <script src="/static/javascripts/jquery.js"></script>
-  <script src="/static/javascripts/foundation.min.js"></script>
+  <script type="text/javascript" src="/static/javascripts/jquery.js"></script>
+  <script type="text/javascript" src="/static/javascripts/foundation.min.js"></script>
   
   <!-- Initialize JS Plugins -->
-  <script src="/static/javascripts/app.js"></script>
+  <script type="text/javascript" src="/static/javascripts/app.js"></script>
+  <script type="text/javascript">
+    jQuery('#lnk_config').bind('click', function (event)
+    {
+        event.preventDefault();
+        jQuery.ajax({
+            url: "/config",
+            type: "GET",
+            success: function(result) {
+                jQuery('#main_content').html(result);
+            }
+        });
+    });
+  </script>
 
 </body>
 </html>
