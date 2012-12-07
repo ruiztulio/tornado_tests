@@ -3,6 +3,7 @@
 
 import psycopg2
 import sys
+from utils import copyListDicts
 pg_user = "testrest"
 pg_pass = "123"
 pg_host ="localhost"
@@ -11,6 +12,19 @@ pg_port =5432
 
 
 con = None
+def list_databases():
+    sql = '''SELECT d.datname as "name",
+                u.usename as "owner",
+                pg_catalog.pg_encoding_to_char(d.encoding) as "encoding"
+                FROM pg_catalog.pg_database d
+                LEFT JOIN pg_catalog.pg_user u ON d.datdba = u.usesysid
+                ORDER BY 1;'''
+    conn = psycopg2.connect("host=%s password=%s, dbname=postgres user=%s port=%s"%
+                    (pg_host, pg_pass, pg_user, pg_port)) 
+    cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+    cur.execute(sql)
+    res = copyListDicts(cur)
+    return res
 
 def list_tables(database):
     res = []

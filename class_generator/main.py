@@ -8,6 +8,7 @@ sys.path.append('./lib')
 from tornado.options import (define, options)
 #sys.path.append('./')
 from utils.utils import copyListDicts
+from utils.list_tables import list_databases
 import psycopg2
 import psycopg2.extras
 import json
@@ -35,6 +36,7 @@ class Application(tornado.web.Application):
         handlers = [
             (r"/", MainHandler),
             (r"/config", ConfigHandler),
+            (r"/database", DatabaseHandler),
         ]
 
         settings = dict(
@@ -57,10 +59,30 @@ class MainHandler(tornado.web.RequestHandler):
     def get(self):
         self.render("orbit.html", common = common)
 
+class DatabaseHandler(tornado.web.RequestHandler):
+    def get(self):
+        action = self.get_argument('action', False)
+        if action == 'list':
+            html = "<select name=\"database\">"
+            dbs = list_databases()
+            for db in dbs:
+                html = "%s <option value=\"%s\">%s</option>"%(html, db.get('name'), db.get('name'))
+            html = "%s</select>"%html
+        self.write(html)
+        
+
 class ConfigHandler(tornado.web.RequestHandler):
     def get(self):
         self.render("frm_config.html", common = common)
 
+    def post(self):
+        options.pg_host = str(self.get_argument('host', ''))
+        options.pg_dbname = str(self.get_argument('database', ''))
+        options.pg_pass = str(self.get_argument('password', ''))
+        options.pg_user = str(self.get_argument('user', ''))
+        options.pg_port = int(self.get_argument('port', 5432))
+        message = {'id': 'success', 'message': 'Actualizada configuracion correctamente'}
+        self.render("message.html", message=message)
 
 def main():
     tornado.options.parse_command_line()

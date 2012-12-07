@@ -1,10 +1,10 @@
-<form>
+<form name="config_form" id="config_form">
   <div class="row">
     <div class="two mobile-one columns">
       <label class="right inline">Servidor</label>
     </div>
     <div class="ten mobile-three columns">
-      <input type="text" class="three" value="localhost"/>
+      <input type="text" class="three" value="localhost" name="host"/>
     </div>
   </div>
   <div class="row">
@@ -12,7 +12,7 @@
       <label class="right inline">Puerto</label>
     </div>
     <div class="ten mobile-three columns">
-      <input type="text" class="three" value="5432"/>
+      <input type="text" class="three" value="5432" name="port"/>
     </div>
   </div>
   <div class="row">
@@ -20,7 +20,7 @@
       <label class="right inline">Usuario</label>
     </div>
     <div class="ten mobile-three columns">
-      <input type="text" class="three" />
+      <input type="text" class="three" name="user"/>
     </div>
   </div>
   <div class="row">
@@ -28,7 +28,50 @@
       <label class="right inline">Contrase&ntilde;a</label>
     </div>
     <div class="ten mobile-three columns">
-      <input type="password" class="three" />
+      <input type="password" class="three" name="password"/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="two mobile-one columns">
+      <label class="right inline">Base de datos</label>
+    </div>
+    <div class="ten mobile-three columns">
+      <div id="database_list" class="two columns">
+        <select>
+          <option></option>
+        </select>
+      </div>
+      <a class="small round button" id="lnk_update_list" href="#">Actualizar</a>    
+    </div>
+  </div>
+  <div class="row">
+    <div class="ten mobile-three columns">
+      <a id="lnk_save" class="button" href="#">Guardar</a>
     </div>
   </div>
 </form>
+<script type="text/javascript">
+
+  jQuery('#lnk_update_list').bind('click', function (event)
+  {
+    event.preventDefault();
+    jQuery.get("/database", 
+                {action:"list"}, 
+                function(data) 
+                {
+                  jQuery("#database_list").html(data);
+                });
+  });
+
+  jQuery('#lnk_save').bind('click', function (event)
+  {
+    event.preventDefault();
+    jQuery.post("/config", 
+                jQuery("#config_form").serialize(), 
+                function(data) 
+                {
+                  jQuery("#notifications").html(data);
+                  jQuery("#main_content").html(""); 
+                });
+  });
+</script>
