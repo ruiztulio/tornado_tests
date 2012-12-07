@@ -7,12 +7,10 @@ import sys
 sys.path.append('./lib')
 from tornado.options import (define, options)
 #sys.path.append('./')
-from utils import (json_handler, copyListDicts)
+from utils.utils import copyListDicts
 import psycopg2
 import psycopg2.extras
 import json
-from async_psycopg2 import (Pool, PoolError)
-from handlers import (base, products2, clients)
 import urllib
 import urllib2
 
@@ -36,9 +34,6 @@ class Application(tornado.web.Application):
 
         handlers = [
             (r"/", MainHandler),
-            (r"/form/([^/]*)", FormHandler),
-            (r"/products([^/]*)", products2.ProductHandler),
-            (r"/clients([^/]*)", clients.ClientHandler),
         ]
 
         settings = dict(
@@ -58,26 +53,9 @@ class Application(tornado.web.Application):
         self.cur = self.conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
 
 class MainHandler(tornado.web.RequestHandler):
-    """
-    En caso de que se desee servir paginas estaticas o plantillas creadas
-    para la aplicacion se ejecuta el metodo render y se le indica que plantilla
-    es la que va a renderizar y enviar al servidor
-    """
     def get(self):
-        self.render("index.html", common = common)
+        self.render("orbit.html", common = common)
 
-class FormHandler(base.BaseHandler):
-    """
-    En caso de que se desee servir paginas estaticas o plantillas creadas
-    para la aplicacion se ejecuta el metodo render y se le indica que plantilla
-    es la que va a renderizar y enviar al servidor
-    """
-    def get(self, param):
-        res = {}
-        if param:
-            self.cursor.execute("SELECT * FROM products WHERE id = %s", (param, ))
-            res = copyListDicts( self.cursor.fetchall())
-        self.render("form.html", res = res and res[0] or {})
 
 def main():
     tornado.options.parse_command_line()
