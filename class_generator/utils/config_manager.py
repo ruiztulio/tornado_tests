@@ -24,7 +24,7 @@ class ConfigManager():
             res = {'host' : self.config_file.get('database', 'host'),
                     'user' : self.config_file.get('database', 'user'),
                     'password':self.config_file.get('database', 'password'),
-                    'port':self.config_file.get('database', 'port'),
+                    'port':int(self.config_file.get('database', 'port')),
                     'database':self.config_file.get('database', 'database')}
         else:
             res = {'host' : str(r[1]),

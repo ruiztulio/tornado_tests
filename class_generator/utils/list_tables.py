@@ -5,7 +5,8 @@ import psycopg2
 import sys
 from utils import copyListDicts
 from tornado.options import options
-
+from config_manager import ConfigManager
+import sqlite3
 
 
 con = None
@@ -51,6 +52,15 @@ def list_columns(table, database):
     except psycopg2.DatabaseError, e:
         print 'Error %s' % e    
     return res
+
+def save_tables(tables):
+    cm = ConfigManager()
+    conn = sqlite3.connect(cm.get('application', 'dbname'))
+    cursor = conn.cursor()
+    print tables
+    for table in tables:
+        cursor.execute("INSERT INTO models (name) VALUES (?)", (table,))
+    conn.commit()
 
 def dummy():
     try:

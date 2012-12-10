@@ -7,11 +7,8 @@ import sys
 sys.path.append('./lib')
 from tornado.options import (define, options)
 #sys.path.append('./')
-from utils.list_tables import list_databases
+from utils.list_tables import (list_databases, list_tables, save_tables)
 from utils.initializer import create_tables
-import psycopg2
-import psycopg2.extras
-from utils.list_tables import list_tables
 from utils.config_manager import ConfigManager
 import ConfigParser
 
@@ -109,7 +106,8 @@ class ConfigHandler(tornado.web.RequestHandler):
             message = {'id': 'success', 'message': 'Actualizada configuracion correctamente'}
         elif self.get_argument('action') == 'update_table_list':
             message = {'id': 'success', 'message': 'Lista obtenida correctamente'}
-            print self.get_arguments('tables')
+            tables= self.get_arguments('tables')
+            save_tables(tables)
             print "updating"
         self.render("message.html", message=message)
 
