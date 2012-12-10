@@ -4,11 +4,8 @@
 import psycopg2
 import sys
 from utils import copyListDicts
-pg_user = "testrest"
-pg_pass = "123"
-pg_host ="localhost"
-pg_dbname ="rest_sales"
-pg_port =5432
+from tornado.options import options
+
 
 
 con = None
@@ -20,7 +17,7 @@ def list_databases():
                 LEFT JOIN pg_catalog.pg_user u ON d.datdba = u.usesysid
                 ORDER BY 1;'''
     conn = psycopg2.connect("host=%s password=%s, dbname=postgres user=%s port=%s"%
-                    (pg_host, pg_pass, pg_user, pg_port)) 
+                    (options.pg_host, options.pg_pass, options.pg_user, options.pg_port)) 
     cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
     cur.execute(sql)
     res = copyListDicts(cur)
@@ -30,7 +27,7 @@ def list_tables(database):
     res = []
     try:
         con = psycopg2.connect("host=%s dbname=%s password=%s user=%s port=%s"%
-                        (pg_host, database, pg_pass, pg_user, pg_port)) 
+                        (options.pg_host, database, options.pg_pass, options.pg_user, options.pg_port)) 
         cur = con.cursor() 
         cur.execute("""SELECT table_name FROM information_schema.tables 
                         WHERE table_schema = 'public'""")    
@@ -45,7 +42,7 @@ def list_columns(table, database):
     res = []
     try:
         con = psycopg2.connect("host=%s dbname=%s password=%s user=%s port=%s"%
-                        (pg_host, database, pg_pass, pg_user, pg_port)) 
+                        (options.pg_host, database, options.pg_pass, options.pg_user, options.pg_port)) 
         cur = con.cursor() 
         cur.execute("""SELECT column_name FROM information_schema.columns WHERE table_name =%s""", (table,))    
         rows = cur.fetchall()
@@ -55,29 +52,30 @@ def list_columns(table, database):
         print 'Error %s' % e    
     return res
 
-try:
-     
-    con = psycopg2.connect("host=%s dbname=%s password=%s user=%s port=%s"%
-                    (pg_host, pg_dbname, pg_pass, pg_user, pg_port)) 
-    
-    cur = con.cursor() 
-    # cur.execute("""SELECT table_name FROM information_schema.tables 
-       # WHERE table_schema = 'public'""")    
-    cur.execute("""SELECT column_name FROM information_schema.columns WHERE table_name ='products'""")
-    rows = list_tables('rest_sales')
-    con.close()
-    print rows
-    for r in rows:
-        c = list_columns(r, 'rest_sales')
-        print c
-    
-   
-except psycopg2.DatabaseError, e:
-    print 'Error %s' % e    
-    sys.exit(1)
-    
-    
-finally:
-    
-    if con:
+def dummy():
+    try:
+         
+        con = psycopg2.connect("host=%s dbname=%s password=%s user=%s port=%s"%
+                        (options.pg_host, options.pg_dbname, options.pg_pass, options.pg_user, options.pg_port)) 
+        
+        cur = con.cursor() 
+        # cur.execute("""SELECT table_name FROM information_schema.tables 
+           # WHERE table_schema = 'public'""")    
+        cur.execute("""SELECT column_name FROM information_schema.columns WHERE table_name ='products'""")
+        rows = list_tables('rest_sales')
         con.close()
+        print rows
+        for r in rows:
+            c = list_columns(r, 'rest_sales')
+            print c
+        
+       
+    except psycopg2.DatabaseError, e:
+        print 'Error %s' % e    
+        sys.exit(1)
+        
+        
+    finally:
+        
+        if con:
+            con.close()

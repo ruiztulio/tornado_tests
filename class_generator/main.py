@@ -12,7 +12,10 @@ from utils.initializer import create_tables
 import psycopg2
 import psycopg2.extras
 from utils.list_tables import list_tables
+from utils.config_manager import ConfigManager
 import ConfigParser
+
+cm = ConfigManager()
 
 define("title", default="Generador de clases", help="Page title", type=str)
 define("company_name", default="La compania", help="Company name", type=str)
@@ -47,12 +50,13 @@ class Application(tornado.web.Application):
             autoescape="xhtml_escape",
             debug=True,
         )
+        options.pg_dbname = cm.get('database', 'database')
+        options.pg_user = cm.get('database', 'user')
+        options.pg_port = cm.get('database', 'port')
+        options.pg_pass = cm.get('database', 'password')
+        options.pg_host = cm.get('database', 'host')
 
         tornado.web.Application.__init__(self, handlers, **settings)
-        self.conn = psycopg2.connect("host=%s dbname=%s password=%s user=%s port=%s"%
-                            (options.pg_host, options.pg_dbname, options.pg_pass, options.pg_user, options.pg_port))
-        self.conn.set_isolation_level(psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT)
-        self.cur = self.conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
@@ -76,7 +80,9 @@ class DatabaseHandler(tornado.web.RequestHandler):
             create_tables()
             html = ''
         elif action == 'list_tables':
-            tables = list_tables('rest_sales')
+            print "Listando tablas ", options.pg_dbname
+            print "Usuarui ", options.pg_user
+            tables = list_tables(options.pg_dbname)
             html = self.render_string("table_list.html", tables=tables)
 
         self.write(html)
@@ -84,15 +90,27 @@ class DatabaseHandler(tornado.web.RequestHandler):
 
 class ConfigHandler(tornado.web.RequestHandler):
     def get(self):
-        self.render("frm_config.html", common = common)
+        self.render("frm_config.html", common = common, options = options)
 
     def post(self):
-        options.pg_host = str(self.get_argument('host', ''))
-        options.pg_dbname = str(self.get_argument('database', ''))
-        options.pg_pass = str(self.get_argument('password', ''))
-        options.pg_user = str(self.get_argument('user', ''))
-        options.pg_port = int(self.get_argument('port', 5432))
-        message = {'id': 'success', 'message': 'Actualizada configuracion correctamente'}
+        if self.get_argument('action') == 'update_config':
+            print "Actualizando config"
+            cm.set({'host': str(self.get_argument('host', '')),
+                    'password' : str(self.get_argument('password', '')),
+                    'database' : str(self.get_argument('database', '')),
+                    'user' : str(self.get_argument('user', '')),
+                    'port' : int(self.get_argument('port', 5432))})
+
+            options.pg_dbname = cm.get('database', 'database')
+            options.pg_user = cm.get('database', 'user')
+            options.pg_port = cm.get('database', 'port')
+            options.pg_pass = cm.get('database', 'password')
+            options.pg_host = cm.get('database', 'host')
+            message = {'id': 'success', 'message': 'Actualizada configuracion correctamente'}
+        elif self.get_argument('action') == 'update_table_list':
+            message = {'id': 'success', 'message': 'Lista obtenida correctamente'}
+            print self.get_arguments('tables')
+            print "updating"
         self.render("message.html", message=message)
 
 def main():

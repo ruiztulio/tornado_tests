@@ -18,6 +18,7 @@ def create_tables():
                             user character varying NOT NULL,
                             password character varying NOT NULL,
                             port integer NOT NULL,
+                            database character varying NOT NULL,
                             PRIMARY KEY (id)
                             )""")
 

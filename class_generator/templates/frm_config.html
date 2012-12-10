@@ -4,7 +4,7 @@
       <label class="right inline">Servidor</label>
     </div>
     <div class="ten mobile-three columns">
-      <input type="text" class="three" value="localhost" name="host"/>
+      <input type="text" class="three" value="{{ options.pg_host }}" name="host"/>
     </div>
   </div>
   <div class="row">
@@ -12,7 +12,7 @@
       <label class="right inline">Puerto</label>
     </div>
     <div class="ten mobile-three columns">
-      <input type="text" class="three" value="5432" name="port"/>
+      <input type="text" class="three" value="{{ options.pg_port }}" name="port"/>
     </div>
   </div>
   <div class="row">
@@ -20,7 +20,7 @@
       <label class="right inline">Usuario</label>
     </div>
     <div class="ten mobile-three columns">
-      <input type="text" class="three" name="user"/>
+      <input type="text" class="three" name="user" value="{{ options.pg_user }}"/>
     </div>
   </div>
   <div class="row">
@@ -28,7 +28,7 @@
       <label class="right inline">Contrase&ntilde;a</label>
     </div>
     <div class="ten mobile-three columns">
-      <input type="password" class="three" name="password"/>
+      <input type="password" class="three" name="password" value="{{ options.pg_pass }}"/>
     </div>
   </div>
   <div class="row">
@@ -49,6 +49,7 @@
       <a id="lnk_save" class="button" href="#">Guardar</a>
     </div>
   </div>
+  <input type="hidden" name="action" value="update_config"/>
 </form>
 <script type="text/javascript">
 

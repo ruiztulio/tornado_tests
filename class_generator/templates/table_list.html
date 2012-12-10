@@ -1,20 +1,20 @@
 <form name="tables_form" id="tables_form" class="custom">
     {% for table in tables %}
-        <label for="{{ table }}"><input type="checkbox" id="{{ table }}" style="display: none;"><span class="custom checkbox"></span>{{ table }}</label>
+        <label for="{{ table }}"><input type="checkbox" id="{{ table }}" name="tables" value="{{ table }}" style="display: none;"><span class="custom checkbox"></span>{{ table }}</label>
     {% end %}
   <div class="row">
     <div class="ten mobile-three columns">
       <a id="lnk_save" class="button" href="#">Guardar</a>
     </div>
   </div>
-
+  <input type="hidden" name="action" value="update_table_list"/>
 </form>
 <script type="text/javascript">
   jQuery('#lnk_save').bind('click', function (event)
   {
     event.preventDefault();
     jQuery.post("/config", 
-                jQuery("#config_form").serialize(), 
+                jQuery("#tables_form").serialize(), 
                 function(data) 
                 {
                   jQuery("#notifications").html(data);
