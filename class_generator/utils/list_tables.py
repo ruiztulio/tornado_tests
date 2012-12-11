@@ -67,9 +67,10 @@ def find_table(table):
     cm = ConfigManager()
     conn = sqlite3.connect(cm.get('application', 'dbname'))
     cur = conn.cursor()
-    cur.execute("""SELECT * FROM models WHERE name = ?""", (table))
-    row = cur.fetchall()
+    cur.execute("""SELECT * FROM models WHERE name = ? LIMIT 1""", (table,))
+    row = cur.fetchone()
     print row
+    return row[0]
 
 def save_columns(table_id, columns):
     cm = ConfigManager()
