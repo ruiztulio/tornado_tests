@@ -1,7 +1,15 @@
 <form name="tables_form" id="tables_form" class="custom">
-    {% for table in tables %}
-        <label for="{{ table }}"><input type="checkbox" id="{{ table }}" name="tables" value="{{ table }}" style="display: none;"><span class="custom checkbox"></span>{{ table }}</label>
-    {% end %}
+  <div class="row">
+    <ul class="block-grid two-up">
+      {% for table in tables %}
+        <li>      
+          <label for="{{ table }}">
+            <input type="checkbox" id="{{ table }}" name="tables" value="{{ table }}" style="display: none;"><span class="custom checkbox"></span>{{ table }}
+          </label>
+        </li>
+      {% end %}
+    </ul>
+  </div>
   <div class="row">
     <div class="ten mobile-three columns">
       <a id="lnk_save" class="button" href="#">Guardar</a>

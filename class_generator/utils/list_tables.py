@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import psycopg2
+import psycopg2.extras
 import sys
 from utils import copyListDicts
 from tornado.options import options
@@ -17,7 +18,7 @@ def list_databases():
                 FROM pg_catalog.pg_database d
                 LEFT JOIN pg_catalog.pg_user u ON d.datdba = u.usesysid
                 ORDER BY 1;'''
-    conn = psycopg2.connect("host=%s password=%s, dbname=postgres user=%s port=%s"%
+    conn = psycopg2.connect("host=%s password=%s dbname=postgres user=%s port=%s"%
                     (options.pg_host, options.pg_pass, options.pg_user, options.pg_port)) 
     cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
     cur.execute(sql)
@@ -60,6 +61,26 @@ def save_tables(tables):
     print tables
     for table in tables:
         cursor.execute("INSERT INTO models (name) VALUES (?)", (table,))
+    conn.commit()
+
+def find_table(table):
+    cm = ConfigManager()
+    conn = sqlite3.connect(cm.get('application', 'dbname'))
+    cur = conn.cursor()
+    cur.execute("""SELECT * FROM models WHERE name = ?""", (table))
+    row = cur.fetchall()
+    print row
+
+def save_columns(table_id, columns):
+    cm = ConfigManager()
+    conn = sqlite3.connect(cm.get('application', 'dbname'))
+    cursor = conn.cursor()
+    for method in ['GET', 'POST']:
+        for column in columns:
+            if column != 'id':
+                cursor.execute("INSERT INTO methods (model_id, method_name, field_name) VALUES (?, ?, ?)", (table_id, method, column))
+            else:
+                cursor.execute("INSERT INTO methods (model_id, method_name, field_name, use) VALUES (?, ?, ?, 1)", (table_id, method, column))
     conn.commit()
 
 def dummy():

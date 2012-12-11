@@ -71,16 +71,15 @@ class DatabaseHandler(tornado.web.RequestHandler):
             html = "<select name=\"database\">"
             dbs = list_databases()
             for db in dbs:
-                html = "%s <option value=\"%s\">%s</option>"%(html, db.get('name'), db.get('name'))
+                html = "%s <option value=\"%s\" %s>%s</option>"%(html, db.get('name'), db.get('name')==options.pg_dbname and  "selected=\"selected\"" or "" ,db.get('name'))
             html = "%s</select>"%html
         elif action == 'initialize':
             create_tables()
             html = ''
         elif action == 'list_tables':
-            print "Listando tablas ", options.pg_dbname
-            print "Usuarui ", options.pg_user
             tables = list_tables(options.pg_dbname)
             html = self.render_string("table_list.html", tables=tables)
+        #elif action == 'list_tables_config':
 
         self.write(html)
         

@@ -53,6 +53,13 @@
 </form>
 <script type="text/javascript">
 
+  jQuery.get("/database", 
+              {action:"list"}, 
+              function(data) 
+              {
+                jQuery("#database_list").html(data);
+              });
+  
   jQuery('#lnk_update_list').bind('click', function (event)
   {
     event.preventDefault();
