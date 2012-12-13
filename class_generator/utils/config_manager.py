@@ -41,3 +41,23 @@ class ConfigManager():
         if section == 'database':
             return self.get_database_config()[item]
         return self.config_file.get(section, item)
+
+    def get_tables_list(self):
+        self.cursor.execute("""SELECT id, name, class_name, use
+                                FROM models
+                                ORDER BY models.name ASC""")
+        rows = self.cursor.fetchall()
+        return rows
+
+    def get_models_config(self):
+        self.cursor.execute("""SELECT * 
+                                FROM models 
+                                JOIN methods 
+                                ON models.id = methods.model_id 
+                                ORDER BY models.name ASC, methods.method_name, methods.field_name""")
+        rows = self.cursor.fetchall()
+        res = {}
+        for row in rows:
+            res.update({row[1] : []})
+            res.get(row[1]).append
+            print row

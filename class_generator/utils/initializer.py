@@ -13,11 +13,7 @@ def insert_db_tables():
         fields = list_columns(table, options.pg_dbname)
         save_columns(model_id, fields)
     config = ConfigManager()
-    conn = sqlite3.connect(config.get('application', 'dbname'))
-    cur = conn.cursor()
-    cur.execute("""SELECT * FROM methods""")
-    rows = cur.fetchall()
-    print rows
+    config.get_models_config()
 
 def create_tables():
     config = ConfigManager()

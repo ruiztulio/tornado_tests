@@ -59,8 +59,11 @@ def save_tables(tables):
     conn = sqlite3.connect(cm.get('application', 'dbname'))
     cursor = conn.cursor()
     print tables
+    cursor.execute("UPDATE models SET use = 0")
     for table in tables:
-        cursor.execute("INSERT INTO models (name) VALUES (?)", (table,))
+        #cursor.execute("INSERT INTO models (name) VALUES (?)", (table,))
+        print table
+        cursor.execute("UPDATE models SET use = 1 WHERE id = (?)", (table,))
     conn.commit()
 
 def find_table(table):

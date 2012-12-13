@@ -77,7 +77,7 @@ class DatabaseHandler(tornado.web.RequestHandler):
             create_tables()
             html = ''
         elif action == 'list_tables':
-            tables = list_tables(options.pg_dbname)
+            tables = cm.get_tables_list()
             html = self.render_string("table_list.html", tables=tables)
         #elif action == 'list_tables_config':
 
@@ -107,7 +107,6 @@ class ConfigHandler(tornado.web.RequestHandler):
             message = {'id': 'success', 'message': 'Lista obtenida correctamente'}
             tables= self.get_arguments('tables')
             save_tables(tables)
-            print "updating"
         self.render("message.html", message=message)
 
 def main():

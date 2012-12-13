@@ -3,8 +3,14 @@
     <ul class="block-grid two-up">
       {% for table in tables %}
         <li>      
-          <label for="{{ table }}">
-            <input type="checkbox" id="{{ table }}" name="tables" value="{{ table }}" style="display: none;"><span class="custom checkbox"></span>{{ table }}
+          <label for="{{ table[0] }}">
+            <input id="{{ table[0] }}" type="checkbox" name="tables" value="{{ table[0] }}" style="display: none;" {{ table[3] and "checked" or "" }}>
+            {% if table[3] %}
+              <span class="custom checkbox checked"></span>
+            {% else %}
+              <span class="custom checkbox"></span>
+            {% end %}
+            {{ table[1] }}
           </label>
         </li>
       {% end %}
