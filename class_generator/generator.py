@@ -1,5 +1,9 @@
 import ConfigParser
 import os
+import sqlite3
+
+conn = sqlite3.connect('./sqlitelocal.db')
+cursor = conn.cursor()
 
 def generate_get(config):
     vals = {'name':config.get('database', 'table'), 'format':'%'}

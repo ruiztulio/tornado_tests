@@ -32,18 +32,16 @@
   <!-- Header and Nav -->
   
   <div class="row">
-    <div class="three columns">
-      <h1><img src="http://placehold.it/400x100&text=Logo" /></h1>
-    </div>
-    <div class="nine columns">
+    <div class="twelve columns">
       <ul class="nav-bar right">
         {% if config.get('show_initialize') == True %}
           <li><a id="lnk_initialize" href="#">Inicializar sistema</a></li>
         {% else %}
           <li><a href="#">Reiniciar proyecto</a></li>
-          <li><a id="lnk_list_tables" href="#">Lista de tablas</a></li>
-          <li><a href="#">Generar Archivos</a></li>
           <li><a id="lnk_config" href="#">Configuracion</a></li>
+          <li><a id="lnk_list_tables" href="#">Lista de tablas</a></li>
+          <li><a id="lnk_config_models" href="#">Configurar modelos</a></li>
+          <li><a href="#">Generar Archivos</a></li>
         {% end %}
       </ul>
     </div>
@@ -194,6 +192,27 @@
                   });
     });
 
+    jQuery('#lnk_config_tables').bind('click', function (event)
+    {
+      event.preventDefault();
+      jQuery.get("/database", 
+                  {action:"list_tables_config"}, 
+                  function(data) 
+                  {
+                    jQuery('#main_content').html(data);
+                  });
+    });
+
+    jQuery('#lnk_config_models').bind('click', function (event)
+    {
+      event.preventDefault();
+      jQuery.get("/database", 
+                  {action:"config_models"}, 
+                  function(data) 
+                  {
+                    jQuery('#main_content').html(data);
+                  });
+    });
 
     jQuery('#lnk_initialize').bind('click', function (event)
     {

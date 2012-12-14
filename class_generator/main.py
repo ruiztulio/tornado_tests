@@ -79,8 +79,11 @@ class DatabaseHandler(tornado.web.RequestHandler):
         elif action == 'list_tables':
             tables = cm.get_tables_list()
             html = self.render_string("table_list.html", tables=tables)
+        elif action == 'config_models':
+            tables = cm.get_tables_list(True)
+            tables_config = cm.get_models_config()
+            html = self.render_string("frm_config_models.html", tables=tables, tables_config=tables_config)
         #elif action == 'list_tables_config':
-
         self.write(html)
         
 

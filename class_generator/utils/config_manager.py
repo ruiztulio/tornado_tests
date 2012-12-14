@@ -42,22 +42,43 @@ class ConfigManager():
             return self.get_database_config()[item]
         return self.config_file.get(section, item)
 
-    def get_tables_list(self):
-        self.cursor.execute("""SELECT id, name, class_name, use
-                                FROM models
-                                ORDER BY models.name ASC""")
+    def get_tables_list(self, use = None):
+        if use is not None:
+            self.cursor.execute("""SELECT id, name, class_name, use
+                                    FROM models
+                                    WHERE use = ?
+                                    ORDER BY models.name ASC""", (use,))
+        else:
+            self.cursor.execute("""SELECT id, name, class_name, use
+                                    FROM models
+                                    ORDER BY models.name ASC""")
         rows = self.cursor.fetchall()
         return rows
 
     def get_models_config(self):
-        self.cursor.execute("""SELECT * 
-                                FROM models 
-                                JOIN methods 
-                                ON models.id = methods.model_id 
-                                ORDER BY models.name ASC, methods.method_name, methods.field_name""")
-        rows = self.cursor.fetchall()
+        models = self.get_tables_list(True)
+
         res = {}
-        for row in rows:
-            res.update({row[1] : []})
-            res.get(row[1]).append
-            print row
+        for model in models:
+            res.update({model[1] : {}})
+            self.cursor.execute("""SELECT id, field_name, method_name, use 
+                                    FROM methods 
+                                    WHERE model_id = ?
+                                    AND method_name = 'GET'
+                                    ORDER BY method_name, field_name""", (model[0],))
+            rows = self.cursor.fetchall()
+            res.get(model[1]).update({'GET' : []})
+            for row in rows:
+                res.get(model[1]).get('GET').append(row)
+
+            self.cursor.execute("""SELECT id, field_name, method_name, use 
+                                    FROM methods 
+                                    WHERE model_id = ?
+                                    AND method_name = 'POST'
+                                    ORDER BY method_name, field_name""", (model[0],))
+            rows = self.cursor.fetchall()
+            res.get(model[1]).update({'POST' : []})
+            for row in rows:
+                res.get(model[1]).get('POST').append(row)
+        return res
+
