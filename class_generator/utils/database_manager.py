@@ -42,12 +42,13 @@ class DatabaseManager():
     def list_tables(self, database = None):
         res = []
         try:
-            conn = self.generate_conn({'database':database and database or options.pg_database})
+            conn = self.generate_conn({'database':database and database or options.pg_dbname})
             cur = conn.cursor() 
             cur.execute("""SELECT table_name FROM information_schema.tables 
                             WHERE table_schema = 'public'""")    
             rows = cur.fetchall()
             for r in rows:
+                print "Tabla ", r
                 res.append(r[0])
             conn.close()
         except psycopg2.DatabaseError, e:
@@ -57,7 +58,7 @@ class DatabaseManager():
     def list_columns(self, table, database = None):
         res = []
         try:
-            conn = self.generate_conn({'database':database and database or options.pg_database})
+            conn = self.generate_conn({'database':database and database or options.pg_dbname})
             cur = conn.cursor() 
             cur.execute("""SELECT column_name FROM information_schema.columns WHERE table_name =%s""", (table,))    
             rows = cur.fetchall()

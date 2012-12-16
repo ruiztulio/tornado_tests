@@ -23,6 +23,7 @@ def create_tables():
     cursor.execute("DROP TABLE IF EXISTS config")
     cursor.execute("DROP TABLE IF EXISTS methods")
     cursor.execute("DROP TABLE IF EXISTS models")
+    conn.commit()
 
     cursor.execute("""CREATE TABLE config
                             (

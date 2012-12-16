@@ -11,7 +11,7 @@
               <label class="right inline">Nombre del modelo</label>
             </div>
             <div class="ten mobile-three columns">
-              <input type="text" class="three" value="{{ table[2] and table[2] or ""}}" name="model{{ table[1] }}"/>
+              <input type="text" class="three" value="{{ table[2] and table[2] or ""}}" name="model_{{ table[1] }}"/>
             </div>
           </div>
           <fieldset>
@@ -20,7 +20,7 @@
             {% for config in tables_config[table[1]]['GET'] %}
                 <li>      
                   <label for="get_{{ config[1] }}">
-                    <input id="get_{{ config[1] }}" type="checkbox" name="get_{{ table }}" value="{{ config[0] }}"  {{ config[3] and "checked" or "" }} {{ config[1] == 'id' and 'READONLY DISABLED' or ""}}>
+                    <input id="get_{{ config[1] }}" type="checkbox" name="get_{{ table[1] }}_{{ config[0] }}" value="{{ config[0] }}"  {{ config[3] and "checked" or "" }} {{ config[1] == 'id' and 'READONLY DISABLED' or ""}}>
                     {{ config[1] }}
                   </label>
                 </li>
@@ -31,12 +31,14 @@
             <legend>POST (campos obligatorios)</legend>
             <ul class="block-grid two-up">
             {% for config in tables_config[table[1]]['POST'] %}
+              {% if config[1] != 'id' %}
                 <li>      
                   <label for="get_{{ config[1] }}">
-                    <input id="get_{{ config[1] }}" type="checkbox" name="get_{{ table }}" value="{{ config[0] }}"  {{ config[3] and "checked" or "" }} {{ config[1] == 'id' and 'READONLY DISABLED' or ""}}>
+                    <input id="get_{{ config[1] }}" type="checkbox" name="post_{{ table }}_{{ config[0] }}" value="{{ config[0] }}"  {{ config[3] and "checked" or "" }} >
                     {{ config[1] }}
                   </label>
                 </li>
+              {% end %}
             {% end %}
             </ul>
           </fieldset>          

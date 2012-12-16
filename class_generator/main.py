@@ -110,7 +110,7 @@ class ConfigHandler(tornado.web.RequestHandler):
         elif self.get_argument('action') == 'update_table_list':
             message = {'id': 'success', 'message': 'Lista obtenida correctamente'}
             tables= self.get_arguments('tables')
-            cm.save_tables(tables)
+            cm.update_tables(tables)
         elif self.get_argument('action') == 'reset':
             message = {'id': 'success', 'message': 'Proyecto inicializado coerrectamente'}
             create_tables()
