@@ -7,12 +7,13 @@ import sys
 sys.path.append('./lib')
 from tornado.options import (define, options)
 #sys.path.append('./')
-from utils.list_tables import (list_databases, list_tables, save_tables)
+from utils.database_manager import DatabaseManager
 from utils.initializer import create_tables
 from utils.config_manager import ConfigManager
 import ConfigParser
 
 cm = ConfigManager()
+dm = DatabaseManager()
 
 define("title", default="Generador de clases", help="Page title", type=str)
 define("company_name", default="La compania", help="Company name", type=str)
@@ -69,7 +70,7 @@ class DatabaseHandler(tornado.web.RequestHandler):
         action = self.get_argument('action', False)
         if action == 'list':
             html = "<select name=\"database\">"
-            dbs = list_databases()
+            dbs = dm.list_databases()
             for db in dbs:
                 html = "%s <option value=\"%s\" %s>%s</option>"%(html, db.get('name'), db.get('name')==options.pg_dbname and  "selected=\"selected\"" or "" ,db.get('name'))
             html = "%s</select>"%html
@@ -109,7 +110,7 @@ class ConfigHandler(tornado.web.RequestHandler):
         elif self.get_argument('action') == 'update_table_list':
             message = {'id': 'success', 'message': 'Lista obtenida correctamente'}
             tables= self.get_arguments('tables')
-            save_tables(tables)
+            cm.save_tables(tables)
         elif self.get_argument('action') == 'reset':
             message = {'id': 'success', 'message': 'Proyecto inicializado coerrectamente'}
             create_tables()

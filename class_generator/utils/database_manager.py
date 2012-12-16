@@ -39,10 +39,10 @@ class DatabaseManager():
         conn.close()
         return res
 
-    def list_tables(self, database):
+    def list_tables(self, database = None):
         res = []
         try:
-            conn = self.generate_conn({'database':database})
+            conn = self.generate_conn({'database':database and database or options.pg_database})
             cur = conn.cursor() 
             cur.execute("""SELECT table_name FROM information_schema.tables 
                             WHERE table_schema = 'public'""")    
@@ -54,10 +54,10 @@ class DatabaseManager():
             print 'Error %s' % e    
         return res
 
-    def list_columns(self, table, database):
+    def list_columns(self, table, database = None):
         res = []
         try:
-            conn = self.generate_conn({'database':database})
+            conn = self.generate_conn({'database':database and database or options.pg_database})
             cur = conn.cursor() 
             cur.execute("""SELECT column_name FROM information_schema.columns WHERE table_name =%s""", (table,))    
             rows = cur.fetchall()

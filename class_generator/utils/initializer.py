@@ -1,19 +1,20 @@
 import sqlite3
 from config_manager import ConfigManager
 from tornado.options import options
-from list_tables import (list_tables, save_tables, list_columns, save_columns, find_table)
+from database_manager import DatabaseManager
 
 
 
 def insert_db_tables():
-    tables = list_tables(options.pg_dbname)
-    save_tables(tables)
+    dm = DatabaseManager()
+    cm = ConfigManager()
+    tables = dm.list_tables()
+    cm.save_tables(tables)
     for table in tables:
-        model_id = find_table(table)
-        fields = list_columns(table, options.pg_dbname)
-        save_columns(model_id, fields)
-    config = ConfigManager()
-    config.get_models_config()
+        model_id = cm.find_table(table)
+        fields = dm.list_columns(table)
+        cm.save_columns(model_id, fields)
+    cm.get_models_config()
 
 def create_tables():
     config = ConfigManager()
