@@ -63,6 +63,12 @@
   jQuery('#lnk_update_list').bind('click', function (event)
   {
     event.preventDefault();
+    jQuery.post("/config", 
+                jQuery("#config_form").serialize(), 
+                function(data) 
+                {
+                  jQuery("#notifications").html(data);
+                });
     jQuery.get("/database", 
                 {action:"list"}, 
                 function(data) 

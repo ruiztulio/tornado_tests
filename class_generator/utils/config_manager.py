@@ -82,3 +82,24 @@ class ConfigManager():
                 res.get(model[1]).get('POST').append(row)
         return res
 
+    def find_table(self, table):
+        self.cursor.execute("""SELECT * FROM models WHERE name = ? LIMIT 1""", (table,))
+        row = self.cursor.fetchone()
+        return row[0]
+
+    def save_columns(self, table_id, columns):
+        for method in ['GET', 'POST']:
+            for column in columns:
+                if column != 'id':
+                    self.cursor.execute("INSERT INTO methods (model_id, method_name, field_name) VALUES (?, ?, ?)", (table_id, method, column))
+                else:
+                    self.cursor.execute("INSERT INTO methods (model_id, method_name, field_name, use) VALUES (?, ?, ?, 1)", (table_id, method, column))
+        self.conn.commit()
+
+    def save_tables(self, tables):
+        self.cursor.execute("UPDATE models SET use = 0")
+        for table in tables:
+            #cursor.execute("INSERT INTO models (name) VALUES (?)", (table,))
+            print table
+            self.cursor.execute("UPDATE models SET use = 1 WHERE id = (?)", (table,))
+        self.conn.commit()

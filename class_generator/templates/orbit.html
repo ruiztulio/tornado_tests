@@ -37,7 +37,7 @@
         {% if config.get('show_initialize') == True %}
           <li><a id="lnk_initialize" href="#">Inicializar sistema</a></li>
         {% else %}
-          <li><a href="#">Reiniciar proyecto</a></li>
+          <li><a id="lnk_reset" href="#">Reiniciar proyecto</a></li>
           <li><a id="lnk_config" href="#">Configuracion</a></li>
           <li><a id="lnk_list_tables" href="#">Lista de tablas</a></li>
           <li><a id="lnk_config_models" href="#">Configurar modelos</a></li>
@@ -200,6 +200,18 @@
                   function(data) 
                   {
                     jQuery('#main_content').html(data);
+                  });
+    });
+    
+    jQuery('#lnk_reset').bind('click', function (event)
+    {
+      event.preventDefault();
+      jQuery.post("/config", 
+                  {action:"reset"}, 
+                  function(data) 
+                  {
+                    jQuery("#notifications").html(data);
+                    jQuery('#main_content').html("");
                   });
     });
 

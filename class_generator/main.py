@@ -110,6 +110,15 @@ class ConfigHandler(tornado.web.RequestHandler):
             message = {'id': 'success', 'message': 'Lista obtenida correctamente'}
             tables= self.get_arguments('tables')
             save_tables(tables)
+        elif self.get_argument('action') == 'reset':
+            message = {'id': 'success', 'message': 'Proyecto inicializado coerrectamente'}
+            create_tables()
+            cm.set({'host': str(options.pg_host),
+                    'password' : str(options.pg_pass),
+                    'database' : str(options.pg_dbname),
+                    'user' : str(options.pg_user),
+                    'port' : int(options.pg_port)})
+
         self.render("message.html", message=message)
 
 def main():
