@@ -3,11 +3,9 @@
 
 import psycopg2
 import psycopg2.extras
-import sys
 from utils import copyListDicts
 from tornado.options import options
 from config_manager import ConfigManager
-import sqlite3
 
 
 con = None

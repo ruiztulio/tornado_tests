@@ -55,6 +55,26 @@ class ConfigManager():
         rows = self.cursor.fetchall()
         return rows
 
+    def get_methods(self, model_id):
+        self.cursor.execute("""SELECT distinct method_name
+                                FROM methods""")
+        res = []
+        rows = self.cursor.fetchall()
+        for r in rows:
+            res.append(r[0])
+        return res
+
+    def get_methods_fields(self, method, model_id):
+        self.cursor.execute("""SELECT field_name
+                                FROM methods
+                                WHERE method_name = ?
+                                AND model_id = ?""", (method, model_id,))
+        res = []
+        rows = self.cursor.fetchall()
+        for r in rows:
+            res.append(r[0])
+        return res
+
     def get_models_config(self):
         models = self.get_tables_list(True)
 

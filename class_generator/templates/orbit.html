@@ -41,7 +41,7 @@
           <li><a id="lnk_config" href="#">Configuracion</a></li>
           <li><a id="lnk_list_tables" href="#">Lista de tablas</a></li>
           <li><a id="lnk_config_models" href="#">Configurar modelos</a></li>
-          <li><a href="#">Generar Archivos</a></li>
+          <li><a id="lnk_generate" href="#">Generar Archivos</a></li>
         {% end %}
       </ul>
     </div>
@@ -176,6 +176,17 @@
                   function(data) 
                   {
                     window.location.reload()
+                  });
+    });
+
+    jQuery('#lnk_generate').bind('click', function (event)
+    {
+      event.preventDefault();
+      jQuery.get("/database", 
+                  {action:"generate_files"}, 
+                  function(data) 
+                  {
+                    jQuery("#notifications").html(data);
                   });
     });
   </script>

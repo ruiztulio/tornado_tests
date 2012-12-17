@@ -1,12 +1,10 @@
-import ConfigParser
 import os
-import sqlite3
+from utils.config_manager import ConfigManager
 
-conn = sqlite3.connect('./sqlitelocal.db')
-cursor = conn.cursor()
+cm = ConfigManager()
 
 def generate_get(config):
-    vals = {'name':config.get('database', 'table'), 'format':'%'}
+    vals = {'name':config.get('table'), 'format':'%'}
     res = """
     def get(self, p):
         field_id = self.get_argument('id', False)
@@ -28,9 +26,9 @@ def generate_get(config):
     return res
     
 def generate_put(config):
-    vals = {'name':config.get('database', 'table'), 
+    vals = {'name':config.get('table'), 
             'format':'%',
-            'mandatory':'","'.join(config.get('post', 'mandatory').split(','))}
+            'mandatory':'","'.join(config.get('mandatory'))}
     res = """
     def put(self, p):
         field_id = self.get_argument('id', False)
@@ -61,7 +59,7 @@ def generate_put(config):
     return res
 
 def generate_delete(config):
-    vals = {'name':config.get('database', 'table'), 'format':'%'}
+    vals = {'name':config.get('table'), 'format':'%'}
     res = """
     def delete(self, p):
         fields = self.request.arguments.keys() 
@@ -88,9 +86,9 @@ def generate_delete(config):
     return res
     
 def generate_post(config):
-    vals = {'name':config.get('database', 'table'), 
+    vals = {'name':config.get('table'), 
             'format':'%', 
-            'mandatory':'","'.join(config.get('post', 'mandatory').split(','))}
+            'mandatory':'","'.join(config.get('mandatory'))}
     res = """
     def post(self, p):
         obligatorios = ["%(mandatory)s"]
@@ -122,37 +120,38 @@ def generate_insert(table, fields):
     v = str(tuple(['%s']*len(fields)))
     return sql%{'name':table, 'fields': f, 'values':v[:-2]}
 
-path = os.path.dirname(os.path.realpath(__file__)) + '/output'
+def generate_all():
+    path = os.path.dirname(os.path.realpath(__file__)) + '/output'
 
-if not os.path.isdir(path):
-    print 'No existe el directorio de salida'
-    os.mkdir('output')
-if not os.path.isfile('config.ini'):
-    print 'No existe archivo de configuracion'
-config = ConfigParser.ConfigParser()
-config.read('config.ini')
-methods=config.get('model', 'methods').split(',')
-class_name=config.get('model', 'name')
-imports=config.get('model', 'imports')
-base=config.get('model', 'base')
+    if not os.path.isdir(path):
+        print 'No existe el directorio de salida'
+        os.mkdir('output')
+    if not os.path.isfile('config.ini'):
+        print 'No existe archivo de configuracion'
+    models =  cm.get_tables_list(use=True)
+    for model in models:
+        methods=cm.get_methods(model[0])
+        class_name=model[2]
+        imports=cm.get('model', 'imports')
+        base=cm.get('model', 'base')
 
-text_file = open("output/%s.py"%config.get('database', 'table'), "w")
-text_file.write(imports)
-text_file.write("\n\ngen_log = logging.getLogger(\"tornado.general\")\n\n")
-text_file.write("")
-text_file.write("class %s(%s):"%(class_name, base))
-text_file.write("\n    SUPPORTED_METHODS = (\"%s\")"%'","'.join(methods))
-if 'GET' in methods:
-    text_file.write(generate_get(config))
-if 'POST' in methods:
-    text_file.write(generate_post(config))
-if 'DELETE' in methods:
-    text_file.write(generate_delete(config))
-if 'PUT' in methods:
-    text_file.write(generate_put(config))
+        text_file = open("output/%s.py"%model[1], "w")
+        text_file.write(imports)
+        text_file.write("\n\ngen_log = logging.getLogger(\"tornado.general\")\n\n")
+        text_file.write("")
+        text_file.write("class %s(%s):"%(class_name, base))
+        text_file.write("\n    SUPPORTED_METHODS = (\"%s\")"%'","'.join(methods))
+        if 'GET' in methods:
+            text_file.write(generate_get({'table':model[1]}))
+        if 'POST' in methods:
+            text_file.write(generate_post({'table':model[1], 'mandatory': cm.get_methods_fields('POST', model[0])}))
+        if 'DELETE' in methods:
+            text_file.write(generate_delete({'table':model[1]}))
+        if 'PUT' in methods:
+            text_file.write(generate_put({'table':model[1], 'mandatory': cm.get_methods_fields('PUT', model[0])}))
 
-text_file.close()
+        text_file.close()
 
-print base
+        print base
 
 

@@ -10,6 +10,7 @@ from tornado.options import (define, options)
 from utils.database_manager import DatabaseManager
 from utils.initializer import create_tables
 from utils.config_manager import ConfigManager
+from generator import generate_all
 import ConfigParser
 
 cm = ConfigManager()
@@ -84,6 +85,10 @@ class DatabaseHandler(tornado.web.RequestHandler):
             tables = cm.get_tables_list(True)
             tables_config = cm.get_models_config()
             html = self.render_string("frm_config_models.html", tables=tables, tables_config=tables_config)
+        elif action == 'generate_files':
+            generate_all()
+            message = {'id': 'success', 'message': 'Archivos generados satisfactoriamente'}
+            html = self.render_string("message.html", message=message)
         #elif action == 'list_tables_config':
         self.write(html)
         
@@ -121,7 +126,6 @@ class ConfigHandler(tornado.web.RequestHandler):
                     'port' : int(options.pg_port)})
         elif self.get_argument('action') == 'update_model':
             message = {'id': 'success', 'message': 'Modelos actualizados'}
-            
             for p in self.request.arguments.keys():
                 if p.startswith('get_'):
                     cm.update_config_method('GET', int(p[4:]), [int(v) for v in self.get_arguments(p)])
