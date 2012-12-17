@@ -117,7 +117,7 @@ class ConfigManager():
     def save_columns(self, table_id, columns):
         for method in ['GET', 'POST', 'DELETE', 'PUT']:
             for column in columns:
-                if column != 'id':
+                if column != 'id' or (method == 'POST' and column == 'id'):
                     self.cursor.execute("INSERT INTO methods (model_id, method_name, field_name) VALUES (?, ?, ?)", (table_id, method, column))
                 else:
                     self.cursor.execute("INSERT INTO methods (model_id, method_name, field_name, use) VALUES (?, ?, ?, 1)", (table_id, method, column))
@@ -139,7 +139,8 @@ class ConfigManager():
 
     def update_config_method(self, method, table_id, column_ids):
         self.cursor.execute("UPDATE methods SET use = 0 WHERE field_name <> 'id' AND method_name = ? AND model_id = ?", (method, table_id,))
-        self.cursor.execute("UPDATE methods SET use = 1 WHERE field_name = 'id' AND method_name = ? AND model_id = ?", (method, table_id,))
+        if method != 'POST':
+            self.cursor.execute("UPDATE methods SET use = 1 WHERE field_name = 'id' AND method_name = ? AND model_id = ?", (method, table_id,))
         self.conn.commit()
         for column_id in column_ids:
             self.cursor.execute("UPDATE methods SET use = 1 WHERE field_name <> 'id' AND id = ?", (column_id,))
