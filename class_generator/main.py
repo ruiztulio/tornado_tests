@@ -119,7 +119,17 @@ class ConfigHandler(tornado.web.RequestHandler):
                     'database' : str(options.pg_dbname),
                     'user' : str(options.pg_user),
                     'port' : int(options.pg_port)})
-
+        elif self.get_argument('action') == 'update_model':
+            message = {'id': 'success', 'message': 'Modelos actualizados'}
+            
+            for p in self.request.arguments.keys():
+                if p.startswith('get_'):
+                    cm.update_config_method('GET', int(p[4:]), [int(v) for v in self.get_arguments(p)])
+                elif p.startswith('post_'):
+                    cm.update_config_method('POST', int(p[5:]), [int(v) for v in self.get_arguments(p)])
+                elif p.startswith('model_'):
+                    cm.update_config_model(int(p[6:]), self.get_argument(p))
+            #print self.get_arguments('get_1')
         self.render("message.html", message=message)
 
 def main():

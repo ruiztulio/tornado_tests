@@ -1,48 +1,71 @@
-<dl class="tabs">
-  {% for table in tables %}
-    <dd><a href="#lnk_{{ table[1] }}">{{ table[1] }}</a></dd>
-  {% end %}
-</dl>
-<ul class="tabs-content">
-  {% for table in tables %}
-      <li id="lnk_{{ table[1] }}Tab">
-          <div class="row">
-            <div class="two mobile-one columns">
-              <label class="right inline">Nombre del modelo</label>
-            </div>
-            <div class="ten mobile-three columns">
-              <input type="text" class="three" value="{{ table[2] and table[2] or ""}}" name="model_{{ table[1] }}"/>
-            </div>
-          </div>
-          <fieldset>
-            <legend>GET (campos a consultar) </legend>
-            <ul class="block-grid two-up">
-            {% for config in tables_config[table[1]]['GET'] %}
-                <li>      
-                  <label for="get_{{ config[1] }}">
-                    <input id="get_{{ config[1] }}" type="checkbox" name="get_{{ table[1] }}_{{ config[0] }}" value="{{ config[0] }}"  {{ config[3] and "checked" or "" }} {{ config[1] == 'id' and 'READONLY DISABLED' or ""}}>
-                    {{ config[1] }}
-                  </label>
-                </li>
-            {% end %}
-            </ul>
-          </fieldset>          
-          <fieldset>
-            <legend>POST (campos obligatorios)</legend>
-            <ul class="block-grid two-up">
-            {% for config in tables_config[table[1]]['POST'] %}
-              {% if config[1] != 'id' %}
-                <li>      
-                  <label for="get_{{ config[1] }}">
-                    <input id="get_{{ config[1] }}" type="checkbox" name="post_{{ table }}_{{ config[0] }}" value="{{ config[0] }}"  {{ config[3] and "checked" or "" }} >
-                    {{ config[1] }}
-                  </label>
-                </li>
-              {% end %}
-            {% end %}
-            </ul>
-          </fieldset>          
-  </li>
-  {% end %}
-</ul>
+<form name="config_form" id="config_form">
 
+  <dl class="tabs">
+    {% for table in tables %}
+      <dd><a href="#lnk_{{ table[1] }}">{{ table[1] }}</a></dd>
+    {% end %}
+  </dl>
+  <ul class="tabs-content">
+    {% for table in tables %}
+        <li id="lnk_{{ table[1] }}Tab">
+            <div class="row">
+              <div class="two mobile-one columns">
+                <label class="right inline">Nombre del modelo</label>
+              </div>
+              <div class="ten mobile-three columns">
+                <input type="text" class="three" value="{{ table[2] and table[2] or ""}}" name="model_{{ table[0] }}"/>
+              </div>
+            </div>
+            <fieldset>
+              <legend>GET (campos a consultar) </legend>
+              <ul class="block-grid two-up">
+              {% for config in tables_config[table[1]]['GET'] %}
+                  <li>      
+                    <label for="get_{{ config[1] }}">
+                      <input id="get_{{ config[1] }}" type="checkbox" name="get_{{ table[0] }}" value="{{ config[0] }}"  {{ config[3] and "checked" or "" }} {{ config[1] == 'id' and 'READONLY DISABLED' or ""}}>
+                      {{ config[1] }}
+                    </label>
+                  </li>
+              {% end %}
+              </ul>
+            </fieldset>          
+            <fieldset>
+              <legend>POST (campos obligatorios)</legend>
+              <ul class="block-grid two-up">
+              {% for config in tables_config[table[1]]['POST'] %}
+                {% if config[1] != 'id' %}
+                  <li>      
+                    <label for="get_{{ config[1] }}">
+                      <input id="get_{{ config[1] }}" type="checkbox" name="post_{{ table[0] }}" value="{{ config[0] }}"  {{ config[3] and "checked" or "" }} >
+                      {{ config[1] }}
+                    </label>
+                  </li>
+                {% end %}
+              {% end %}
+              </ul>
+            </fieldset>          
+    </li>
+    {% end %}
+  </ul>
+  <input type="hidden" name="action" value="update_model"/>
+  <div class="row">
+    <div class="ten mobile-three columns">
+      <a id="lnk_save" class="button" href="#">Guardar</a>
+    </div>
+  </div>
+</form>
+
+<script type="text/javascript">
+
+  jQuery('#lnk_save').bind('click', function (event)
+  {
+    event.preventDefault();
+    jQuery.post("/config", 
+                jQuery("#config_form").serialize(), 
+                function(data) 
+                {
+                  jQuery("#notifications").html(data);
+                  jQuery("#main_content").html(""); 
+                });
+  });
+</script>

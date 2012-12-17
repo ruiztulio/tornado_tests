@@ -109,3 +109,16 @@ class ConfigManager():
             print table
             self.cursor.execute("UPDATE models SET use = 1 WHERE id = (?)", (table,))
         self.conn.commit()
+
+    def update_config_method(self, method, table_id, column_ids):
+        self.cursor.execute("UPDATE methods SET use = 0 WHERE field_name <> 'id' AND method_name = ? AND model_id = ?", (method, table_id,))
+        self.cursor.execute("UPDATE methods SET use = 1 WHERE field_name = 'id' AND method_name = ? AND model_id = ?", (method, table_id,))
+        self.conn.commit()
+        for column_id in column_ids:
+            self.cursor.execute("UPDATE methods SET use = 1 WHERE field_name <> 'id' AND id = ?", (column_id,))
+        self.conn.commit()
+
+    def update_config_model(self, table_id, name):
+        self.cursor.execute("UPDATE models SET class_name = ? WHERE id = ? ", (name, table_id,))
+        self.conn.commit()
+ 
