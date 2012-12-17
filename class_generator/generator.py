@@ -4,15 +4,18 @@ from utils.config_manager import ConfigManager
 cm = ConfigManager()
 
 def generate_get(config):
-    vals = {'name':config.get('table'), 'format':'%'}
+    vals = {'name':config.get('table'), 
+            'fields':', '.join(config.get('fields')),
+            'format':'%',
+            }
     res = """
     def get(self, p):
         field_id = self.get_argument('id', False)
         try:
             if field_id:
-                self.cursor.execute("SELECT * FROM %(name)s WHERE id = %(format)ss", (field_id, ))
+                self.cursor.execute("SELECT %(fields)s FROM %(name)s WHERE id = %(format)ss", (field_id, ))
             else:
-                self.cursor.execute("SELECT * FROM %(name)s")
+                self.cursor.execute("SELECT %(fields)s FROM %(name)s")
             res = copyListDicts( self.cursor.fetchall() )
             for r in res:
                 r.update({'ref' : 'http://%(format)ss/%(name)s?id=%(format)ss'%(format)s(self.request.host, r.get('id'))})
@@ -142,13 +145,13 @@ def generate_all():
         text_file.write("class %s(%s):"%(class_name, base))
         text_file.write("\n    SUPPORTED_METHODS = (\"%s\")"%'","'.join(methods))
         if 'GET' in methods:
-            text_file.write(generate_get({'table':model[1]}))
+            text_file.write(generate_get({'table':model[1], 'fields':cm.get_methods_fields('GET', model[0], use=True)}))
         if 'POST' in methods:
-            text_file.write(generate_post({'table':model[1], 'mandatory': cm.get_methods_fields('POST', model[0])}))
+            text_file.write(generate_post({'table':model[1], 'mandatory': cm.get_methods_fields('POST', model[0], use=True)}))
         if 'DELETE' in methods:
             text_file.write(generate_delete({'table':model[1]}))
         if 'PUT' in methods:
-            text_file.write(generate_put({'table':model[1], 'mandatory': cm.get_methods_fields('PUT', model[0])}))
+            text_file.write(generate_put({'table':model[1], 'mandatory': cm.get_methods_fields('PUT', model[0], use=True)}))
 
         text_file.close()
 

@@ -64,11 +64,18 @@ class ConfigManager():
             res.append(r[0])
         return res
 
-    def get_methods_fields(self, method, model_id):
-        self.cursor.execute("""SELECT field_name
-                                FROM methods
-                                WHERE method_name = ?
-                                AND model_id = ?""", (method, model_id,))
+    def get_methods_fields(self, method, model_id, use = None):
+        if not use:
+            self.cursor.execute("""SELECT field_name
+                                    FROM methods
+                                    WHERE method_name = ?
+                                    AND model_id = ?""", (method, model_id,))
+        else:
+            self.cursor.execute("""SELECT field_name
+                                    FROM methods
+                                    WHERE method_name = ?
+                                    AND use = 1
+                                    AND model_id = ?""", (method, model_id,))
         res = []
         rows = self.cursor.fetchall()
         for r in rows:
@@ -108,7 +115,7 @@ class ConfigManager():
         return row[0]
 
     def save_columns(self, table_id, columns):
-        for method in ['GET', 'POST']:
+        for method in ['GET', 'POST', 'DELETE', 'PUT']:
             for column in columns:
                 if column != 'id':
                     self.cursor.execute("INSERT INTO methods (model_id, method_name, field_name) VALUES (?, ?, ?)", (table_id, method, column))
