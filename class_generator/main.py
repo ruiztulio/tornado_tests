@@ -100,7 +100,7 @@ class ConfigHandler(tornado.web.RequestHandler):
     def post(self):
         if self.get_argument('action') == 'update_config':
             print "Actualizando config"
-            cm.set({'host': str(self.get_argument('host', '')),
+            cm.set({'host': str(self.get_argument('host', 'localhost')),
                     'password' : str(self.get_argument('password', '')),
                     'database' : str(self.get_argument('database', '')),
                     'user' : str(self.get_argument('user', '')),

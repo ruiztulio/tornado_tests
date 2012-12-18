@@ -1,5 +1,6 @@
 import ConfigParser
 import sqlite3
+import os
 
 class ConfigManager():
     config_file = None
@@ -7,6 +8,9 @@ class ConfigManager():
     cursor = None
 
     def __init__(self):
+        if not os.path.isfile('config.ini'):
+            raise IOError("No se encuentra el archivo config.ini")
+
         self.config_file = ConfigParser.ConfigParser()
         self.config_file.read('config.ini')
         self.conn = sqlite3.connect(self.config_file.get('application', 'dbname'))
@@ -18,20 +22,24 @@ class ConfigManager():
         self.conn.commit()
 
     def get_database_config(self):
-        self.cursor.execute("SELECT * FROM config ORDER BY id DESC LIMIT 1")
-        r = self.cursor.fetchone()
-        if not r:
-            res = {'host' : self.config_file.get('database', 'host'),
-                    'user' : self.config_file.get('database', 'user'),
-                    'password':self.config_file.get('database', 'password'),
-                    'port':int(self.config_file.get('database', 'port')),
-                    'database':self.config_file.get('database', 'database')}
-        else:
-            res = {'host' : str(r[1]),
-                    'user' : str(r[2]),
-                    'password':str(r[3]),
-                    'port':r[4],
-                    'database':str(r[5])}
+        res = {'host' : self.config_file.get('database', 'host'),
+                'user' : self.config_file.get('database', 'user'),
+                'password':self.config_file.get('database', 'password'),
+                'port':int(self.config_file.get('database', 'port')),
+                'database':self.config_file.get('database', 'database')}
+        if os.path.isfile(self.get('application', 'dbname')):
+            try:
+                self.cursor.execute("SELECT * FROM config ORDER BY id DESC LIMIT 1")
+                r = self.cursor.fetchone()
+                if r:
+                    res = {'host' : str(r[1]),
+                            'user' : str(r[2]),
+                            'password':str(r[3]),
+                            'port':r[4],
+                            'database':str(r[5])}
+            except sqlite3.OperationalError:
+                pass
+            
         return res
 
     def get(self, *args):

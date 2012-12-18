@@ -134,7 +134,7 @@ def generate_all():
     models =  cm.get_tables_list(use=True)
     for model in models:
         methods=cm.get_methods(model[0])
-        class_name=model[2]
+        class_name=model[2] and model[2] or model[1]
         imports=cm.get('model', 'imports')
         base=cm.get('model', 'base')
 

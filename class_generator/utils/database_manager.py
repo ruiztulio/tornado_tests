@@ -5,7 +5,6 @@ import psycopg2
 import psycopg2.extras
 from utils import copyListDicts
 from tornado.options import options
-from config_manager import ConfigManager
 
 
 con = None
@@ -21,6 +20,7 @@ class DatabaseManager():
         else:
             conn_str = "host=%s password=%s dbname=postgres user=%s port=%s"% \
                             (options.pg_host, options.pg_pass, options.pg_user, options.pg_port)
+        print conn_str
         return psycopg2.connect(conn_str)
 
     def list_databases(self):
