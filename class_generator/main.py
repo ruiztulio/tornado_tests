@@ -111,6 +111,7 @@ class ConfigHandler(tornado.web.RequestHandler):
             options.pg_port = cm.get('database', 'port')
             options.pg_pass = cm.get('database', 'password')
             options.pg_host = cm.get('database', 'host')
+            create_tables()
             message = {'id': 'success', 'message': 'Actualizada configuracion correctamente'}
         elif self.get_argument('action') == 'update_table_list':
             message = {'id': 'success', 'message': 'Lista obtenida correctamente'}
