@@ -18,11 +18,14 @@
             </div>
             <fieldset>
               <legend>GET (campos a consultar) </legend>
+              <label for="todos_get_{{ table[1] }}">
+                <input id="todos_get_{{ table[1] }}" name="todos_get_{{ table[1] }}" type="checkbox">Seleccionar todos
+              </label>
               <ul class="block-grid two-up">
               {% for config in tables_config[table[1]]['GET'] %}
                   <li>      
-                    <label for="get_{{ config[1] }}">
-                      <input id="get_{{ config[1] }}" type="checkbox" name="get_{{ table[0] }}" value="{{ config[0] }}"  {{ config[3] and "checked" or "" }} {{ config[1] == 'id' and 'READONLY DISABLED' or ""}}>
+                    <label for="get_{{ config[1] }}_{{ table[1] }}">
+                      <input id="get_{{ config[1] }}_{{ table[1] }}" type="checkbox" name="get_{{ table[0] }}" value="{{ config[0] }}"  {{ config[3] and "checked" or "" }} {{ config[1] == 'id' and 'READONLY DISABLED' or ""}}>
                       {{ config[1] }}
                     </label>
                   </li>
@@ -31,12 +34,15 @@
             </fieldset>          
             <fieldset>
               <legend>POST (campos obligatorios)</legend>
+              <label for="todos_post_{{ table[1] }}">
+                <input id="todos_post_{{ table[1] }}" name="todos_post_{{ table[1] }}" type="checkbox">Seleccionar todos
+              </label>
               <ul class="block-grid two-up">
               {% for config in tables_config[table[1]]['POST'] %}
                 {% if config[1] != 'id' %}
                   <li>      
-                    <label for="get_{{ config[1] }}">
-                      <input id="get_{{ config[1] }}" type="checkbox" name="post_{{ table[0] }}" value="{{ config[0] }}"  {{ config[3] and "checked" or "" }} >
+                    <label for="post_{{ config[1] }}_{{ table[1] }}">
+                      <input id="post_{{ config[1] }}_{{ table[1] }}" type="checkbox" name="post_{{ table[0] }}" value="{{ config[0] }}"  {{ config[3] and "checked" or "" }} >
                       {{ config[1] }}
                     </label>
                   </li>
@@ -67,5 +73,29 @@
                   jQuery("#notifications").html(data);
                   jQuery("#main_content").html(""); 
                 });
+  });
+
+  jQuery('input[name^="todos_get_"]').click(function()
+  {
+    var checked_status = this.checked;
+    var selector = '[id^="get_"][id$="'+this.name.substring(10)+'"]';
+    jQuery(selector).each(function()
+    {
+      if(this.id.substring(0, 6) != 'get_id')
+        this.checked = checked_status;
+    }
+    ); 
+  });
+
+  jQuery('input[name^="todos_post_"]').click(function()
+  {
+    var checked_status = this.checked;
+    var selector = '[id^="post_"][id$="'+this.name.substring(11)+'"]';
+    jQuery(selector).each(function()
+    {
+      if(this.id.substring(0, 7) != 'post_id')
+        this.checked = checked_status;
+    }
+    ); 
   });
 </script>
