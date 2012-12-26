@@ -161,14 +161,12 @@ class ConfigManager():
     def save_tables(self, tables):
         for table in tables:
             self.cursor.execute("INSERT INTO models (name, use) VALUES (?, 0)", (table,))
-            print table
         self.conn.commit()
 
     def update_tables(self, tables):
         self.cursor.execute("UPDATE models SET use = 0")
         for table in tables:
             #cursor.execute("INSERT INTO models (name) VALUES (?)", (table,))
-            print table
             self.cursor.execute("UPDATE models SET use = 1 WHERE id = (?)", (table,))
         self.conn.commit()
 

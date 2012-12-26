@@ -45,7 +45,6 @@ class DatabaseManager():
                             WHERE table_schema = 'public'""")    
             rows = cur.fetchall()
             for r in rows:
-                print "Tabla ", r
                 res.append(r[0])
             conn.close()
         except psycopg2.DatabaseError, e:
