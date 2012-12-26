@@ -16,6 +16,21 @@
                 <input type="text" class="three" value="{{ table[2] and table[2] or ""}}" name="model_{{ table[0] }}"/>
               </div>
             </div>
+
+            <fieldset>
+              <legend>M&eacute;tos habilitados</legend>
+              <ul class="block-grid two-up">
+              {% for method in methods[table[0]] %}
+                  <li>      
+                    <label for="method_{{ methods[table[0]][method]['id'] }}">
+                      <input id="method_{{ methods[table[0]][method]['id'] }}" type="checkbox" name="method_{{ table[0] }}" value="{{ methods[table[0]][method]['id'] }}"  {{ methods[table[0]][method]['use'] and "checked" or "" }} >
+                      {{ methods[table[0]][method]['name'] }}
+                    </label>
+                  </li>
+              {% end %}
+              </ul>
+            </fieldset>          
+
             <fieldset>
               <legend>GET (campos a consultar) </legend>
               <label for="todos_get_{{ table[1] }}">

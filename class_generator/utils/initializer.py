@@ -22,6 +22,7 @@ def create_tables():
     cursor = conn.cursor()
     cursor.execute("DROP TABLE IF EXISTS config")
     cursor.execute("DROP TABLE IF EXISTS methods")
+    cursor.execute("DROP TABLE IF EXISTS methods_config")
     cursor.execute("DROP TABLE IF EXISTS models")
     conn.commit()
 
@@ -44,7 +45,17 @@ def create_tables():
                             use boolean DEFAULT 0,
                             PRIMARY KEY (id)
                             )""")
-
+    cursor.execute("""CREATE TABLE methods_config
+                            (
+                            id integer NOT NULL,
+                            model_id integer NOT NULL,
+                            method_name character varying NOT NULL,
+                            async boolean DEFAULT 0,
+                            use boolean DEFAULT 1,
+                            UNIQUE(method_name, model_id),
+                            PRIMARY KEY (id),
+                            FOREIGN KEY(model_id) REFERENCES models(id)
+                            )""")
     cursor.execute("""CREATE TABLE methods
                             (
                             id integer NOT NULL,
@@ -53,7 +64,7 @@ def create_tables():
                             field_name character varying NOT NULL,
                             use boolean DEFAULT 0,
                             PRIMARY KEY (id),
-                            UNIQUE(method_name, field_name, model_id)
+                            UNIQUE(method_name, field_name, model_id),
                             FOREIGN KEY(model_id) REFERENCES models(id)
                             )""")
     conn.commit()

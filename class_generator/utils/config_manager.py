@@ -64,12 +64,38 @@ class ConfigManager():
         return rows
 
     def get_methods(self, model_id):
-        self.cursor.execute("""SELECT distinct method_name
-                                FROM methods""")
+        self.cursor.execute("""SELECT method_name
+                                FROM methods_config
+                                WHERE model_id = ?
+                                AND use = 1""", (model_id, ))
         res = []
         rows = self.cursor.fetchall()
         for r in rows:
             res.append(r[0])
+        return res
+
+    def get_methods_config(self, model_id, use = None):
+        if use is not None:
+            self.cursor.execute("""SELECT id, method_name, async, use
+                                    FROM methods_config
+                                    WHERE model_id = ?
+                                    AND use = ?""", (model_id, use, ))
+        else:
+            self.cursor.execute("""SELECT id, method_name, async, use
+                                    FROM methods_config
+                                    WHERE model_id = ?""", (model_id, ))
+        res = {}
+        rows = self.cursor.fetchall()
+        for r in rows:
+            res.update({r[1]: {'id':r[0], 'async':r[2], 'use': r[3], 'name': r[1]}})
+        return res
+
+    def get_all_methods_config(self):
+        tls = self.get_tables_list()
+        res = {}
+        for tl in tls:
+            ms = self.get_methods_config(tl[0])
+            res.update({tl[0] : ms})
         return res
 
     def get_methods_fields(self, method, model_id, use = None):
@@ -124,6 +150,7 @@ class ConfigManager():
 
     def save_columns(self, table_id, columns):
         for method in ['GET', 'POST', 'DELETE', 'PUT']:
+            self.cursor.execute("INSERT INTO methods_config (model_id, method_name) VALUES (?, ?)", (table_id, method,))
             for column in columns:
                 if column != 'id' or (method == 'POST' and column == 'id'):
                     self.cursor.execute("INSERT INTO methods (model_id, method_name, field_name) VALUES (?, ?, ?)", (table_id, method, column))
@@ -156,5 +183,12 @@ class ConfigManager():
 
     def update_config_model(self, table_id, name):
         self.cursor.execute("UPDATE models SET class_name = ? WHERE id = ? ", (name, table_id,))
+        self.conn.commit()
+
+    def update_method_use(self, table_id, methods):
+        self.cursor.execute("UPDATE methods_config SET use = 0 WHERE model_id = ? ", (table_id,))
+        self.conn.commit()
+        for m in methods:
+            self.cursor.execute("UPDATE methods_config SET use = 1 WHERE id = ? ", (m,))
         self.conn.commit()
  

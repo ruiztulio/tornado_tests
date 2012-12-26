@@ -81,11 +81,15 @@ class DatabaseHandler(tornado.web.RequestHandler):
             html = ''
         elif action == 'list_tables':
             tables = cm.get_tables_list()
+            print tables
             html = self.render_string("table_list.html", tables=tables)
         elif action == 'config_models':
             tables = cm.get_tables_list(True)
             tables_config = cm.get_models_config()
-            html = self.render_string("frm_config_models.html", tables=tables, tables_config=tables_config)
+            methods = cm.get_all_methods_config()
+            for i in  methods.get(1):
+                print methods.get(1).get(i)
+            html = self.render_string("frm_config_models.html", tables=tables, tables_config=tables_config, methods=methods)
         elif action == 'generate_files':
             generate_all()
             message = {'id': 'success', 'message': 'Archivos generados satisfactoriamente'}
@@ -135,6 +139,8 @@ class ConfigHandler(tornado.web.RequestHandler):
                     cm.update_config_method('POST', int(p[5:]), [int(v) for v in self.get_arguments(p)])
                 elif p.startswith('model_'):
                     cm.update_config_model(int(p[6:]), self.get_argument(p))
+                elif p.startswith('method_'):
+                    cm.update_method_use(int(p[7:]), [int(v) for v in self.get_arguments(p)])
             #print self.get_arguments('get_1')
         self.render("message.html", message=message)
 
