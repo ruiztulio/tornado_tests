@@ -8,8 +8,17 @@ def generate_get(config):
             'fields':', '.join(config.get('fields')),
             'format':'%',
             }
-    res = """
+    if config.get('async'):
+        res = """
+    @tornado.web.asynchronous
     def get(self, p):
+        self._get_callback()
+
+    def _get_callback(self):"""
+    else:
+        res = """
+    def get(self, p):"""
+    res += """
         field_id = self.get_argument('id', False)
         try:
             if field_id:
@@ -32,8 +41,17 @@ def generate_put(config):
     vals = {'name':config.get('table'), 
             'format':'%',
             'mandatory':'","'.join(config.get('mandatory'))}
-    res = """
+    if config.get('async'):
+        res = """
+    @tornado.web.asynchronous
     def put(self, p):
+        self._put_callback()
+
+    def _put_callback(self):"""
+    else:
+        res = """
+    def put(self, p):"""
+    res += """
         field_id = self.get_argument('id', False)
        
         fields = self.request.arguments.keys() 
@@ -63,8 +81,17 @@ def generate_put(config):
 
 def generate_delete(config):
     vals = {'name':config.get('table'), 'format':'%'}
-    res = """
+    if config.get('async'):
+        res = """
+    @tornado.web.asynchronous
     def delete(self, p):
+        self._delete_callback()
+
+    def _delete_callback(self):"""
+    else:
+        res = """
+    def delete(self, p):"""
+    res += """
         fields = self.request.arguments.keys() 
         field_id = self.get_argument('id', False)
         if not fields:
@@ -89,11 +116,21 @@ def generate_delete(config):
     return res
     
 def generate_post(config):
+    print config
     vals = {'name':config.get('table'), 
             'format':'%', 
             'mandatory':'","'.join(config.get('mandatory'))}
-    res = """
+    if config.get('async'):
+        res = """
+    @tornado.web.asynchronous
     def post(self, p):
+        self._post_callback()
+
+    def _post_callback(self):"""
+    else:
+        res = """
+    def post(self, p):"""
+    res += """
         obligatorios = ["%(mandatory)s"]
         fields = self.request.arguments.keys()
         f = []
@@ -144,17 +181,17 @@ def generate_all():
         text_file.write("")
         text_file.write("class %s(%s):"%(class_name, base))
         text_file.write("\n    SUPPORTED_METHODS = (\"%s\")"%'","'.join(methods))
+        c = cm.get_methods_config(model[0], use = 1)
+        print c
         if 'GET' in methods:
-            text_file.write(generate_get({'table':model[1], 'fields':cm.get_methods_fields('GET', model[0], use=True)}))
+            text_file.write(generate_get({'table':model[1], 'fields':cm.get_methods_fields('GET', model[0], use=True), 'async': c.get('GET').get('async')}))
         if 'POST' in methods:
-            text_file.write(generate_post({'table':model[1], 'mandatory': cm.get_methods_fields('POST', model[0], use=True)}))
+            text_file.write(generate_post({'table':model[1], 'mandatory': cm.get_methods_fields('POST', model[0], use=True), 'async': c.get('POST').get('async')}))
         if 'DELETE' in methods:
-            text_file.write(generate_delete({'table':model[1]}))
+            text_file.write(generate_delete({'table':model[1], 'async': c.get('DELETE').get('async')}))
         if 'PUT' in methods:
-            text_file.write(generate_put({'table':model[1], 'mandatory': cm.get_methods_fields('PUT', model[0], use=True)}))
+            text_file.write(generate_put({'table':model[1], 'mandatory': cm.get_methods_fields('PUT', model[0], use=True), 'async': c.get('PUT').get('async')}))
 
         text_file.close()
-
-        print base
 
 

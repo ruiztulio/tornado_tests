@@ -21,11 +21,19 @@
               <legend>M&eacute;tos habilitados</legend>
               <ul class="block-grid two-up">
               {% for method in methods[table[0]] %}
-                  <li>      
-                    <label for="method_{{ methods[table[0]][method]['id'] }}">
-                      <input id="method_{{ methods[table[0]][method]['id'] }}" type="checkbox" name="method_{{ table[0] }}" value="{{ methods[table[0]][method]['id'] }}"  {{ methods[table[0]][method]['use'] and "checked" or "" }} >
-                      {{ methods[table[0]][method]['name'] }}
-                    </label>
+                  <li>
+                    <fieldset>
+                      <legend>{{ method }}</legend>
+                      <label for="method_{{ methods[table[0]][method]['id'] }}">
+                        <input id="method_{{ methods[table[0]][method]['id'] }}" type="checkbox" name="method_{{ table[0] }}" value="{{ methods[table[0]][method]['id'] }}"  {{ methods[table[0]][method]['use'] and "checked" or "" }} >
+                        Habilitado
+                      </label>
+
+                      <label for="methoda_{{ methods[table[0]][method]['id'] }}">
+                        <input id="methoda_{{ methods[table[0]][method]['id'] }}" type="checkbox" name="methoda_{{ table[0] }}" value="{{ methods[table[0]][method]['id'] }}"  {{ methods[table[0]][method]['async'] and "checked" or "" }} >
+                        As&iacute;ncrono
+                      </label>
+                    </fieldset>
                   </li>
               {% end %}
               </ul>

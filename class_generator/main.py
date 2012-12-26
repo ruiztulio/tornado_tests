@@ -137,6 +137,8 @@ class ConfigHandler(tornado.web.RequestHandler):
                     cm.update_config_model(int(p[6:]), self.get_argument(p))
                 elif p.startswith('method_'):
                     cm.update_method_use(int(p[7:]), [int(v) for v in self.get_arguments(p)])
+                elif p.startswith('methoda_'):
+                    cm.update_method_async(int(p[8:]), [int(v) for v in self.get_arguments(p)])
         self.render("message.html", message=message)
 
 def main():

@@ -189,4 +189,11 @@ class ConfigManager():
         for m in methods:
             self.cursor.execute("UPDATE methods_config SET use = 1 WHERE id = ? ", (m,))
         self.conn.commit()
+
+    def update_method_async(self, table_id, methods):
+        self.cursor.execute("UPDATE methods_config SET async = 0 WHERE model_id = ? ", (table_id,))
+        self.conn.commit()
+        for m in methods:
+            self.cursor.execute("UPDATE methods_config SET async = 1 WHERE id = ? ", (m,))
+        self.conn.commit()
  
