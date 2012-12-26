@@ -1,0 +1,3 @@
+class_generator V4
+- Selección de métodos (GET, PUT, DELETE O POST)
+- Seleccionar si el metodo es asincrono o no
