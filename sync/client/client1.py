@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
 from lib.databasemanager_sqlite import DatabaseManagerClientSqlite
 import urllib
 import urllib2
@@ -12,6 +15,9 @@ def read_url(url):
     return json.loads(the_page)
 
 dm = DatabaseManagerClientSqlite()
-print urllib.urlencode({'action' : 'list_tables'})
 tables = read_url('%s/%s?%s'%(url, 'database', urllib.urlencode({'action' : 'list_tables'})))
-print tables
+if tables.get('status').get('id') == u'OK':
+    for t in tables.get('tables'):
+        print t
+        content = read_url('%s/%s?%s'%(url, 'database', urllib.urlencode({'action' : 'query_sync', 'table' : t[0]})))
+        print content
