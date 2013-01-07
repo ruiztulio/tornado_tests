@@ -5,9 +5,9 @@ import uuid
 from datetime import (timedelta, date)
 
 pg_user = "postgres"
-pg_pass = "postgres"
+pg_pass = "123"
 pg_host ="localhost"
-pg_dbname ="rest_sales"
+pg_dbname ="sales_sync"
 pg_port =5432
 
 conn = psycopg2.connect("host=%s dbname=%s password=%s user=%s port=%s"%
@@ -16,7 +16,7 @@ cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
 
 start_date = date(2012, 1, 1)
 day = timedelta(days = 1)
-n_products = 100
+n_products = 1000
 n_clients = 400
 
 for i in xrange(0, n_products):
