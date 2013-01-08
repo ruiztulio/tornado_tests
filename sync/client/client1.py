@@ -16,6 +16,8 @@ def read_url(url):
 
 dm = DatabaseManagerClientSqlite()
 tables = read_url('%s/%s?%s'%(url, 'database', urllib.urlencode({'action' : 'list_tables'})))
+res = dm.query_sync('products')
+print res
 if tables.get('status').get('id') == u'OK':
     for t in tables.get('tables'):
         rows = read_url('%s/%s?%s'%(url, 'database', urllib.urlencode({'action' : 'query', 'table' : t[0]})))
