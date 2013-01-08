@@ -27,7 +27,7 @@ class DatabaseManagerClientSqlite(DatabaseManagerClientBase):
         cur.execute(sql)
         return copyListDicts(cur.fetchall())
 
-    def insert(self, data, table, gen_id = False, gen_write_date = False):
+    def insert(self, data, table, gen_id=False, gen_write_date=False):
         if gen_id:
             data.update({'id': str(uuid.uuid4())})
 		#if gen_write_date:
@@ -40,7 +40,8 @@ class DatabaseManagerClientSqlite(DatabaseManagerClientBase):
         cur = conn.cursor() 
         cur.execute(sql, data.values())
         conn.commit()
-    def insert_many(self, data, table, gen_id = False, gen_write_date = False):
+
+    def insert_many(self, data, table, gen_id=False, gen_write_date=False):
         conn = self.generate_conn()
         cur = conn.cursor() 
         for d in data:
@@ -51,7 +52,7 @@ class DatabaseManagerClientSqlite(DatabaseManagerClientBase):
             f = str(tuple(str(x) for x in d)).replace("'", "")
             v = str(tuple(['?']*len(d))).replace("'", "")
             sql = 'INSERT INTO %(name)s %(fields)s VALUES %(values)s'%{'name':table, 'fields': f, 'values':v}
-            print d.get('id')
+            print "%s - %s" % (table, d.get('id'))
             cur.execute(sql, d.values())
         conn.commit()
 

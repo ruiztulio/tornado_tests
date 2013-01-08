@@ -43,7 +43,6 @@ class DatabaseManagerPostgres(DatabaseManagerBase):
         else:
             conn_str = "host=%s password=%s dbname=%s user=%s port=%s"% \
                             (options.pg_host, options.pg_pass, options.pg_dbname, options.pg_user, options.pg_port)
-        print conn_str
         return psycopg2.connect(conn_str)
 
     def list_tables(self):
