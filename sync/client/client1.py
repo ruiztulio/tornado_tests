@@ -18,6 +18,7 @@ dm = DatabaseManagerClientSqlite()
 tables = read_url('%s/%s?%s'%(url, 'database', urllib.urlencode({'action' : 'list_tables'})))
 if tables.get('status').get('id') == u'OK':
     for t in tables.get('tables'):
-        print t
-        content = read_url('%s/%s?%s'%(url, 'database', urllib.urlencode({'action' : 'query_sync', 'table' : t[0]})))
-        print content
+        rows = read_url('%s/%s?%s'%(url, 'database', urllib.urlencode({'action' : 'query', 'table' : t[0]})))
+        dm.insert_many(rows.get('rows'), t[0])
+#        for r in rows.get('rows'):
+#			dm.insert(r, t[0])
