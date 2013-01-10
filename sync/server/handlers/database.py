@@ -4,12 +4,13 @@
 from tornado.options import options
 import logging
 import base
+import json
 
 gen_log = logging.getLogger("tornado.general")
 
 class DatabaseHandler(base.BaseHandler):
     def get(self, p):
-    	dm = options.DabaseManager()
+        dm = options.DabaseManager()
         action = self.get_argument('action', False)
         res = {}
         if action == 'list_tables':
@@ -33,3 +34,17 @@ class DatabaseHandler(base.BaseHandler):
         	res = {'status': {'id': 'ERROR', 'message': 'Metodo no encontrado'}}
         #elif action == 'list_tables_config':
         self._send_response(res)
+
+    def post(self, p):
+        dm = options.DabaseManager()
+        action = self.get_argument('action', False)
+        res = {}
+        if action == 'sync_this':
+            res.update({'status': {'id': 'OK', 'message': ''}})
+            data = json.loads(self.get_argument('data', None))
+            if data:
+                for d in data:
+                    print d.get('id')
+        self._send_response(res)
+
+

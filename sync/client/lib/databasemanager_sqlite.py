@@ -24,6 +24,8 @@ class DatabaseManagerClientSqlite(DatabaseManagerClientBase):
         conn = self.generate_conn()
         cur = conn.cursor() 
         sql = """SELECT id, write_date FROM %s """%(table)
+        if limit:
+            sql = '%s LIMIT %s'%(sql, limit)
         cur.execute(sql)
         return copyListDicts(cur.fetchall())
 
