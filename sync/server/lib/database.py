@@ -114,6 +114,19 @@ class DatabaseManagerPostgres(DatabaseManagerBase):
                 values = values + d.values()
         conn = self.generate_conn()
         cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor) 
-        print cur.mogrify(sql, values)
         cur.execute(sql, values)
+        return copyListDicts(cur.fetchall())
+
+    def get_deleted(self, data, table):
+        sql = "SELECT id from %s "%table
+        values = []
+        if data:
+            conn = self.generate_conn()
+            cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor) 
+            sql = sql + "WHERE id = %s "
+            for d in data:
+                cur.execute(sql, d.get('id'))
+                print cur.rowcount
+        else:
+            return {}
         return copyListDicts(cur.fetchall())
