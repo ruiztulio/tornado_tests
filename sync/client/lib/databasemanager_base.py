@@ -20,3 +20,4 @@ class DatabaseManagerClientBase():
 
     def update_many(self, data, table):
         raise NotImplemented()
+

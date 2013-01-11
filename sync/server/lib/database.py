@@ -31,6 +31,9 @@ class DatabaseManagerBase():
     def update(self, data, table):
         raise NotImplemented()
 
+    def get_updated(self, data):
+        raise NotImplemented()
+
 class DatabaseManagerPostgres(DatabaseManagerBase):
     def generate_conn(self, config = None):
         if config:
@@ -88,4 +91,29 @@ class DatabaseManagerPostgres(DatabaseManagerBase):
         cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor) 
         sql = """SELECT id, write_date FROM %s """%(table)
         cur.execute(sql)
+        return copyListDicts(cur.fetchall())
+
+    def get_updated(self, data, table):
+        sql = "SELECT * from %s "%table
+        values = []
+        if data:
+            sql = sql + "WHERE " +  " or ".join(["(id = %s AND write_date > %s )"]*len(data))
+            for d in data:
+                values = values + d.values()
+        conn = self.generate_conn()
+        cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor) 
+        cur.execute(sql, values)
+        return copyListDicts(cur.fetchall())
+
+    def get_uploads(self, data, table):
+        sql = "SELECT id from %s "%table
+        values = []
+        if data:
+            sql = sql + "WHERE " +  " or ".join(["(id = %s AND write_date < %s )"]*len(data))
+            for d in data:
+                values = values + d.values()
+        conn = self.generate_conn()
+        cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor) 
+        print cur.mogrify(sql, values)
+        cur.execute(sql, values)
         return copyListDicts(cur.fetchall())

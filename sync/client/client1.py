@@ -20,15 +20,22 @@ def read_url(url, data = None):
     return json.loads(the_page)
 
 dm = DatabaseManagerClientSqlite()
-# tables = read_url('%s/%s?%s'%(url, 'database', {'action' : 'list_tables'}))
+# tables = read_url('%s/%s?%s'%(url, 'database', urllib.urlencode({'action' : 'list_tables'})))
 # if tables.get('status').get('id') == u'OK':
-#     for t in tables.get('tables'):
-#         rows = read_url('%s/%s?%s'%(url, 'database', {'action' : 'query', 'table' : t[0]}))
+#      for t in tables.get('tables'):
+#         rows = read_url('%s/%s?%s'%(url, 'database', urllib.urlencode({'action' : 'query', 'table' : t[0]})))
 #         dm.insert_many(rows.get('rows'), t[0])
-#        for r in rows.get('rows'):
-#			dm.insert(r, t[0])
+#         for r in rows.get('rows'):
+# 			dm.insert(r, t[0])
 
 # Sync tests
 
-res = dm.query_sync('products', limit = 2)
-res = read_url('%s/%s'%(url, 'database'), data = {'action':'sync_this', 'data': json.dumps(res)})
+res = dm.query_sync('products', limit = 100)
+res = read_url('%s/%s'%(url, 'database'), data = {'action':'sync_this', 'table' : 'products', 'data': json.dumps(res)})
+print res
+res = dm.query_sync('products', limit = 100, offset=100)
+res = read_url('%s/%s'%(url, 'database'), data = {'action':'sync_this', 'table' : 'products', 'data': json.dumps(res)})
+print res
+res = dm.query_sync('products', limit = 100, offset=200)
+res = read_url('%s/%s'%(url, 'database'), data = {'action':'sync_this', 'table' : 'products', 'data': json.dumps(res)})
+print res

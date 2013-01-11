@@ -26,6 +26,8 @@ class DatabaseManagerClientSqlite(DatabaseManagerClientBase):
         sql = """SELECT id, write_date FROM %s """%(table)
         if limit:
             sql = '%s LIMIT %s'%(sql, limit)
+            if offset:
+                sql = '%s OFFSET %s'%(sql, offset)
         cur.execute(sql)
         return copyListDicts(cur.fetchall())
 

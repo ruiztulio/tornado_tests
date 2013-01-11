@@ -5,6 +5,7 @@ from tornado.options import options
 import logging
 import base
 import json
+from syncronizer_base import SyncronizerBase
 
 gen_log = logging.getLogger("tornado.general")
 
@@ -36,15 +37,16 @@ class DatabaseHandler(base.BaseHandler):
         self._send_response(res)
 
     def post(self, p):
-        dm = options.DabaseManager()
         action = self.get_argument('action', False)
         res = {}
         if action == 'sync_this':
             res.update({'status': {'id': 'OK', 'message': ''}})
             data = json.loads(self.get_argument('data', None))
+            table = self.get_argument('table', None)
             if data:
-                for d in data:
-                    print d.get('id')
+                sync = SyncronizerBase(options.DabaseManager)
+                r = sync.sync_this(data, table)
+                res.update({'response' :  r})
         self._send_response(res)
 
 
