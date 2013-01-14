@@ -23,6 +23,7 @@ class DatabaseManagerClientSqlite(DatabaseManagerClientBase):
     def query_sync(self, table, limit=None, offset=None):
         conn = self.generate_conn()
         cur = conn.cursor() 
+        print "Limit : ", limit
         sql = """SELECT id, write_date FROM %s """%(table)
         if limit:
             sql = '%s LIMIT %s'%(sql, limit)

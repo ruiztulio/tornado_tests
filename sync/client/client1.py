@@ -30,7 +30,7 @@ dm = DatabaseManagerClientSqlite()
 
 # Sync tests
 
-res = dm.query_sync('products', limit = 100)
+res = dm.query_sync('products')
 res = read_url('%s/%s'%(url, 'database'), data = {'action':'sync_this', 'table' : 'products', 'data': json.dumps(res)})
 print res
 res = dm.query_sync('products', limit = 100, offset=100)
@@ -38,4 +38,8 @@ res = read_url('%s/%s'%(url, 'database'), data = {'action':'sync_this', 'table' 
 print res
 res = dm.query_sync('products', limit = 100, offset=200)
 res = read_url('%s/%s'%(url, 'database'), data = {'action':'sync_this', 'table' : 'products', 'data': json.dumps(res)})
+print res
+print "Full sync"
+res = dm.query_sync('products')
+res = read_url('%s/%s'%(url, 'database'), data = {'action':'sync', 'table' : 'products', 'data': json.dumps(res)})
 print res

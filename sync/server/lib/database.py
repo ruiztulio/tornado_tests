@@ -117,6 +117,18 @@ class DatabaseManagerPostgres(DatabaseManagerBase):
         cur.execute(sql, values)
         return copyListDicts(cur.fetchall())
 
+    def get_inserts(self, data, table):
+        sql = "SELECT id from %s "%table
+        values = []
+        if data:
+            sql = sql + " NOT IN (" +  ", ".join(["%s"]*len(data))
+            for d in data:
+                values.append(d.get('id'))
+        conn = self.generate_conn()
+        cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor) 
+        cur.execute(sql, values)
+        return copyListDicts(cur.fetchall())
+
     def get_deleted(self, data, table):
         sql = "SELECT id from %s "%table
         values = []

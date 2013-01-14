@@ -14,10 +14,10 @@ conn = psycopg2.connect("host=%s dbname=%s password=%s user=%s port=%s"%
                     (pg_host, pg_dbname, pg_pass, pg_user, pg_port))
 cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
 
-start_date = date(2012, 1, 1)
+start_date = date(2013, 1, 1)
 day = timedelta(days = 1)
-n_products = 1000
-n_clients = 400
+n_products = 3
+n_clients = 2
 
 for i in xrange(0, n_products):
     cur.execute("insert into products (id, name, quantity, code, price) values(%s, %s, %s, %s, %s)",

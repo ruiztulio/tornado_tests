@@ -47,6 +47,14 @@ class DatabaseHandler(base.BaseHandler):
                 sync = SyncronizerBase(options.DabaseManager)
                 r = sync.sync_this(data, table)
                 res.update({'response' :  r})
+        elif action == 'sync':
+            res.update({'status': {'id': 'OK', 'message': ''}})
+            data = json.loads(self.get_argument('data', None))
+            table = self.get_argument('table', None)
+            if data:
+                sync = SyncronizerBase(options.DabaseManager)
+                r = sync.sync(data, table)
+                res.update({'response' :  r})
         self._send_response(res)
 
 

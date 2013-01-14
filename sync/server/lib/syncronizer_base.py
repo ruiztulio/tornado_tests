@@ -11,3 +11,11 @@ class SyncronizerBase():
         #deletes = self._dm.get_deleted(data)
         uploads = self._dm.get_uploads(data, table)
         return {'updates': updates, 'uploads': uploads}
+
+    def sync(self, data, table):
+        res = self.sync_this(data, table)
+        inserts = self._dm.get_uploads(data, table)
+        print "Sync"
+        print "Inserts ", inserts
+        res.update({'inserts': inserts})
+        return res
