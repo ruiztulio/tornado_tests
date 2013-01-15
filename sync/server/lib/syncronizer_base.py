@@ -14,7 +14,7 @@ class SyncronizerBase():
 
     def sync(self, data, table):
         res = self.sync_this(data, table)
-        inserts = self._dm.get_uploads(data, table)
+        inserts = self._dm.get_full_uploads(data, table)
         print "Sync"
         print "Inserts ", inserts
         res.update({'inserts': inserts})

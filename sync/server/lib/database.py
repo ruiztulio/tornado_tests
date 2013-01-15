@@ -118,6 +118,24 @@ class DatabaseManagerPostgres(DatabaseManagerBase):
         cur.execute(sql, values)
         return copyListDicts(cur.fetchall())
 
+    def get_full_uploads(self, data, table):
+        sql = "SELECT id FROM %s "%table
+        values = []
+        res = []
+        conn = self.generate_conn()
+        cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor) 
+        if data:
+            sql = sql + "WHERE " +  " or ".join(["(id = %s AND write_date < %s )"]*len(data))
+            sql_insert = "SELECT id FROM %s WHERE id = %s"%(table, "%s")
+            for d in data:
+                values = values + d.values()
+                cur.execute(sql_insert, (d.get('id'), ))
+                if cur.rowcount == 0:
+                    res.append({'id': d.get('id')})
+        #print cur.mogrify(sql, values)
+        cur.execute(sql, values)
+        return res+copyListDicts(cur.fetchall())
+
     def get_inserts(self, data, table):
         sql = "SELECT id from %s "%table
         values = []
