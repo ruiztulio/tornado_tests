@@ -54,6 +54,7 @@ class DatabaseHandler(base.BaseHandler):
             if data:
                 sync = SyncronizerBase(options.DabaseManager)
                 r = sync.sync(data, table)
+                print "Respuesta : ", r
                 res.update({'response' :  r})
         self._send_response(res)
 

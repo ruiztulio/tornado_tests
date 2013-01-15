@@ -29,17 +29,23 @@ dm = DatabaseManagerClientSqlite()
 # 			dm.insert(r, t[0])
 
 # Sync tests
-
-res = dm.query_sync('products')
+# print "Sync this all"
+# res = dm.query_sync('products')
+# res = read_url('%s/%s'%(url, 'database'), data = {'action':'sync_this', 'table' : 'products', 'data': json.dumps(res)})
+# print res
+print "Sync this 100"
+res = dm.query_sync('products', limit = 10000)
 res = read_url('%s/%s'%(url, 'database'), data = {'action':'sync_this', 'table' : 'products', 'data': json.dumps(res)})
 print res
-res = dm.query_sync('products', limit = 100, offset=100)
-res = read_url('%s/%s'%(url, 'database'), data = {'action':'sync_this', 'table' : 'products', 'data': json.dumps(res)})
-print res
-res = dm.query_sync('products', limit = 100, offset=200)
-res = read_url('%s/%s'%(url, 'database'), data = {'action':'sync_this', 'table' : 'products', 'data': json.dumps(res)})
-print res
+# print "Sync this 100 - 100"
+# res = dm.query_sync('products', limit = 100, offset=100)
+# res = read_url('%s/%s'%(url, 'database'), data = {'action':'sync_this', 'table' : 'products', 'data': json.dumps(res)})
+# print res
+# print "Sync this 100 - 200"
+# res = dm.query_sync('products', limit = 100, offset=200)
+# res = read_url('%s/%s'%(url, 'database'), data = {'action':'sync_this', 'table' : 'products', 'data': json.dumps(res)})
+# print res
 print "Full sync"
-res = dm.query_sync('products')
+res = dm.query_sync('products', limit = 10)
 res = read_url('%s/%s'%(url, 'database'), data = {'action':'sync', 'table' : 'products', 'data': json.dumps(res)})
 print res

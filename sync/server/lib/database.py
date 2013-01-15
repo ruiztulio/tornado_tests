@@ -94,7 +94,7 @@ class DatabaseManagerPostgres(DatabaseManagerBase):
         return copyListDicts(cur.fetchall())
 
     def get_updated(self, data, table):
-        sql = "SELECT * from %s "%table
+        sql = "SELECT id from %s "%table
         values = []
         if data:
             sql = sql + "WHERE " +  " or ".join(["(id = %s AND write_date > %s )"]*len(data))
@@ -108,12 +108,13 @@ class DatabaseManagerPostgres(DatabaseManagerBase):
     def get_uploads(self, data, table):
         sql = "SELECT id from %s "%table
         values = []
+        conn = self.generate_conn()
+        cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor) 
         if data:
             sql = sql + "WHERE " +  " or ".join(["(id = %s AND write_date < %s )"]*len(data))
             for d in data:
                 values = values + d.values()
-        conn = self.generate_conn()
-        cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor) 
+        #print cur.mogrify(sql, values)
         cur.execute(sql, values)
         return copyListDicts(cur.fetchall())
 
@@ -121,7 +122,7 @@ class DatabaseManagerPostgres(DatabaseManagerBase):
         sql = "SELECT id from %s "%table
         values = []
         if data:
-            sql = sql + " NOT IN (" +  ", ".join(["%s"]*len(data))
+            sql = sql + " NOT IN (" +  ", ".join(["%s"]*len(data)) + ")"
             for d in data:
                 values.append(d.get('id'))
         conn = self.generate_conn()
