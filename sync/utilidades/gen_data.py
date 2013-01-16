@@ -5,7 +5,7 @@ import uuid
 from datetime import (timedelta, date)
 
 pg_user = "postgres"
-pg_pass = "postgres"
+pg_pass = "123"
 pg_host ="localhost"
 pg_dbname ="sales_sync"
 pg_port =5432

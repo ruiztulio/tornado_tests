@@ -53,6 +53,6 @@ if res.get('response').get('inserts'):
 	res = read_url('%s/%s?%s'%(url, 'database', 
 								urllib.urlencode({'action' : 'query', 
 													'table' : 'products', 
-													'ids' : json.dumps(res.get('response').get('updates'))})))
+													'ids' : json.dumps(res.get('response').get('inserts'))})))
 	print res
 	
