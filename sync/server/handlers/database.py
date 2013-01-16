@@ -23,7 +23,7 @@ class DatabaseHandler(base.BaseHandler):
             if not table or not dm.search_table(table):
                 res = {'status': {'id': 'ERROR', 'message': 'Ne se encuentra la tabla'}}
             elif ids:
-                rows = dm.query(table, ids=ids)
+                rows = dm.query(table, ids=json.loads(ids))
                 res = {'status': {'id': 'OK', 'message': ''}, 'rows': rows}
             else:
                 rows = dm.query(table)

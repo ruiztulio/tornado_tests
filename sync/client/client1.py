@@ -49,3 +49,10 @@ print "Full sync"
 res = dm.query_sync('products', limit = 10)
 res = read_url('%s/%s'%(url, 'database'), data = {'action':'sync', 'table' : 'products', 'data': json.dumps(res)})
 print res
+if res.get('response').get('inserts'):
+	res = read_url('%s/%s?%s'%(url, 'database', 
+								urllib.urlencode({'action' : 'query', 
+													'table' : 'products', 
+													'ids' : json.dumps(res.get('response').get('updates'))})))
+	print res
+	

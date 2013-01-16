@@ -82,10 +82,11 @@ class DatabaseManagerPostgres(DatabaseManagerBase):
     def query(self, table, ids = None, limit=None, offset=None):
         conn = self.generate_conn()
         cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor) 
-        sql = """SELECT * FROM %s """%(table)
+        sql = "SELECT * FROM %s "%(table)
         if ids:
-            sql = sql + "WHERE id IN (" + ", ".join(["%s"]*len(ids))+")"
-            cur.execute(sql, ids.values())
+            sql = sql + "WHERE id IN ("+", ".join(["%s"]*len(ids))+")"
+            print cur.mogrify(sql, ids)
+            cur.execute(sql, ids)
         else:
             cur.execute(sql)
         return copyListDicts(cur.fetchall())
@@ -107,7 +108,7 @@ class DatabaseManagerPostgres(DatabaseManagerBase):
         conn = self.generate_conn()
         cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor) 
         cur.execute(sql, values)
-        return copyListDicts(cur.fetchall())
+        return [r.get('id') for r in cur.fetchall()]
 
     def get_uploads(self, data, table):
         sql = "SELECT id from %s "%table
@@ -120,7 +121,7 @@ class DatabaseManagerPostgres(DatabaseManagerBase):
                 values = values + d.values()
         #print cur.mogrify(sql, values)
         cur.execute(sql, values)
-        return copyListDicts(cur.fetchall())
+        return [r.get('id') for r in cur.fetchall()]
 
     def get_full_uploads(self, data, table):
         sql = "SELECT id FROM %s "%table
@@ -135,22 +136,23 @@ class DatabaseManagerPostgres(DatabaseManagerBase):
                 values = values + d.values()
                 cur.execute(sql_insert, (d.get('id'), ))
                 if cur.rowcount == 0:
-                    res.append({'id': d.get('id')})
+                    res.append(d.get('id'))
         #print cur.mogrify(sql, values)
         cur.execute(sql, values)
-        return res+copyListDicts(cur.fetchall())
+        return res+[r.get('id') for r in cur.fetchall()]
 
     def get_inserts(self, data, table):
         sql = "SELECT id from %s "%table
         values = []
         if data:
-            sql = sql + " NOT IN (" +  ", ".join(["%s"]*len(data)) + ")"
+            #sql = sql + " NOT IN (" +  ", ".join(["%s"]*len(data)) + ")"
+            sql = sql + " NOT IN (%s)"
             for d in data:
                 values.append(d.get('id'))
         conn = self.generate_conn()
         cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor) 
         cur.execute(sql, values)
-        return copyListDicts(cur.fetchall())
+        return [r.get('id') for r in cur.fetchall()]
 
     def get_deleted(self, data, table):
         sql = "SELECT id from %s "%table
@@ -164,4 +166,4 @@ class DatabaseManagerPostgres(DatabaseManagerBase):
                 print cur.rowcount
         else:
             return {}
-        return copyListDicts(cur.fetchall())
+        return [r.get('id') for r in cur.fetchall()]

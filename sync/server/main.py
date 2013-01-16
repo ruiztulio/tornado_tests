@@ -19,7 +19,7 @@ define("company_name", default="La compania", help="Company name", type=str)
 define("port", default=8888, help="run on the given port", type=int)
 
 define("pg_user", default="postgres", help="User for database", type=str)
-define("pg_pass", default="123", help="User password for database", type=str)
+define("pg_pass", default="postgres", help="User password for database", type=str)
 define("pg_host", default="localhost", help="Database server", type=str)
 define("pg_dbname", default="sales_sync", help="Database Name", type=str)
 define("pg_port", default=5432, help="Database server", type=int)
