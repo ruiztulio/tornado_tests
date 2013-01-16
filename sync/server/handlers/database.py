@@ -19,8 +19,12 @@ class DatabaseHandler(base.BaseHandler):
             res = {'status': {'id': 'OK', 'message': ''}, 'tables': tables}
         elif action == 'query':
             table = self.get_argument('table', False)
+            ids = self.get_argument('ids', False)
             if not table or not dm.search_table(table):
                 res = {'status': {'id': 'ERROR', 'message': 'Ne se encuentra la tabla'}}
+            elif ids:
+                rows = dm.query(table, ids=ids)
+                res = {'status': {'id': 'OK', 'message': ''}, 'rows': rows}
             else:
                 rows = dm.query(table)
                 res = {'status': {'id': 'OK', 'message': ''}, 'rows': rows}

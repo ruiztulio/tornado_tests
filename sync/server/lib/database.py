@@ -79,11 +79,15 @@ class DatabaseManagerPostgres(DatabaseManagerBase):
             print 'Error %s' % e    
         return res
 
-    def query(self, table, limit=None, offset=None):
+    def query(self, table, ids = None, limit=None, offset=None):
         conn = self.generate_conn()
         cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor) 
         sql = """SELECT * FROM %s """%(table)
-        cur.execute(sql)
+        if ids:
+            sql = sql + "WHERE id IN (" + ", ".join(["%s"]*len(ids))+")"
+            cur.execute(sql, ids.values())
+        else:
+            cur.execute(sql)
         return copyListDicts(cur.fetchall())
 
     def query_sync(self, table, limit=None, offset=None):
