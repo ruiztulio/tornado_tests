@@ -33,10 +33,10 @@ dm = DatabaseManagerClientSqlite()
 # res = dm.query_sync('products')
 # res = read_url('%s/%s'%(url, 'database'), data = {'action':'sync_this', 'table' : 'products', 'data': json.dumps(res)})
 # print res
-print "Sync this 100"
-res = dm.query_sync('products', limit = 10000)
-res = read_url('%s/%s'%(url, 'database'), data = {'action':'sync_this', 'table' : 'products', 'data': json.dumps(res)})
-print res
+#print "Sync this 100"
+#res = dm.query_sync('products', limit = 10000)
+#res = read_url('%s/%s'%(url, 'database'), data = {'action':'sync_this', 'table' : 'products', 'data': json.dumps(res)})
+#print res
 # print "Sync this 100 - 100"
 # res = dm.query_sync('products', limit = 100, offset=100)
 # res = read_url('%s/%s'%(url, 'database'), data = {'action':'sync_this', 'table' : 'products', 'data': json.dumps(res)})
@@ -45,14 +45,22 @@ print res
 # res = dm.query_sync('products', limit = 100, offset=200)
 # res = read_url('%s/%s'%(url, 'database'), data = {'action':'sync_this', 'table' : 'products', 'data': json.dumps(res)})
 # print res
+
 print "Full sync"
-res = dm.query_sync('products', limit = 10)
-res = read_url('%s/%s'%(url, 'database'), data = {'action':'sync', 'table' : 'products', 'data': json.dumps(res)})
-print res
-if res.get('response').get('inserts'):
+res = dm.query_sync('products')
+res_sync = read_url('%s/%s'%(url, 'database'), data = {'action':'sync', 'table' : 'products', 'data': json.dumps(res)})
+print "Sincronizar inserts"
+if res_sync.get('response').get('inserts'):
 	res = read_url('%s/%s?%s'%(url, 'database', 
 								urllib.urlencode({'action' : 'query', 
 													'table' : 'products', 
-													'ids' : json.dumps(res.get('response').get('inserts'))})))
+													'ids' : json.dumps(res_sync.get('response').get('inserts'))})))
 	print res
 	
+print "Sincronizar updates"
+if res_sync.get('response').get('updates'):
+    res = read_url('%s/%s?%s'%(url, 'database', 
+                                urllib.urlencode({'action' : 'query', 
+                                                    'table' : 'products', 
+                                                    'ids' : json.dumps(res_sync.get('response').get('updates'))})))
+    print res

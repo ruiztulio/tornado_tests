@@ -89,7 +89,9 @@ class DatabaseManagerPostgres(DatabaseManagerBase):
             cur.execute(sql, ids)
         else:
             cur.execute(sql)
-        return copyListDicts(cur.fetchall())
+        res = copyListDicts(cur.fetchall())
+        print res
+        return res
 
     def query_sync(self, table, limit=None, offset=None):
         conn = self.generate_conn()
