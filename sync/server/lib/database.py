@@ -10,6 +10,11 @@ from tornado.options import options
 gen_log = logging.getLogger("tornado.general")
 
 class DatabaseManagerBase():
+    """
+    Las implementaciones de las clases para manejar la sincronizacion del lado del servidor deben heredar
+    de esta clase e implementar los metodos segun se indica en la documentacion de cada uno de modo tal que 
+    no sea necesario realizar ninguna modificacion en los algoritmos
+    """
     def generate_conn(self, config = None):
         """
         Genera una conexion para realizar las consultas
