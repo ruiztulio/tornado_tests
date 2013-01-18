@@ -13,11 +13,15 @@ class DatabaseManagerClientSqlite(DatabaseManagerClientBase):
         conn.row_factory=sqlite3.Row
         return conn
 
-    def query(self, table, limit=None, offset=None):
+    def query(self, table, ids=None, limit=None, offset=None):
         conn = self.generate_conn()
         cur = conn.cursor() 
-        sql = """SELECT * FROM %s """%(table)
-        cur.execute(sql)
+        sql = "SELECT * FROM %s "%(table)
+        if ids:
+            sql = sql + "WHERE id IN ("+", ".join(["?"]*len(ids))+")"
+            cur.execute(sql, ids)
+        else:
+            cur.execute(sql)
         return copyListDicts(cur.fetchall())
 
     def query_sync(self, table, limit=None, offset=None):

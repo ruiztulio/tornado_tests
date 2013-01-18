@@ -3,7 +3,7 @@ class DatabaseManagerClientBase():
     def generate_conn(self, config = None):
         raise NotImplemented()
 
-    def query(self, table, limit=None, offset=None):
+    def query(self, table, ids=None, limit=None, offset=None):
         raise NotImplemented()
 
     def query_sync(self, table, limit=None, offset=None):

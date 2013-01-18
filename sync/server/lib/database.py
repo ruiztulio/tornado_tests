@@ -101,36 +101,40 @@ class DatabaseManagerPostgres(DatabaseManagerBase):
         return copyListDicts(cur.fetchall())
 
     def get_updated(self, data, table):
-        sql = "SELECT id from %s "%table
-        values = []
+        res = []
         if data:
+            sql = "SELECT id from %s "%table
+            values = []
             sql = sql + "WHERE " +  " or ".join(["(id = %s AND write_date > %s )"]*len(data))
             for d in data:
                 values = values + d.values()
-        conn = self.generate_conn()
-        cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor) 
-        cur.execute(sql, values)
-        return [r.get('id') for r in cur.fetchall()]
+            conn = self.generate_conn()
+            cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor) 
+            cur.execute(sql, values)
+            res = [r.get('id') for r in cur.fetchall()]
+        return res
 
     def get_uploads(self, data, table):
-        sql = "SELECT id from %s "%table
-        values = []
-        conn = self.generate_conn()
-        cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor) 
+        res = []
         if data:
+            sql = "SELECT id from %s "%table
+            values = []
+            conn = self.generate_conn()
+            cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor) 
             sql = sql + "WHERE " +  " or ".join(["(id = %s AND write_date < %s )"]*len(data))
             for d in data:
                 values = values + d.values()
-        #print cur.mogrify(sql, values)
-        cur.execute(sql, values)
-        return [r.get('id') for r in cur.fetchall()]
+            cur.execute(sql, values)
+            res = [r.get('id') for r in cur.fetchall()]
+        return res
 
     def get_full_uploads(self, data, table):
-        conn = self.generate_conn()
-        cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor) 
-        res = self.get_uploads(data, table)
-        sql_insert = "SELECT id FROM %s WHERE id = %s"%(table, "%s")
+        res = []
         if data:
+            conn = self.generate_conn()
+            cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor) 
+            res = self.get_uploads(data, table)
+            sql_insert = "SELECT id FROM %s WHERE id = %s"%(table, "%s")
             for d in data:
                 cur.execute(sql_insert, (d.get('id'), ))
                 if cur.rowcount == 0:
@@ -140,15 +144,17 @@ class DatabaseManagerPostgres(DatabaseManagerBase):
     def get_inserts(self, data, table):
         sql = "SELECT id from %s "%table
         values = []
+        conn = self.generate_conn()
+        cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor) 
         if data:
+            print "Hay dataaaaaa...", data
             sql = sql + " WHERE id NOT IN (" +  ", ".join(["%s"]*len(data)) + ")"
             #sql = sql + " WHERE id NOT IN (%s)"
             for d in data:
                 values.append(d.get('id'))
-        conn = self.generate_conn()
-        cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor) 
-        print cur.mogrify(sql, values)
-        cur.execute(sql, values)
+            cur.execute(sql, values)
+        else:
+            cur.execute(sql)
         return [r.get('id') for r in cur.fetchall()]
 
     def get_deleted(self, data, table):
@@ -164,3 +170,22 @@ class DatabaseManagerPostgres(DatabaseManagerBase):
         else:
             return {}
         return [r.get('id') for r in cur.fetchall()]
+
+    def save(self, data, table):
+        conn = self.generate_conn()
+        cur = conn.cursor() 
+
+        for d in data:
+            del d['server_act']
+            f = str(tuple(str(x) for x in d)).replace("'", "")
+            v = str(tuple(['%s']*len(d))).replace("'", "")
+            sql = 'INSERT INTO %(name)s %(fields)s VALUES %(values)s'%{'name':table, 'fields': f, 'values':v}
+            try:
+                cur.execute(sql, d.values())
+                conn.commit()
+            except psycopg2.IntegrityError, e:
+                fields = ", ".join(['%s = %s'%(f, "%s") for f in d])
+                sql = "UPDATE %(name)s SET %(fields)s WHERE id = '%(id)s'"%{'name':table, 'fields': fields, 'id': d.get('id')}
+                conn.rollback()
+                cur.execute(sql, d.values())
+                conn.commit()

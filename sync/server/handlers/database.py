@@ -44,23 +44,25 @@ class DatabaseHandler(base.BaseHandler):
     def post(self, p):
         action = self.get_argument('action', False)
         res = {}
+        table = self.get_argument('table', None)
+        data = json.loads(self.get_argument('data', None))
         if action == 'sync_this':
             res.update({'status': {'id': 'OK', 'message': ''}})
-            data = json.loads(self.get_argument('data', None))
-            table = self.get_argument('table', None)
             if data:
                 sync = SyncronizerBase(options.DabaseManager)
                 r = sync.sync_this(data, table)
                 res.update({'response' :  r})
         elif action == 'sync':
             res.update({'status': {'id': 'OK', 'message': ''}})
-            data = json.loads(self.get_argument('data', None))
-            table = self.get_argument('table', None)
-            if data:
-                sync = SyncronizerBase(options.DabaseManager)
-                r = sync.sync(data, table)
-                print "Respuesta : ", r
-                res.update({'response' :  r})
+            sync = SyncronizerBase(options.DabaseManager)
+            r = sync.sync(data, table)
+            print "Respuesta : ", r
+            res.update({'response' :  r})
+        elif action == 'upload':
+            dm = options.DabaseManager()
+            dm.save(data, table)
+        else:
+            res.update({'status': {'id': 'ERROR', 'message': 'Accion no reconocida %s'%action}})
         self._send_response(res)
 
 

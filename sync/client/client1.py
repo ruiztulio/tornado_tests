@@ -68,3 +68,10 @@ if res_sync.get('response').get('updates'):
     dm.update_many(res.get('rows'), 'products')
 print "Sincronizar uploads"
 print len(res_sync.get('response').get('uploads'))
+if res_sync.get('response').get('uploads'):
+    data = dm.query('products', res_sync.get('response').get('uploads'))
+    res = read_url('%s/%s'%(url, 'database'), 
+                                data = {'action' : 'upload', 
+                                                    'table' : 'products', 
+                                                    'data' : json.dumps(data)})
+
