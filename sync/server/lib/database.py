@@ -126,33 +126,28 @@ class DatabaseManagerPostgres(DatabaseManagerBase):
         return [r.get('id') for r in cur.fetchall()]
 
     def get_full_uploads(self, data, table):
-        sql = "SELECT id FROM %s "%table
-        values = []
-        res = []
         conn = self.generate_conn()
         cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor) 
+        res = self.get_uploads(data, table)
+        sql_insert = "SELECT id FROM %s WHERE id = %s"%(table, "%s")
         if data:
-            sql = sql + "WHERE " +  " or ".join(["(id = %s AND write_date < %s )"]*len(data))
-            sql_insert = "SELECT id FROM %s WHERE id = %s"%(table, "%s")
             for d in data:
-                values = values + d.values()
                 cur.execute(sql_insert, (d.get('id'), ))
                 if cur.rowcount == 0:
                     res.append(d.get('id'))
-        #print cur.mogrify(sql, values)
-        cur.execute(sql, values)
-        return res+[r.get('id') for r in cur.fetchall()]
+        return res
 
     def get_inserts(self, data, table):
         sql = "SELECT id from %s "%table
         values = []
         if data:
-            #sql = sql + " NOT IN (" +  ", ".join(["%s"]*len(data)) + ")"
-            sql = sql + " NOT IN (%s)"
+            sql = sql + " WHERE id NOT IN (" +  ", ".join(["%s"]*len(data)) + ")"
+            #sql = sql + " WHERE id NOT IN (%s)"
             for d in data:
                 values.append(d.get('id'))
         conn = self.generate_conn()
         cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor) 
+        print cur.mogrify(sql, values)
         cur.execute(sql, values)
         return [r.get('id') for r in cur.fetchall()]
 

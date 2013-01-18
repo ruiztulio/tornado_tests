@@ -55,7 +55,7 @@ if res_sync.get('response').get('inserts'):
 								urllib.urlencode({'action' : 'query', 
 													'table' : 'products', 
 													'ids' : json.dumps(res_sync.get('response').get('inserts'))})))
-	print res
+	print len(res.get('rows'))
 	
 print "Sincronizar updates"
 if res_sync.get('response').get('updates'):
@@ -63,4 +63,7 @@ if res_sync.get('response').get('updates'):
                                 urllib.urlencode({'action' : 'query', 
                                                     'table' : 'products', 
                                                     'ids' : json.dumps(res_sync.get('response').get('updates'))})))
-    print res
+    print len(res.get('rows'))
+
+print "Sincronizar uploads"
+print len(res_sync.get('response').get('uploads'))
