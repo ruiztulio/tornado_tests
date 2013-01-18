@@ -16,7 +16,7 @@ cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
 
 start_date = date(2013, 1, 1)
 day = timedelta(days = 1)
-n_products = 300
+n_products = 3000
 n_clients = 2
 
 for i in xrange(0, n_products):
