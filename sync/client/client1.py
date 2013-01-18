@@ -51,11 +51,12 @@ res = dm.query_sync('products')
 res_sync = read_url('%s/%s'%(url, 'database'), data = {'action':'sync', 'table' : 'products', 'data': json.dumps(res)})
 print "Sincronizar inserts"
 if res_sync.get('response').get('inserts'):
-	res = read_url('%s/%s?%s'%(url, 'database', 
+    res = read_url('%s/%s?%s'%(url, 'database', 
 								urllib.urlencode({'action' : 'query', 
 													'table' : 'products', 
 													'ids' : json.dumps(res_sync.get('response').get('inserts'))})))
-	print len(res.get('rows'))
+    dm.insert_many(res.get('rows'), 'products')
+    print len(res.get('rows'))
 	
 print "Sincronizar updates"
 if res_sync.get('response').get('updates'):
@@ -64,6 +65,6 @@ if res_sync.get('response').get('updates'):
                                                     'table' : 'products', 
                                                     'ids' : json.dumps(res_sync.get('response').get('updates'))})))
     print len(res.get('rows'))
-
+    dm.update_many(res.get('rows'), 'products')
 print "Sincronizar uploads"
 print len(res_sync.get('response').get('uploads'))

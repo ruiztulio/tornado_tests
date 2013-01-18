@@ -64,3 +64,12 @@ class DatabaseManagerClientSqlite(DatabaseManagerClientBase):
     def update(self, data, table):
         raise NotImplemented()
 
+    def update_many(self, data, table):
+        conn = self.generate_conn()
+        cur = conn.cursor() 
+        for d in data:
+            fields = ", ".join(['%s = ?'%f for f in d])
+            sql = "UPDATE %(name)s SET %(fields)s WHERE id = '%(id)s'"%{'name':table, 'fields': fields, 'id': d.get('id')}
+            print "%s - %s" % (table, d.get('id'))
+            cur.execute(sql, d.values())
+        conn.commit()
