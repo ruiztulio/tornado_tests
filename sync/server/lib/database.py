@@ -18,7 +18,7 @@ class DatabaseManagerBase():
     def generate_conn(self, config = None):
         """
         Genera una conexion para realizar las consultas
-        
+
         Kwargs:
             config (str): configuracion de la conexion a usar, se adapta segun la implementacion
 
@@ -173,7 +173,19 @@ class DatabaseManagerBase():
 
         Returns:
             La lista de ids de los registris que se le solicitaran al cliente
-            
+        """
+        raise NotImplemented()
+
+    def save(self, data, table):
+        """
+        Este metodo guarda (insert y update segun corresponda) los registros 
+        que se le pasan en data en forma de una lista de diccionarios
+
+        Args:
+            data (list): lista de diccionarios con la informacion que se desea guardar
+
+            table (str): nombre de la tabla en la que se guardaran los registros
+
         """
         raise NotImplemented()
 
