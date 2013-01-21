@@ -18,6 +18,7 @@ class DatabaseManagerBase():
     def generate_conn(self, config = None):
         """
         Genera una conexion para realizar las consultas
+        
         Kwargs:
             config (str): configuracion de la conexion a usar, se adapta segun la implementacion
 
@@ -121,12 +122,59 @@ class DatabaseManagerBase():
         raise NotImplemented()
 
     def get_updated(self, data, table):
+        """
+        Este metodo es usado para obtener los registros que se han modificado 
+        en el servidor
+
+        Args:
+            data (list): lista de diccionarios con los ids y los timestamp 
+                de los registros que se quieren sincronizar
+
+            table (str): nombre de la tabla con la que se quiere hacer 
+                la sincronizacion en el servidor
+
+        Returns:
+            La lista de ids de los registris que se le solicitaran al cliente
+            
+        """
         raise NotImplemented()
 
     def get_uploads(self, data, table):
+        """
+        Retorda todos los registros que deben ser actualizados en el servidor
+        tomando únicamente en cuenta los registros que se pasan por en parametro
+        data, no se solicitan los nuevos registros, unicamente los actualizados
+
+        Args:
+            data (list): lista de diccionarios con los ids y los timestamp 
+                de los registros que se quieren sincronizar
+
+            table (str): nombre de la tabla con la que se quiere hacer 
+                la sincronizacion en el servidor
+
+        Returns:
+            La lista de ids de los registros que han sido modificados del lado del servidor
+
+            
+        """
         raise NotImplemented()
 
     def get_full_uploads(self, data, table):
+        """
+        Retorna todos los registros que deben ser actualizados en el servidor 
+        ya sean nuevos registros o actualizaciones
+
+        Args:
+            data (list): lista de diccionarios con los ids y los timestamp 
+                de los registros que se quieren sincronizar
+
+            table (str): nombre de la tabla con la que se quiere hacer 
+                la sincronizacion en el servidor
+
+        Returns:
+            La lista de ids de los registris que se le solicitaran al cliente
+            
+        """
         raise NotImplemented()
 
 class DatabaseManagerPostgres(DatabaseManagerBase):
