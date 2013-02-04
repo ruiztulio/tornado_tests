@@ -2,7 +2,11 @@
 class SyncronizerBase():
     """
     Esta clase contiene los algoritmos para la sincronizacion 
-    invocando los metodos correspondientes del gestor de base de datos
+    invocando los metodos correspondientes del gestor de base de datos,
+    a diferencia de las otras clases base esta tiene los metodos implementados
+    en vista de que solo hace uso de la interfaz de DatabaseManagerBase
+    si se desea cambiar el algoritmo o implementar otro se sobrecargan
+    los metodos pertinentes
     """
     _dm = None
 

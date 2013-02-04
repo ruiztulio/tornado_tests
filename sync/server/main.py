@@ -13,7 +13,9 @@ import psycopg2
 import psycopg2.extras
 #from handlers import (base, products, clients, database)
 from handlers import (base, database)
-from database import (DatabaseManagerBase, DatabaseManagerPostgres)
+from database import DatabaseManagerBase
+from database_postgres import  DatabaseManagerPostgres
+
 define("title", default="Pagina del servidor", help="Page title", type=str)
 define("company_name", default="La compania", help="Company name", type=str)
 define("port", default=8888, help="run on the given port", type=int)
