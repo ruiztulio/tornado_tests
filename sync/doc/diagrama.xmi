@@ -1,0 +1,637 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<XMI verified="false" xmi.version="1.2" timestamp="2013-02-04T11:32:37" xmlns:UML="http://schema.omg.org/spec/UML/1.3">
+ <XMI.header>
+  <XMI.documentation>
+   <XMI.exporter>umbrello uml modeller http://uml.sf.net</XMI.exporter>
+   <XMI.exporterVersion>1.5.8</XMI.exporterVersion>
+   <XMI.exporterEncoding>UnicodeUTF8</XMI.exporterEncoding>
+  </XMI.documentation>
+  <XMI.metamodel xmi.version="1.3" href="UML.xml" xmi.name="UML"/>
+ </XMI.header>
+ <XMI.content>
+  <UML:Model isSpecification="false" isAbstract="false" isLeaf="false" xmi.id="m1" isRoot="false" name="UML Model">
+   <UML:Namespace.ownedElement>
+    <UML:Stereotype visibility="public" isSpecification="false" namespace="m1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="folder" name="folder"/>
+    <UML:Stereotype visibility="public" isSpecification="false" namespace="m1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="datatype" name="datatype"/>
+    <UML:Model stereotype="folder" visibility="public" isSpecification="false" namespace="m1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="Logical View" name="Logical View">
+     <UML:Namespace.ownedElement>
+      <UML:Package stereotype="folder" visibility="public" isSpecification="false" namespace="Logical View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="Datatypes" name="Datatypes">
+       <UML:Namespace.ownedElement>
+        <UML:DataType stereotype="datatype" visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="1hEjEQYixjKq" name="int"/>
+        <UML:DataType stereotype="datatype" visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="bUtWazUMDyqy" name="char"/>
+        <UML:DataType stereotype="datatype" visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="VMeL3042iHju" name="bool"/>
+        <UML:DataType stereotype="datatype" visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="hHccyuQaNJ4x" name="float"/>
+        <UML:DataType stereotype="datatype" visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="GYITU8P0S3JT" name="double"/>
+        <UML:DataType stereotype="datatype" visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="4NVkcDcHUCsR" name="short"/>
+        <UML:DataType stereotype="datatype" visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="4IzRa3PqZfI4" name="long"/>
+        <UML:DataType stereotype="datatype" visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="nh2DjLhlgAVJ" name="unsigned int"/>
+        <UML:DataType stereotype="datatype" visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="N5asHSHJjGlJ" name="unsigned short"/>
+        <UML:DataType stereotype="datatype" visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="J89snPwY7ylo" name="unsigned long"/>
+        <UML:DataType stereotype="datatype" visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="HQZyb2Hy7poM" name="string"/>
+        <UML:DataType stereotype="datatype" visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="Mbid1FbaHqZO" name="array"/>
+        <UML:DataType stereotype="datatype" visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="iwRNvkmBNIaq" name="tuple"/>
+        <UML:DataType stereotype="datatype" visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="aNFPFZ0vD0Am" name="dict"/>
+        <UML:DataType stereotype="datatype" visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="aPd7nJTVFur8" name="object"/>
+        <UML:DataType stereotype="datatype" visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="cdJzvrnVF1vS" name="set"/>
+       </UML:Namespace.ownedElement>
+      </UML:Package>
+      <UML:Class visibility="public" isSpecification="false" namespace="Logical View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="vkxFT9jBIS9O" name="Application">
+       <UML:GeneralizableElement.generalization>
+        <UML:Generalization xmi.idref="GRIYtPum0cV1"/>
+       </UML:GeneralizableElement.generalization>
+       <UML:Classifier.feature>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="blTcLybVc1b8" name="__init__">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="EA14MskydBYy" type="HQZyb2Hy7poM"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="Uyq4HcDRasHh" type="HQZyb2Hy7poM" value="" name="self"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+       </UML:Classifier.feature>
+      </UML:Class>
+      <UML:Package visibility="public" isSpecification="false" namespace="Logical View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="tdhi1aDQzr4F" name="tornado">
+       <UML:Namespace.ownedElement>
+        <UML:Package visibility="public" isSpecification="false" namespace="tdhi1aDQzr4F" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="B7x7btBWe8j7" name="web">
+         <UML:Namespace.ownedElement>
+          <UML:Class visibility="public" isSpecification="false" namespace="B7x7btBWe8j7" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="sdriuYw5YyPQ" name="RequestHandler"/>
+         </UML:Namespace.ownedElement>
+        </UML:Package>
+       </UML:Namespace.ownedElement>
+      </UML:Package>
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="vkxFT9jBIS9O" xmi.id="GRIYtPum0cV1" parent="vkxFT9jBIS9O" name=""/>
+      <UML:Class visibility="public" isSpecification="false" namespace="Logical View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="79Rk93sdzgfE" name="MainHandler">
+       <UML:GeneralizableElement.generalization>
+        <UML:Generalization xmi.idref="hN1svx03MkCN"/>
+       </UML:GeneralizableElement.generalization>
+       <UML:Classifier.feature>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="mQq6A0UjnnyF" name="get">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="91s1qJmajafs" type="HQZyb2Hy7poM"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="KUXVpXXlRdBK" type="HQZyb2Hy7poM" value="" name="self"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+       </UML:Classifier.feature>
+      </UML:Class>
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="79Rk93sdzgfE" xmi.id="hN1svx03MkCN" parent="sdriuYw5YyPQ" name=""/>
+      <UML:Class visibility="public" isSpecification="false" namespace="Logical View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="a9bNuZcE19iq" name="FormHandler">
+       <UML:GeneralizableElement.generalization>
+        <UML:Generalization xmi.idref="Hq2Gxi6bxeeo"/>
+       </UML:GeneralizableElement.generalization>
+       <UML:Classifier.feature>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="yYIuAwgWxSdE" name="get">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="f37cTkqe0rH3" type="HQZyb2Hy7poM"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="BI2f28ScKA3H" type="HQZyb2Hy7poM" value="" name="self"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="4JUoXwVVSlNc" type="HQZyb2Hy7poM" value="" name="param"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+       </UML:Classifier.feature>
+      </UML:Class>
+      <UML:Package visibility="public" isSpecification="false" namespace="Logical View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="eFa5sjO0lGzZ" name="base">
+       <UML:Namespace.ownedElement/>
+      </UML:Package>
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="a9bNuZcE19iq" xmi.id="Hq2Gxi6bxeeo" parent="Zl8HLn9tukGo" name=""/>
+      <UML:Class visibility="public" isSpecification="false" namespace="Logical View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="PMb7ocITWIG1" name="SyncronizerBase">
+       <UML:Classifier.feature>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="vMURJmRS3K3u" name="__init__">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="gMZhgcclc5S7" type="HQZyb2Hy7poM"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="72VjVglv0M2m" type="HQZyb2Hy7poM" value="" name="self"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="yIFTaTSVpwu7" type="HQZyb2Hy7poM" value="" name="dm"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="mD0kY2XUIkxs" name="sync_this">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="iQJI32XJIX8e" type="HQZyb2Hy7poM"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="EQL1KG81cfiG" type="HQZyb2Hy7poM" value="" name="self"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="FI0rOQx8exqA" type="HQZyb2Hy7poM" value="" name="data"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="yLeG4c7I0SHK" type="HQZyb2Hy7poM" value="" name="table"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="v3kZzbjvwMB0" name="sync">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="ULrQtVPRggFM" type="HQZyb2Hy7poM"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="yGGwjYGPwYgz" type="HQZyb2Hy7poM" value="" name="self"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="aBIqgPVbSFBR" type="HQZyb2Hy7poM" value="" name="data"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="osKjEUjAky6R" type="HQZyb2Hy7poM" value="" name="table"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+       </UML:Classifier.feature>
+      </UML:Class>
+      <UML:Class visibility="public" isSpecification="false" namespace="Logical View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="dSXzDbYB22ew" name="Pool">
+       <UML:GeneralizableElement.generalization>
+        <UML:Generalization xmi.idref="dJk5murGRGkb"/>
+       </UML:GeneralizableElement.generalization>
+      </UML:Class>
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="dSXzDbYB22ew" xmi.id="dJk5murGRGkb" parent="aPd7nJTVFur8" name=""/>
+      <UML:Class visibility="public" isSpecification="false" namespace="Logical View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="FPXedIDTxbBh" name="Poller">
+       <UML:GeneralizableElement.generalization>
+        <UML:Generalization xmi.idref="Qh2hmM9QDi44"/>
+       </UML:GeneralizableElement.generalization>
+       <UML:Classifier.feature>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="brUmaYoWCK2D" name="__init__">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="SBGjTWfR1dkk" type="HQZyb2Hy7poM"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="NoPo7GqkJJGw" type="HQZyb2Hy7poM" value="" name="self"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="yU0KliOKYs68" type="HQZyb2Hy7poM" value="" name="connection"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="RuedCfoZRBLY" type="HQZyb2Hy7poM" value="" name="callbacks"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="M84u180Q0c1C" name="start">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="zl9yOtiizmay" type="HQZyb2Hy7poM"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="Fnlgy7COGS7j" type="HQZyb2Hy7poM" value="" name="self"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uaMuBN6Q8p57" name="_update_handler">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="qNTq73mzc9tl" type="HQZyb2Hy7poM"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uHV9kdqhOzfk" type="HQZyb2Hy7poM" value="" name="self"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="Ux9dkEkfWDmE" name="_io_callback">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="8x6cBsozVhC5" type="HQZyb2Hy7poM"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="qctCcYxQtOE0" type="HQZyb2Hy7poM" value="" name="self"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="P1z18qkcluFT" type="HQZyb2Hy7poM" value="" name="*"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+       </UML:Classifier.feature>
+      </UML:Class>
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="FPXedIDTxbBh" xmi.id="Qh2hmM9QDi44" parent="aPd7nJTVFur8" name=""/>
+      <UML:Class visibility="public" isSpecification="false" namespace="Logical View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="D7V6Vi4uj1ur" name="PoolError">
+       <UML:GeneralizableElement.generalization>
+        <UML:Generalization xmi.idref="12lUjvZv021V"/>
+       </UML:GeneralizableElement.generalization>
+      </UML:Class>
+      <UML:Class visibility="public" isSpecification="false" namespace="Logical View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="reRaWf4fcAFl" name="Exception"/>
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="D7V6Vi4uj1ur" xmi.id="12lUjvZv021V" parent="reRaWf4fcAFl" name=""/>
+      <UML:Class visibility="public" isSpecification="false" namespace="Logical View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="LivLkvoTzBs4" name="DatabaseManagerClientSqlite">
+       <UML:GeneralizableElement.generalization>
+        <UML:Generalization xmi.idref="4oJLEULZAHst"/>
+       </UML:GeneralizableElement.generalization>
+       <UML:Classifier.feature>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="zn294v2EZMNP" name="generate_conn">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="Yc98xWXU5EOk" type="HQZyb2Hy7poM"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="ZYguhG5HYPqc" type="HQZyb2Hy7poM" value="" name="self"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="r1h8V8dStfax" type="HQZyb2Hy7poM" value="" name="config"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="SR00rqbipIoI" name="query">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="efaa2MQtdjq8" type="HQZyb2Hy7poM"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="ORlI5LDdvNlq" type="HQZyb2Hy7poM" value="" name="self"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="tJKwVhhx8hwx" type="HQZyb2Hy7poM" value="" name="table"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="VVgInUa9uJRz" type="HQZyb2Hy7poM" value="" name="ids"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="QV3YAxWdSAvD" name="query_sync">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="tC0JEzkcN5bS" type="HQZyb2Hy7poM"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="cTNUnoTRR2zT" type="HQZyb2Hy7poM" value="" name="self"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="OOL1797Xe83o" type="HQZyb2Hy7poM" value="" name="table"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="6XRWfKkGn5ka" type="HQZyb2Hy7poM" value="" name="limit"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="Egzsm1esW3NC" name="insert">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="f7j5cyH5sH5o" type="HQZyb2Hy7poM"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="N7SBCCj3OjMc" type="HQZyb2Hy7poM" value="" name="self"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="h7C4ClXPPUFC" type="HQZyb2Hy7poM" value="" name="data"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="Tu20xPCJWeSg" type="HQZyb2Hy7poM" value="" name="table"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="o9kBt4la9wcM" type="HQZyb2Hy7poM" value="" name="gen_id"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="hF5BrXsggarX" name="insert_many">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="85MuayXaQpCQ" type="HQZyb2Hy7poM"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="ca5mWi6CppHP" type="HQZyb2Hy7poM" value="" name="self"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="nWTenYQSmVed" type="HQZyb2Hy7poM" value="" name="data"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="0UJe28CcjFOD" type="HQZyb2Hy7poM" value="" name="table"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="xSPlHe838bhu" type="HQZyb2Hy7poM" value="" name="gen_id"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="vO3ccPqZsFI9" name="update">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="UhZPwarA8umT" type="HQZyb2Hy7poM"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="sRA00pu8uH2U" type="HQZyb2Hy7poM" value="" name="self"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="DY2eLF4Gb5tD" type="HQZyb2Hy7poM" value="" name="data"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="VjlNw1UoQfnR" type="HQZyb2Hy7poM" value="" name="table"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="7ohguasPHdmC" name="update_many">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="aob1qMOPuu7N" type="HQZyb2Hy7poM"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="cGy3tlUMT3lN" type="HQZyb2Hy7poM" value="" name="self"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="baVhSH8Z6qE0" type="HQZyb2Hy7poM" value="" name="data"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="O6Pgh9sJNoKF" type="HQZyb2Hy7poM" value="" name="table"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+       </UML:Classifier.feature>
+      </UML:Class>
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="LivLkvoTzBs4" xmi.id="4oJLEULZAHst" parent="R9xLrTjCyn7e" name=""/>
+      <UML:Class visibility="public" isSpecification="false" namespace="Logical View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="R9xLrTjCyn7e" name="DatabaseManagerClientBase">
+       <UML:Classifier.feature>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="9FuF58FUCc8t" name="generate_conn">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="XEPkpXbYVkdI" type="HQZyb2Hy7poM"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="j0B7oVMMIvN6" type="HQZyb2Hy7poM" value="" name="self"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="HkV9ecWnsP1x" type="HQZyb2Hy7poM" value="" name="config"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="GxeWs0c7k5HM" name="query">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="6p8RiWb6WKyE" type="HQZyb2Hy7poM"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="il7YA8TiNtQA" type="HQZyb2Hy7poM" value="" name="self"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="OziukKCyHoSA" type="HQZyb2Hy7poM" value="" name="table"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="o4HY7WspI0LS" type="HQZyb2Hy7poM" value="" name="ids"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="eACtxe3lgJIn" name="query_sync">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="er3NVkne0HLa" type="HQZyb2Hy7poM"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="pAb58wYFlegR" type="HQZyb2Hy7poM" value="" name="self"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="BIWhaSvCb55Y" type="HQZyb2Hy7poM" value="" name="table"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="h9JNQZ8DihJq" type="HQZyb2Hy7poM" value="" name="limit"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="jEmKHrsyyAJM" name="insert">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="mI38cCllBLqL" type="HQZyb2Hy7poM"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="hQaP7tEjiH7B" type="HQZyb2Hy7poM" value="" name="self"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="1sq199ZqOJBd" type="HQZyb2Hy7poM" value="" name="data"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="91c59vSrL2ER" type="HQZyb2Hy7poM" value="" name="table"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="tSAbkFmj7cjE" type="HQZyb2Hy7poM" value="" name="gen_id"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="FGAYIOzBrAkZ" name="insert_many">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="gX7M4vK0iQke" type="HQZyb2Hy7poM"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="NVIV5zhpIixs" type="HQZyb2Hy7poM" value="" name="self"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="uhb62RPFgZoy" type="HQZyb2Hy7poM" value="" name="data"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="vn8kvqJJLamR" type="HQZyb2Hy7poM" value="" name="table"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="ZTGpACh4rG8r" type="HQZyb2Hy7poM" value="" name="gen_id"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="H2xacj19AGxK" name="update">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="MaXLoSNwfOnH" type="HQZyb2Hy7poM"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="SeNHtT8ZzFv3" type="HQZyb2Hy7poM" value="" name="self"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="AF1remTtmOTO" type="HQZyb2Hy7poM" value="" name="data"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="7VVFjSYB5tSy" type="HQZyb2Hy7poM" value="" name="table"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="AGAueeIj7mxq" name="update_many">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="BaY8JasRzaFn" type="HQZyb2Hy7poM"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="CVzHOPDixk4l" type="HQZyb2Hy7poM" value="" name="self"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="ARiopT5yiEsK" type="HQZyb2Hy7poM" value="" name="data"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="s94xt1n5UmNq" type="HQZyb2Hy7poM" value="" name="table"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+       </UML:Classifier.feature>
+      </UML:Class>
+      <UML:Class visibility="public" isSpecification="false" namespace="Logical View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="nU2S1rQOpyIu" name="DatabaseHandler">
+       <UML:GeneralizableElement.generalization>
+        <UML:Generalization xmi.idref="LN4dsMH6jEtE"/>
+       </UML:GeneralizableElement.generalization>
+       <UML:Classifier.feature>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="BFVuSM6hdIlK" name="get">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="5jeh1N1r1zbS" type="HQZyb2Hy7poM"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="sfykRPK4w51y" type="HQZyb2Hy7poM" value="" name="self"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="HmLobJDkXjcz" type="HQZyb2Hy7poM" value="" name="p"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="PtWJyWFDIa1r" name="post">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="rYM76OyybZMV" type="HQZyb2Hy7poM"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="rFbOwDNzwzgv" type="HQZyb2Hy7poM" value="" name="self"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="NgmOfLo2CLJB" type="HQZyb2Hy7poM" value="" name="p"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+       </UML:Classifier.feature>
+      </UML:Class>
+      <UML:Class visibility="public" isSpecification="false" namespace="Logical View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="Zl8HLn9tukGo" name="BaseHandler"/>
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="nU2S1rQOpyIu" xmi.id="LN4dsMH6jEtE" parent="Zl8HLn9tukGo" name=""/>
+      <UML:Class visibility="public" isSpecification="false" namespace="Logical View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="MUPiSLHzimlO" name="DatabaseManagerPostgres">
+       <UML:GeneralizableElement.generalization>
+        <UML:Generalization xmi.idref="FQ5O16BMUd0f"/>
+       </UML:GeneralizableElement.generalization>
+       <UML:Classifier.feature>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="2kwVMv8OkKDc" name="generate_conn">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="lW7WqK8fcwUN" type="HQZyb2Hy7poM"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="qJopnkFawf5v" type="HQZyb2Hy7poM" value="" name="self"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="oy6NugyvOsOk" type="HQZyb2Hy7poM" value="" name="config"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="ejxbM2U8yaWs" name="list_tables">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="lg9NadiCLflf" type="HQZyb2Hy7poM"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="ESldI9L4gSYU" type="HQZyb2Hy7poM" value="" name="self"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="fFodoIT2kFf0" name="search_table">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="Ieo0rU1DT3Eu" type="HQZyb2Hy7poM"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="M122RaVCGeXo" type="HQZyb2Hy7poM" value="" name="self"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="GF1ZumEZ00Ao" type="HQZyb2Hy7poM" value="" name="table"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="ej5sLcfZqe8k" name="query">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="fMOhJ0dkcicH" type="HQZyb2Hy7poM"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="OLIOLQAe4zev" type="HQZyb2Hy7poM" value="" name="self"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="Rd7ufLmH4p9P" type="HQZyb2Hy7poM" value="" name="table"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="QmzGQ5ypQEDm" type="HQZyb2Hy7poM" value="" name="ids"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="3OY7CfUcSRss" name="query_sync">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="vsS8wrcysqca" type="HQZyb2Hy7poM"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="Xqhx5thiD3PW" type="HQZyb2Hy7poM" value="" name="self"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="20GeisvlERqQ" type="HQZyb2Hy7poM" value="" name="table"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="6L0WmsPHh4Dk" type="HQZyb2Hy7poM" value="" name="limit"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="iVKvuAJ0TIVE" name="get_updated">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="V4W41SZoz0TN" type="HQZyb2Hy7poM"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="AuVpwiXqZzwV" type="HQZyb2Hy7poM" value="" name="self"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="pZRfP1D6WXzQ" type="HQZyb2Hy7poM" value="" name="data"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="gGO7YtLjlpWg" type="HQZyb2Hy7poM" value="" name="table"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="1hTVCStqgGyF" name="get_uploads">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="zKMTL0xnCGEN" type="HQZyb2Hy7poM"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="9Hyt6SXcU3eW" type="HQZyb2Hy7poM" value="" name="self"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="TEIRCmoCRHfb" type="HQZyb2Hy7poM" value="" name="data"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="hXSNnQcufYnm" type="HQZyb2Hy7poM" value="" name="table"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="02XPHC0whSHU" name="get_full_uploads">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="ZNu0xjmXTMKS" type="HQZyb2Hy7poM"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="qsPWQAGNTcpm" type="HQZyb2Hy7poM" value="" name="self"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="cmZn0nAynhN4" type="HQZyb2Hy7poM" value="" name="data"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="rO0XoG1d8O7W" type="HQZyb2Hy7poM" value="" name="table"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="7SQv7mxx8wUw" name="get_inserts">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="igcjO3goEAhk" type="HQZyb2Hy7poM"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="CVZKueqR1iRy" type="HQZyb2Hy7poM" value="" name="self"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="RDWtXoJdHhWO" type="HQZyb2Hy7poM" value="" name="data"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="TTLbNpWZJ3rD" type="HQZyb2Hy7poM" value="" name="table"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="y0NDftc9Kvii" name="get_deleted">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="L9c8yJIofFqA" type="HQZyb2Hy7poM"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="jEF2I7D0nphB" type="HQZyb2Hy7poM" value="" name="self"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="qNx4VemUc9hI" type="HQZyb2Hy7poM" value="" name="data"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="0HPJD71wMGwe" type="HQZyb2Hy7poM" value="" name="table"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="sdeSkKilZ54k" name="save">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="JAK1t1gw16fG" type="HQZyb2Hy7poM"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="D3eXHa9djljf" type="HQZyb2Hy7poM" value="" name="self"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="4zRjFIs5tWVd" type="HQZyb2Hy7poM" value="" name="data"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="oEMOHO6UPl1h" type="HQZyb2Hy7poM" value="" name="table"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+       </UML:Classifier.feature>
+      </UML:Class>
+      <UML:Class visibility="public" isSpecification="false" namespace="Logical View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="F1bqP7IPZST4" name="DatabaseManagerBase">
+       <UML:Classifier.feature>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="lJ68fRpfPPE6" name="generate_conn">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="wupJJ1Pd2fCS" type="HQZyb2Hy7poM"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="L1HZS16h0hVN" type="HQZyb2Hy7poM" value="" name="self"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="mlmLDFOyWU6A" type="HQZyb2Hy7poM" value="" name="config"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="eI7dxa0kMl3Z" name="list_tables">
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="WXPWCbxos4Rp" type="HQZyb2Hy7poM"/>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="yRWVwafqUU9m" type="HQZyb2Hy7poM" value="" name="self"/>
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+       </UML:Classifier.feature>
+      </UML:Class>
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="MUPiSLHzimlO" xmi.id="FQ5O16BMUd0f" parent="F1bqP7IPZST4" name=""/>
+     </UML:Namespace.ownedElement>
+     <XMI.extension xmi.extender="umbrello">
+      <diagrams>
+       <diagram showopsig="1" linecolor="#ff0000" snapx="10" showattribassocs="1" snapy="10" linewidth="0" showattsig="1" isopen="1" showpackage="1" showpubliconly="1" showstereotype="1" name="class diagram" font="Sans Serif,9,-1,0,50,0,0,0,0,0" canvasheight="517" canvaswidth="1021" localid="-1" snapcsgrid="0" showgrid="0" showops="1" griddotcolor="#000000" backgroundcolor="#fcfcfc" usefillcolor="1" fillcolor="#ffff00" zoom="100" xmi.id="IPOCiw2HqFps" documentation="" showscope="1" snapgrid="0" showatts="1" type="1">
+        <widgets>
+         <classwidget linecolor="none" usesdiagramfillcolor="1" linewidth="none" showoperations="1" usesdiagramusefillcolor="1" showpubliconly="1" showpackage="1" x="59" showattsigs="601" showstereotype="1" y="44" showattributes="1" font="Sans Serif,9,-1,0,75,0,0,0,0,0" width="327" isinstance="0" usefillcolor="1" fillcolor="none" xmi.id="F1bqP7IPZST4" showscope="1" height="49" showopsigs="601"/>
+         <classwidget linecolor="none" usesdiagramfillcolor="1" linewidth="none" showoperations="1" usesdiagramusefillcolor="1" showpubliconly="1" showpackage="1" x="490" showattsigs="601" showstereotype="1" y="21" showattributes="1" font="Sans Serif,9,-1,0,75,0,0,0,0,0" width="479" isinstance="0" usefillcolor="1" fillcolor="none" xmi.id="R9xLrTjCyn7e" showscope="1" height="119" showopsigs="601"/>
+         <classwidget linecolor="none" usesdiagramfillcolor="1" linewidth="none" showoperations="1" usesdiagramusefillcolor="1" showpubliconly="1" showpackage="1" x="486" showattsigs="601" showstereotype="1" y="193" showattributes="1" font="Sans Serif,9,-1,0,75,0,0,0,0,0" width="479" isinstance="0" usefillcolor="1" fillcolor="none" xmi.id="LivLkvoTzBs4" showscope="1" height="119" showopsigs="601"/>
+         <classwidget linecolor="none" usesdiagramfillcolor="1" linewidth="none" showoperations="1" usesdiagramusefillcolor="1" showpubliconly="1" showpackage="1" x="531" showattsigs="601" showstereotype="1" y="389" showattributes="1" font="Sans Serif,9,-1,0,75,0,0,0,0,0" width="367" isinstance="0" usefillcolor="1" fillcolor="none" xmi.id="PMb7ocITWIG1" showscope="1" height="63" showopsigs="601"/>
+         <classwidget linecolor="none" usesdiagramfillcolor="1" linewidth="none" showoperations="1" usesdiagramusefillcolor="1" showpubliconly="1" showpackage="1" x="47" showattsigs="601" showstereotype="1" y="187" showattributes="1" font="Sans Serif,9,-1,0,75,0,0,0,0,0" width="409" isinstance="0" usefillcolor="1" fillcolor="none" xmi.id="MUPiSLHzimlO" showscope="1" height="175" showopsigs="601"/>
+        </widgets>
+        <messages/>
+        <associations>
+         <assocwidget indexa="1" indexb="1" usesdiagramusefillcolor="255" widgetaid="LivLkvoTzBs4" usesdiagramfillcolor="255" fillcolor="none" linecolor="none" totalcounta="2" xmi.id="4oJLEULZAHst" widgetbid="R9xLrTjCyn7e" totalcountb="2" type="500" usefillcolor="255" linewidth="none">
+          <linepath>
+           <startpoint startx="514" starty="193"/>
+           <endpoint endx="514" endy="140"/>
+          </linepath>
+         </assocwidget>
+         <assocwidget indexa="1" indexb="1" usesdiagramusefillcolor="0" widgetaid="MUPiSLHzimlO" usesdiagramfillcolor="0" fillcolor="#000000" linecolor="none" totalcounta="2" xmi.id="FQ5O16BMUd0f" widgetbid="F1bqP7IPZST4" totalcountb="2" type="500" usefillcolor="0" linewidth="none">
+          <linepath>
+           <startpoint startx="286" starty="187"/>
+           <endpoint endx="286" endy="93"/>
+          </linepath>
+         </assocwidget>
+        </associations>
+       </diagram>
+       <diagram showopsig="1" linecolor="#ff0000" snapx="10" showattribassocs="1" snapy="10" linewidth="0" showattsig="1" isopen="1" showpackage="1" showpubliconly="1" showstereotype="1" name="Sincronizacion" font="Sans Serif,9,-1,0,50,0,0,0,0,0" canvasheight="502" canvaswidth="1142" localid="JUdR29FPvZSx" snapcsgrid="0" showgrid="0" showops="1" griddotcolor="#000000" backgroundcolor="#fcfcfc" usefillcolor="1" fillcolor="#ffff00" zoom="100" xmi.id="mzzi05LERrVg" documentation="" showscope="1" snapgrid="0" showatts="1" type="3">
+        <widgets>
+         <objectwidget linecolor="#ff0000" usesdiagramfillcolor="0" linewidth="none" usesdiagramusefillcolor="1" x="641" decon="0" showstereotype="1" y="48" font="Sans Serif,9,-1,0,50,0,1,0,0,0" localid="5JE31sMtqffn" width="122" isinstance="0" multipleinstance="0" usefillcolor="1" fillcolor="#ffff00" xmi.id="PMb7ocITWIG1" height="24" drawasactor="0"/>
+         <objectwidget linecolor="#ff0000" usesdiagramfillcolor="0" linewidth="none" usesdiagramusefillcolor="1" x="20" decon="0" showstereotype="1" y="48" font="Sans Serif,9,-1,0,50,0,1,0,0,0" localid="eNmjj0AYWqPo" width="161" isinstance="0" multipleinstance="0" usefillcolor="1" fillcolor="#ffff00" xmi.id="F1bqP7IPZST4" height="24" drawasactor="0"/>
+         <objectwidget linecolor="#ff0000" usesdiagramfillcolor="0" linewidth="none" usesdiagramusefillcolor="1" x="219" decon="0" showstereotype="1" y="48" font="Sans Serif,9,-1,0,50,0,1,0,0,0" localid="K240qbFtsRwt" width="126" isinstance="0" multipleinstance="0" usefillcolor="1" fillcolor="#ffff00" xmi.id="nU2S1rQOpyIu" height="24" drawasactor="0"/>
+         <objectwidget linecolor="#ff0000" usesdiagramfillcolor="0" linewidth="none" usesdiagramusefillcolor="1" x="857" decon="0" showstereotype="1" y="48" font="Sans Serif,9,-1,0,50,0,1,0,0,0" localid="JUdR29FPvZSx" width="195" isinstance="0" multipleinstance="0" usefillcolor="1" fillcolor="#ffff00" xmi.id="R9xLrTjCyn7e" height="24" drawasactor="0"/>
+        </widgets>
+        <messages>
+         <messagewidget linecolor="none" usesdiagramfillcolor="1" widgetbid="5JE31sMtqffn" textid="tuIjX0AhLGsH" operation="mD0kY2XUIkxs" linewidth="none" seqnum="" usesdiagramusefillcolor="1" x="282" showstereotype="1" y="85" widgetaid="K240qbFtsRwt" font="Sans Serif,9,-1,0,50,0,0,0,0,0" width="428" isinstance="0" usefillcolor="1" fillcolor="none" xmi.id="mD0kY2XUIkxs" height="176" sequencemessagetype="1000">
+          <floatingtext linecolor="none" usesdiagramfillcolor="1" linewidth="none" usesdiagramusefillcolor="1" x="287" showstereotype="1" y="67" text=": sync_this(self : string, data : string, table : string) : string" font="Sans Serif,9,-1,0,50,0,0,0,0,0" pretext="" role="704" width="359" isinstance="0" posttext="" usefillcolor="1" fillcolor="none" xmi.id="tuIjX0AhLGsH" height="18"/>
+         </messagewidget>
+         <messagewidget linecolor="none" usesdiagramfillcolor="1" widgetbid="JUdR29FPvZSx" textid="4Za0SUH9zHJg" operation="jEmKHrsyyAJM" linewidth="none" seqnum="" usesdiagramusefillcolor="1" x="702" showstereotype="1" y="85" widgetaid="5JE31sMtqffn" font="Sans Serif,9,-1,0,50,0,0,0,0,0" width="260" isinstance="0" usefillcolor="1" fillcolor="none" xmi.id="jEmKHrsyyAJM" height="32" sequencemessagetype="1000">
+          <floatingtext linecolor="none" usesdiagramfillcolor="1" linewidth="none" usesdiagramusefillcolor="1" x="707" showstereotype="1" y="67" text=": insert(self : string, data : string, table : string, gen_id : string) : string" font="Sans Serif,9,-1,0,50,0,0,0,0,0" pretext="" role="704" width="431" isinstance="0" posttext="" usefillcolor="1" fillcolor="none" xmi.id="4Za0SUH9zHJg" height="18"/>
+         </messagewidget>
+         <messagewidget linecolor="none" usesdiagramfillcolor="1" widgetbid="JUdR29FPvZSx" textid="sOd2thbRg1tx" operation="9FuF58FUCc8t" linewidth="none" seqnum="" usesdiagramusefillcolor="1" x="702" showstereotype="1" y="127" widgetaid="5JE31sMtqffn" font="Sans Serif,9,-1,0,50,0,0,0,0,0" width="260" isinstance="0" usefillcolor="1" fillcolor="none" xmi.id="9FuF58FUCc8t" height="32" sequencemessagetype="1000">
+          <floatingtext linecolor="none" usesdiagramfillcolor="1" linewidth="none" usesdiagramusefillcolor="1" x="707" showstereotype="1" y="109" text=": generate_conn(self : string, config : string) : string" font="Sans Serif,9,-1,0,50,0,0,0,0,0" pretext="" role="704" width="318" isinstance="0" posttext="" usefillcolor="1" fillcolor="none" xmi.id="sOd2thbRg1tx" height="18"/>
+         </messagewidget>
+        </messages>
+        <associations/>
+       </diagram>
+      </diagrams>
+     </XMI.extension>
+    </UML:Model>
+    <UML:Model stereotype="folder" visibility="public" isSpecification="false" namespace="m1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="Use Case View" name="Use Case View">
+     <UML:Namespace.ownedElement/>
+    </UML:Model>
+    <UML:Model stereotype="folder" visibility="public" isSpecification="false" namespace="m1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="Component View" name="Component View">
+     <UML:Namespace.ownedElement/>
+    </UML:Model>
+    <UML:Model stereotype="folder" visibility="public" isSpecification="false" namespace="m1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="Deployment View" name="Deployment View">
+     <UML:Namespace.ownedElement/>
+    </UML:Model>
+    <UML:Model stereotype="folder" visibility="public" isSpecification="false" namespace="m1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="Entity Relationship Model" name="Entity Relationship Model">
+     <UML:Namespace.ownedElement/>
+    </UML:Model>
+   </UML:Namespace.ownedElement>
+  </UML:Model>
+ </XMI.content>
+ <XMI.extensions xmi.extender="umbrello">
+  <docsettings viewid="mzzi05LERrVg" uniqueid="sOd2thbRg1tx" documentation=""/>
+  <listview>
+   <listitem open="1" type="800" id="Views">
+    <listitem open="1" type="821" id="Component View"/>
+    <listitem open="1" type="827" id="Deployment View"/>
+    <listitem open="1" type="836" id="Entity Relationship Model"/>
+    <listitem open="1" type="801" id="Logical View">
+     <listitem open="0" type="813" id="vkxFT9jBIS9O">
+      <listitem open="0" type="815" id="blTcLybVc1b8"/>
+     </listitem>
+     <listitem open="0" type="818" id="eFa5sjO0lGzZ">
+      <listitem open="0" type="813" id="Zl8HLn9tukGo"/>
+     </listitem>
+     <listitem open="0" type="807" id="IPOCiw2HqFps" label="class diagram"/>
+     <listitem open="0" type="813" id="nU2S1rQOpyIu">
+      <listitem open="0" type="815" id="BFVuSM6hdIlK"/>
+      <listitem open="0" type="815" id="PtWJyWFDIa1r"/>
+     </listitem>
+     <listitem open="0" type="813" id="F1bqP7IPZST4">
+      <listitem open="0" type="815" id="lJ68fRpfPPE6"/>
+      <listitem open="0" type="815" id="eI7dxa0kMl3Z"/>
+     </listitem>
+     <listitem open="0" type="813" id="R9xLrTjCyn7e">
+      <listitem open="0" type="815" id="9FuF58FUCc8t"/>
+      <listitem open="0" type="815" id="FGAYIOzBrAkZ"/>
+      <listitem open="0" type="815" id="jEmKHrsyyAJM"/>
+      <listitem open="0" type="815" id="eACtxe3lgJIn"/>
+      <listitem open="0" type="815" id="GxeWs0c7k5HM"/>
+      <listitem open="0" type="815" id="AGAueeIj7mxq"/>
+      <listitem open="0" type="815" id="H2xacj19AGxK"/>
+     </listitem>
+     <listitem open="0" type="813" id="LivLkvoTzBs4">
+      <listitem open="0" type="815" id="zn294v2EZMNP"/>
+      <listitem open="0" type="815" id="hF5BrXsggarX"/>
+      <listitem open="0" type="815" id="Egzsm1esW3NC"/>
+      <listitem open="0" type="815" id="QV3YAxWdSAvD"/>
+      <listitem open="0" type="815" id="SR00rqbipIoI"/>
+      <listitem open="0" type="815" id="7ohguasPHdmC"/>
+      <listitem open="0" type="815" id="vO3ccPqZsFI9"/>
+     </listitem>
+     <listitem open="0" type="813" id="MUPiSLHzimlO">
+      <listitem open="0" type="815" id="2kwVMv8OkKDc"/>
+      <listitem open="0" type="815" id="y0NDftc9Kvii"/>
+      <listitem open="0" type="815" id="02XPHC0whSHU"/>
+      <listitem open="0" type="815" id="7SQv7mxx8wUw"/>
+      <listitem open="0" type="815" id="iVKvuAJ0TIVE"/>
+      <listitem open="0" type="815" id="1hTVCStqgGyF"/>
+      <listitem open="0" type="815" id="ejxbM2U8yaWs"/>
+      <listitem open="0" type="815" id="3OY7CfUcSRss"/>
+      <listitem open="0" type="815" id="ej5sLcfZqe8k"/>
+      <listitem open="0" type="815" id="sdeSkKilZ54k"/>
+      <listitem open="0" type="815" id="fFodoIT2kFf0"/>
+     </listitem>
+     <listitem open="0" type="830" id="Datatypes">
+      <listitem open="1" type="829" id="Mbid1FbaHqZO"/>
+      <listitem open="1" type="829" id="VMeL3042iHju"/>
+      <listitem open="1" type="829" id="bUtWazUMDyqy"/>
+      <listitem open="1" type="829" id="aNFPFZ0vD0Am"/>
+      <listitem open="1" type="829" id="GYITU8P0S3JT"/>
+      <listitem open="1" type="829" id="hHccyuQaNJ4x"/>
+      <listitem open="1" type="829" id="1hEjEQYixjKq"/>
+      <listitem open="1" type="829" id="4IzRa3PqZfI4"/>
+      <listitem open="1" type="829" id="aPd7nJTVFur8"/>
+      <listitem open="1" type="829" id="cdJzvrnVF1vS"/>
+      <listitem open="1" type="829" id="4NVkcDcHUCsR"/>
+      <listitem open="1" type="829" id="HQZyb2Hy7poM"/>
+      <listitem open="1" type="829" id="iwRNvkmBNIaq"/>
+      <listitem open="1" type="829" id="nh2DjLhlgAVJ"/>
+      <listitem open="1" type="829" id="J89snPwY7ylo"/>
+      <listitem open="1" type="829" id="N5asHSHJjGlJ"/>
+     </listitem>
+     <listitem open="0" type="813" id="reRaWf4fcAFl"/>
+     <listitem open="0" type="813" id="a9bNuZcE19iq">
+      <listitem open="0" type="815" id="yYIuAwgWxSdE"/>
+     </listitem>
+     <listitem open="0" type="813" id="79Rk93sdzgfE">
+      <listitem open="0" type="815" id="mQq6A0UjnnyF"/>
+     </listitem>
+     <listitem open="0" type="813" id="FPXedIDTxbBh">
+      <listitem open="0" type="815" id="brUmaYoWCK2D"/>
+      <listitem open="0" type="815" id="Ux9dkEkfWDmE"/>
+      <listitem open="0" type="815" id="uaMuBN6Q8p57"/>
+      <listitem open="0" type="815" id="M84u180Q0c1C"/>
+     </listitem>
+     <listitem open="0" type="813" id="dSXzDbYB22ew"/>
+     <listitem open="0" type="813" id="D7V6Vi4uj1ur"/>
+     <listitem open="0" type="810" id="mzzi05LERrVg" label="Sincronizacion"/>
+     <listitem open="0" type="813" id="PMb7ocITWIG1">
+      <listitem open="0" type="815" id="vMURJmRS3K3u"/>
+      <listitem open="0" type="815" id="mD0kY2XUIkxs"/>
+      <listitem open="0" type="815" id="v3kZzbjvwMB0"/>
+     </listitem>
+     <listitem open="1" type="818" id="tdhi1aDQzr4F">
+      <listitem open="0" type="818" id="B7x7btBWe8j7">
+       <listitem open="0" type="813" id="sdriuYw5YyPQ"/>
+      </listitem>
+     </listitem>
+    </listitem>
+    <listitem open="1" type="802" id="Use Case View"/>
+   </listitem>
+  </listview>
+  <codegeneration>
+   <codegenerator language="Python">
+    <sourcecode value=":&#xa;handlers=[&#xa;(r&quot;/&quot;,MainHandler),(r&quot;/form/([^/]*)&quot;,FormHandler),(r&quot;/database([^/]*)&quot;,database.DatabaseHandler),]&#xa;settings=dict(&#xa;template_path=os.path.join(os.path.dirname(__file__),&quot;templates&quot;),static_path=os.path.join(os.path.dirname(__file__),&quot;static&quot;),xsrf_cookies=False,autoescape=&quot;xhtml_escape&quot;,debug=True,)&#xa;tornado.web.Application.__init__(self,handlers,**settings)&#xa;self.conn=psycopg2.connect(&quot;host=%s dbname=%s password=%s user=%s port=%s&quot;%&#xa;(options.pg_host,options.pg_dbname,options.pg_pass,options.pg_user,options.pg_port))self.conn.set_isolation_level(psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT)&#xa;self.cur=self.conn.cursor(cursor_factory=psycopg2.extras.DictCursor)&#xa;" id="blTcLybVc1b8"/>
+    <sourcecode value=":&#xa;self.render(&quot;index.html&quot;,common=common)&#xa;" id="mQq6A0UjnnyF"/>
+    <sourcecode value=":&#xa;res=:&#xa;&#xa;&#xa;if param:&#xa;  self.cursor.execute(&quot;SELECT * FROM products WHERE id = %s&quot;,(param,))&#xa;  res=copyListDicts(self.cursor.fetchall())&#xa;&#xa;self.render(&quot;form.html&quot;,res=res and res[0]or:&#xa;&#xa;)&#xa;" id="yYIuAwgWxSdE"/>
+    <sourcecode value=":&#xa;Constuctor de la clase&#xa;Args:&#xa;  dm(DatabaseManagerBase):Implementacion de DatabaseManagerBase segun el motor de base de datos que se quiera usar&#xa;&#xa;self._dm=dm()&#xa;" id="vMURJmRS3K3u"/>
+    <sourcecode value=":&#xa;Sincroniza unicamente la informacion que se pasa en el parametro data en la tabla indicada,&#xa;este metodo es util en caso de que el cliente desee sincronizar por partes,&#xa;no se retornan los inserts&#xa;Args:&#xa;  data(list):Lista de diccionarios con los ids y timestamps de los registros que se desean Sincronizar&#xa;  table(str):Nombre de la tabla con la se desea sincronizar los tegistros contenidos en data&#xa;&#xa;updates=self._dm.get_updated(data,table)&#xa;uploads=self._dm.get_uploads(data,table)&#xa;return:&#xa;  'updates':updates,'uploads':uploads&#xa;&#xa;" id="mD0kY2XUIkxs"/>
+    <sourcecode value=":&#xa;Sincroniza la informacion que se pasa en el parametro data en la tabla indicada,&#xa;este metodo es util en caso de que el cliente desee sincronizar por partes,&#xa;se retorna toda la informacin necesaria para la sincronizacion&#xa;Args:&#xa;  data(list):Lista de diccionarios con los ids y timestamps de los registros que se desean Sincronizar&#xa;  table(str):Nombre de la tabla con la se desea sincronizar los tegistros contenidos en data&#xa;&#xa;updates=self._dm.get_updated(data,table)&#xa;uploads=self._dm.get_full_uploads(data,table)&#xa;inserts=self._dm.get_inserts(data,table)&#xa;print&quot;Sync&quot;&#xa;print&quot;Inserts &quot;,inserts&#xa;return:&#xa;  'updates':updates,'uploads':uploads,'inserts':inserts&#xa;" id="v3kZzbjvwMB0"/>
+    <sourcecode value=":&#xa;self._ioloop=IOLoop.instance()&#xa;self._connection=connection&#xa;self._callbacks=callbacks&#xa;" id="brUmaYoWCK2D"/>
+    <sourcecode value=":&#xa;&quot;Start polling the connection.;self._update_handler()&#xa;" id="M84u180Q0c1C"/>
+    <sourcecode value=":&#xa;state=self._connection.poll()&#xa;if state==psycopg2.extensions.POLL_OK:&#xa;  for callback in self._callbacks:&#xa;    callback()&#xa;&#xa;&#xa;elif state==psycopg2.extensions.POLL_READ:&#xa;  self._ioloop.add_handler(self._connection.fileno(),self._io_callback,IOLoop.READ)&#xa;&#xa;elif state==psycopg2.extensions.POLL_WRITE:&#xa;  self._ioloop.add_handler(self._connection.fileno(),self._io_callback,IOLoop.WRITE)&#xa;&#xa;" id="uaMuBN6Q8p57"/>
+    <sourcecode value=":&#xa;self._ioloop.remove_handler(self._connection.fileno())&#xa;self._update_handler()&#xa;" id="Ux9dkEkfWDmE"/>
+    <sourcecode value=":&#xa;conn=sqlite3.connect('client.db')&#xa;conn.row_factory=sqlite3.Row&#xa;return conn&#xa;" id="zn294v2EZMNP"/>
+    <sourcecode value=":&#xa;conn=self.generate_conn()&#xa;cur=conn.cursor()&#xa;sql=&quot;SELECT * FROM %s &quot;%(table)&#xa;if ids:&#xa;  sql=sql+&quot;WHERE id IN (&quot;+&quot;, &quot;.join([&quot;?&quot;]*len(ids))+&quot;)&quot;&#xa;  cur.execute(sql,ids)&#xa;&#xa;else:&#xa;  cur.execute(sql)&#xa;&#xa;return copyListDicts(cur.fetchall())&#xa;" id="SR00rqbipIoI"/>
+    <sourcecode value=":&#xa;conn=self.generate_conn()&#xa;cur=conn.cursor()&#xa;print&quot;Limit : &quot;,limit&#xa;sql=&quot;SELECT id, write_date FROM %s &quot;&quot;&quot;%(table)&#xa;if limit:&#xa;  sql='%s LIMIT %s'%(sql,limit)&#xa;  if offset:&#xa;    sql='%s OFFSET %s'%(sql,offset)&#xa;&#xa;&#xa;cur.execute(sql)&#xa;return copyListDicts(cur.fetchall())&#xa;" id="QV3YAxWdSAvD"/>
+    <sourcecode value=":&#xa;if gen_id:&#xa;  data.update(:&#xa;    'id':str(uuid.uuid4())&#xa;  )&#xa;&#xa;f=str(tuple(str(x)for x in data)).replace(&quot;'&quot;,&quot;&quot;)&#xa;v=str(tuple(['?']*len(data))).replace(&quot;'&quot;,&quot;&quot;)&#xa;sql='INSERT INTO %(name)s %(fields)s VALUES %(values)s'%:&#xa;  'name':table,'fields':f,'values':v&#xa;&#xa;print data.get('id')&#xa;conn=self.generate_conn()&#xa;cur=conn.cursor()&#xa;cur.execute(sql,data.values())&#xa;conn.commit()&#xa;" id="Egzsm1esW3NC"/>
+    <sourcecode value=":&#xa;conn=self.generate_conn()&#xa;cur=conn.cursor()&#xa;for d in data:&#xa;  if gen_id:&#xa;    d.update(:&#xa;      'id':str(uuid.uuid4())&#xa;    )&#xa;&#xa;  f=str(tuple(str(x)for x in d)).replace(&quot;'&quot;,&quot;&quot;)&#xa;  v=str(tuple(['?']*len(d))).replace(&quot;'&quot;,&quot;&quot;)&#xa;  sql='INSERT INTO %(name)s %(fields)s VALUES %(values)s'%:&#xa;    'name':table,'fields':f,'values':v&#xa;&#xa;  print&quot;%s - %s&quot;%(table,d.get('id'))&#xa;  cur.execute(sql,d.values())&#xa;&#xa;conn.commit()&#xa;" id="hF5BrXsggarX"/>
+    <sourcecode value=":&#xa;raise NotImplemented()&#xa;" id="vO3ccPqZsFI9"/>
+    <sourcecode value=":&#xa;conn=self.generate_conn()&#xa;cur=conn.cursor()&#xa;for d in data:&#xa;  fields=&quot;, &quot;.join(['%s = ?'%f for f in d])&#xa;  sql=&quot;UPDATE %(name)s SET %(fields)s WHERE id = '%(id)s'&quot;%:&#xa;    'name':table,'fields':fields,'id':d.get('id')&#xa;&#xa;  print&quot;%s - %s&quot;%(table,d.get('id'))&#xa;  cur.execute(sql,d.values())&#xa;&#xa;conn.commit()" id="7ohguasPHdmC"/>
+    <sourcecode value=":&#xa;raise NotImplemented()&#xa;" id="9FuF58FUCc8t"/>
+    <sourcecode value=":&#xa;raise NotImplemented()&#xa;" id="GxeWs0c7k5HM"/>
+    <sourcecode value=":&#xa;raise NotImplemented()&#xa;" id="eACtxe3lgJIn"/>
+    <sourcecode value=":&#xa;raise NotImplemented()&#xa;" id="jEmKHrsyyAJM"/>
+    <sourcecode value=":&#xa;raise NotImplemented()&#xa;" id="FGAYIOzBrAkZ"/>
+    <sourcecode value=":&#xa;raise NotImplemented()&#xa;" id="H2xacj19AGxK"/>
+    <sourcecode value=":&#xa;raise NotImplemented()" id="AGAueeIj7mxq"/>
+    <sourcecode value=":&#xa;dm=options.DabaseManager()&#xa;action=self.get_argument('action',False)&#xa;res=:&#xa;&#xa;&#xa;if action=='list_tables':&#xa;  tables=dm.list_tables()&#xa;  res=:&#xa;    'status'::&#xa;      'id':'OK','message':''&#xa;    ,'tables':tables&#xa;&#xa;&#xa;elif action=='query':&#xa;  table=self.get_argument('table',False)&#xa;  ids=self.get_argument('ids',False)&#xa;  if not table or not dm.search_table(table):&#xa;    res=:&#xa;      'status'::&#xa;        'id':'ERROR','message':'Ne se encuentra la tabla'&#xa;&#xa;&#xa;&#xa;  elif ids:&#xa;    print&quot;Buscando ids &quot;,ids&#xa;    rows=dm.query(table,ids=json.loads(ids))&#xa;    res=:&#xa;      'status'::&#xa;        'id':'OK','message':''&#xa;      ,'rows':rows&#xa;&#xa;&#xa;  else:&#xa;    rows=dm.query(table)&#xa;    res=:&#xa;      'status'::&#xa;        'id':'OK','message':''&#xa;      ,'rows':rows&#xa;&#xa;&#xa;&#xa;elif action=='query_sync':&#xa;  table=self.get_argument('table',False)&#xa;  if not table or not dm.search_table(table):&#xa;    res=:&#xa;      'status'::&#xa;        'id':'ERROR','message':'Ne se encuentra la tabla'&#xa;&#xa;&#xa;&#xa;  else:&#xa;    rows=dm.query_sync(table)&#xa;    res=:&#xa;      'status'::&#xa;        'id':'OK','message':''&#xa;      ,'rows':rows&#xa;&#xa;&#xa;&#xa;else:&#xa;  res=:&#xa;    'status'::&#xa;      'id':'ERROR','message':'Metodo no encontrado'&#xa;&#xa;&#xa;&#xa;self._send_response(res)&#xa;" id="BFVuSM6hdIlK"/>
+    <sourcecode value=":&#xa;action=self.get_argument('action',False)&#xa;res=:&#xa;&#xa;&#xa;table=self.get_argument('table',None)&#xa;data=json.loads(self.get_argument('data',None))&#xa;if action=='sync_this':&#xa;  res.update(:&#xa;    'status'::&#xa;      'id':'OK','message':''&#xa;&#xa;  )&#xa;  if data:&#xa;    sync=SyncronizerBase(options.DabaseManager)&#xa;    r=sync.sync_this(data,table)&#xa;    res.update(:&#xa;      'response':r&#xa;    )&#xa;&#xa;&#xa;elif action=='sync':&#xa;  res.update(:&#xa;    'status'::&#xa;      'id':'OK','message':''&#xa;&#xa;  )&#xa;  sync=SyncronizerBase(options.DabaseManager)&#xa;  r=sync.sync(data,table)&#xa;  print&quot;Respuesta : &quot;,r&#xa;  res.update(:&#xa;    'response':r&#xa;  )&#xa;&#xa;elif action=='upload':&#xa;  dm=options.DabaseManager()&#xa;  dm.save(data,table)&#xa;&#xa;else:&#xa;  res.update(:&#xa;    'status'::&#xa;      'id':'ERROR','message':'Accion no reconocida %s'%action&#xa;&#xa;  )&#xa;&#xa;self._send_response(res)" id="PtWJyWFDIa1r"/>
+    <sourcecode value=":&#xa;if config:&#xa;  conn_str=&quot;host=%s password=%s dbname=%s user=%s port=%s&quot;%\&#xa;  (config.get('host',options.pg_host),config.get('password',options.pg_pass),config.get('database',options.pg_dbname),config.get('user',options.pg_user),config.get('port',options.pg_port))&#xa;else:&#xa;  conn_str=&quot;host=%s password=%s dbname=%s user=%s port=%s&quot;%\&#xa;  (options.pg_host,options.pg_pass,options.pg_dbname,options.pg_user,options.pg_port)&#xa;return psycopg2.connect(conn_str)&#xa;" id="2kwVMv8OkKDc"/>
+    <sourcecode value=":&#xa;res=[]&#xa;try:&#xa;  conn=self.generate_conn()&#xa;  cur=conn.cursor()&#xa;  cur.execute(&quot;SELECT table_name, sync_type FROM sync_tables&quot;&quot;&quot;)&#xa;  rows=cur.fetchall()&#xa;  print rows&#xa;  for r in rows:&#xa;    res.append((r[0],r[1]))&#xa;&#xa;  conn.close()&#xa;&#xa;except psycopg2.DatabaseError,e:&#xa;  gen_log.error(&quot;Error listando tablas&quot;,exc_info=True)&#xa;  print'Error %s'%e&#xa;&#xa;return res&#xa;" id="ejxbM2U8yaWs"/>
+    <sourcecode value=":&#xa;res=[]&#xa;try:&#xa;  conn=self.generate_conn()&#xa;  cur=conn.cursor()&#xa;  cur.execute(&quot;SELECT table_name, sync_type FROM sync_tables WHERE table_name=%s&quot;&quot;&quot;,(table,))&#xa;  rows=cur.fetchall()&#xa;  for r in rows:&#xa;    res.append((r[0],r[1]))&#xa;&#xa;  conn.close()&#xa;&#xa;except psycopg2.DatabaseError,e:&#xa;  gen_log.error(&quot;Error buscando tablas&quot;,exc_info=True)&#xa;  print'Error %s'%e&#xa;&#xa;return res&#xa;" id="fFodoIT2kFf0"/>
+    <sourcecode value=":&#xa;conn=self.generate_conn()&#xa;cur=conn.cursor(cursor_factory=psycopg2.extras.DictCursor)&#xa;sql=&quot;SELECT * FROM %s &quot;%(table)&#xa;if ids:&#xa;  sql=sql+&quot;WHERE id IN (&quot;+&quot;, &quot;.join([&quot;%s&quot;]*len(ids))+&quot;)&quot;&#xa;  print cur.mogrify(sql,ids)&#xa;  cur.execute(sql,ids)&#xa;&#xa;else:&#xa;  cur.execute(sql)&#xa;&#xa;res=copyListDicts(cur.fetchall())&#xa;print res&#xa;return res&#xa;" id="ej5sLcfZqe8k"/>
+    <sourcecode value=":&#xa;conn=self.generate_conn()&#xa;cur=conn.cursor(cursor_factory=psycopg2.extras.DictCursor)&#xa;sql=&quot;SELECT id, write_date FROM %s &quot;&quot;&quot;%(table)&#xa;cur.execute(sql)&#xa;return copyListDicts(cur.fetchall())&#xa;" id="3OY7CfUcSRss"/>
+    <sourcecode value=":&#xa;res=[]&#xa;if data:&#xa;  sql=&quot;SELECT id from %s &quot;%table&#xa;  values=[]&#xa;  sql=sql+&quot;WHERE &quot;+&quot; or &quot;.join([&quot;(id = %s AND write_date > %s )&quot;]*len(data))&#xa;  for d in data:&#xa;    values=values+d.values()&#xa;&#xa;  conn=self.generate_conn()&#xa;  cur=conn.cursor(cursor_factory=psycopg2.extras.DictCursor)&#xa;  cur.execute(sql,values)&#xa;  res=[r.get('id')for r in cur.fetchall()]&#xa;&#xa;return res&#xa;" id="iVKvuAJ0TIVE"/>
+    <sourcecode value=":&#xa;res=[]&#xa;if data:&#xa;  sql=&quot;SELECT id from %s &quot;%table&#xa;  values=[]&#xa;  conn=self.generate_conn()&#xa;  cur=conn.cursor(cursor_factory=psycopg2.extras.DictCursor)&#xa;  sql=sql+&quot;WHERE &quot;+&quot; or &quot;.join([&quot;(id = %s AND write_date &lt; %s )&quot;]*len(data))&#xa;  for d in data:&#xa;    values=values+d.values()&#xa;&#xa;  cur.execute(sql,values)&#xa;  res=[r.get('id')for r in cur.fetchall()]&#xa;&#xa;return res&#xa;" id="1hTVCStqgGyF"/>
+    <sourcecode value=":&#xa;res=[]&#xa;if data:&#xa;  conn=self.generate_conn()&#xa;  cur=conn.cursor(cursor_factory=psycopg2.extras.DictCursor)&#xa;  res=self.get_uploads(data,table)&#xa;  sql_insert=&quot;SELECT id FROM %s WHERE id = %s&quot;%(table,&quot;%s&quot;)&#xa;  for d in data:&#xa;    cur.execute(sql_insert,(d.get('id'),))&#xa;    if cur.rowcount==0:&#xa;      res.append(d.get('id'))&#xa;&#xa;&#xa;&#xa;return res&#xa;" id="02XPHC0whSHU"/>
+    <sourcecode value=":&#xa;sql=&quot;SELECT id from %s &quot;%table&#xa;values=[]&#xa;conn=self.generate_conn()&#xa;cur=conn.cursor(cursor_factory=psycopg2.extras.DictCursor)&#xa;if data:&#xa;  print&quot;Hay dataaaaaa...&quot;,data&#xa;  sql=sql+&quot; WHERE id NOT IN (&quot;+&quot;, &quot;.join([&quot;%s&quot;]*len(data))+&quot;)&quot;&#xa;  for d in data:&#xa;    values.append(d.get('id'))&#xa;&#xa;  cur.execute(sql,values)&#xa;&#xa;else:&#xa;  cur.execute(sql)&#xa;&#xa;return[r.get('id')for r in cur.fetchall()]&#xa;" id="7SQv7mxx8wUw"/>
+    <sourcecode value=":&#xa;sql=&quot;SELECT id from %s &quot;%table&#xa;values=[]&#xa;if data:&#xa;  conn=self.generate_conn()&#xa;  cur=conn.cursor(cursor_factory=psycopg2.extras.DictCursor)&#xa;  sql=sql+&quot;WHERE id = %s &quot;&#xa;  for d in data:&#xa;    cur.execute(sql,d.get('id'))&#xa;    print cur.rowcount&#xa;&#xa;&#xa;else:&#xa;  return:&#xa;&#xa;&#xa;&#xa;return[r.get('id')for r in cur.fetchall()]&#xa;" id="y0NDftc9Kvii"/>
+    <sourcecode value=":&#xa;conn=self.generate_conn()&#xa;cur=conn.cursor()&#xa;for d in data:&#xa;  del d['server_act']&#xa;  f=str(tuple(str(x)for x in d)).replace(&quot;'&quot;,&quot;&quot;)&#xa;  v=str(tuple(['%s']*len(d))).replace(&quot;'&quot;,&quot;&quot;)&#xa;  sql='INSERT INTO %(name)s %(fields)s VALUES %(values)s'%:&#xa;    'name':table,'fields':f,'values':v&#xa;&#xa;  try:&#xa;    cur.execute(sql,d.values())&#xa;    conn.commit()&#xa;&#xa;  except psycopg2.IntegrityError,e:&#xa;    fields=&quot;, &quot;.join(['%s = %s'%(f,&quot;%s&quot;)for f in d])&#xa;    sql=&quot;UPDATE %(name)s SET %(fields)s WHERE id = '%(id)s'&quot;%:&#xa;      'name':table,'fields':fields,'id':d.get('id')&#xa;&#xa;    conn.rollback()&#xa;    cur.execute(sql,d.values())&#xa;    conn.commit()" id="sdeSkKilZ54k"/>
+    <sourcecode value=":&#xa;Genera una conexion para realizar las consultas&#xa;Kwargs:&#xa;  config(str):configuracion de la conexion a usar,se adapta segun la implementacion&#xa;&#xa;Returns:&#xa;  Una conexion del tipo de la base de datos&#xa;&#xa;raise NotImplemented()&#xa;" id="lJ68fRpfPPE6"/>
+    <sourcecode value=":&#xa;Lista las tablas y las configuraciones,es decir,el tipo de sincronizacion que permiten&#xa;Returns:&#xa;  Una lista de tuplas con el nombre de la tabla y el tipo de sincronizacion:&#xa;    [('tabla1','ul'),('tabla1','dl')...]&#xa;&#xa;  raise NotImplemented()&#xa;&#xa;def query(self,table,ids=None,limit=None,offset=None):&#xa;  Consulta todos los campos de la tabla indicada retornando una lista de diccionarios&#xa;  Args:&#xa;    table(str):nombre de la tabla que se desea consultar&#xa;&#xa;  Kwargs:&#xa;    ids(list,tuple):lista o tupla con los ids que se desean consultar,&#xa;    el parametro es opcional,si no se pasa se asume que se consultan todos los registros limit(int):entero indicando la cantidad de registros que se desean consultar,&#xa;    se asume None por defecto lo cual implica que no hay limite en la consulta offset(int):entero que indica el registro a partir del cual se hara la consulta,&#xa;    por defecto es None lo que implica que sera desde el registro 0,si el parametro limit es None se ignora el offset&#xa;  Returns:&#xa;    Una lista de diccionarios con el resultado de la consulta:&#xa;      [:&#xa;        'id':111111,'write_date':'2013-01-07T16:54:07.876325','campo1':valor...&#xa;      ,&#xa;:&#xa;        'id':222222,'write_date':'2013-01-07T16:54:07.876325','campo1':valor2...&#xa;      ,........]&#xa;    raise NotImplemented()&#xa;&#xa;  def query_sync(self,table,limit=None,offset=None):&#xa;    Retorna una lista de diccionarios que contienen el id y el timestamp del registro&#xa;    Args:&#xa;      table(str):nombre de la tabla que se desea consultar&#xa;&#xa;    Kwargs:&#xa;      ids(list,tuple):lista o tupla con los ids que se desean consultar,&#xa;      el parametro es opcional,si no se pasa se asume que se consultan todos los registros limit(int):entero indicando la cantidad de registros que se desean consultar,&#xa;      se asume None por defecto lo cual implica que no hay limite en la consulta offset(int):entero que indica el registro a partir del cual se hara la consulta,&#xa;      por defecto es None lo que implica que sera desde el registro 0,si el parametro limit es None se ignora el offset&#xa;    Returns:&#xa;      Una lista de diccionarios con el id y el timestamp:&#xa;        [:&#xa;          'id':111111,'write_date':'2013-01-07T16:54:07.876325'&#xa;        ,&#xa;:&#xa;          'id':222222,'write_date':'2013-01-07T16:54:07.876325'&#xa;        ,........]&#xa;      raise NotImplemented()&#xa;&#xa;    def insert(self,data,table,generate_id=False):&#xa;      Inserta el registro contenido en data en la tabla indicada&#xa;      Args:&#xa;        data(dict):diccionario con el registro a insertar&#xa;        table(str):nombre de la tabla en la que se insertaran los registros&#xa;&#xa;      Kwargs:&#xa;        generate_id(bool):Si se desea que la aplicacion genere el id del registro,&#xa;        por defecto es falso,lo que implica que este trabajo lo hara en motor de base de datos&#xa;      Returns:&#xa;        El id del registro insertado&#xa;&#xa;      raise NotImplemented()&#xa;&#xa;    def update(self,data,table):&#xa;      Actualiza el registro contenido en data en la tabla indicada&#xa;      Args:&#xa;        data(dict):diccionario con el registro a insertar&#xa;        table(str):nombre de la tabla en la que se insertaran los registros&#xa;&#xa;      Returns:&#xa;        El id del registro actualizado o falso en caso negativo&#xa;&#xa;      raise NotImplemented()&#xa;&#xa;    def get_updated(self,data,table):&#xa;      Este metodo es usado para obtener los registros que se han modificado&#xa;      en el servidor&#xa;      Args:&#xa;        data(list):lista de diccionarios con los ids y los timestamp&#xa;        de los registros que se quieren sincronizar table(str):nombre de la tabla con la que se quiere hacer&#xa;        la sincronizacion en el servidor&#xa;      Returns:&#xa;        La lista de ids de los registris que se le solicitaran al cliente&#xa;&#xa;      raise NotImplemented()&#xa;&#xa;    def get_uploads(self,data,table):&#xa;      Retorda todos los registros que deben ser actualizados en el servidor&#xa;      tomando únicamente en cuenta los registros que se pasan por en parametro&#xa;      data,no se solicitan los nuevos registros,unicamente los actualizados&#xa;      Args:&#xa;        data(list):lista de diccionarios con los ids y los timestamp&#xa;        de los registros que se quieren sincronizar table(str):nombre de la tabla con la que se quiere hacer&#xa;        la sincronizacion en el servidor&#xa;      Returns:&#xa;        La lista de ids de los registros que han sido modificados del lado del servidor&#xa;&#xa;      raise NotImplemented()&#xa;&#xa;    def get_full_uploads(self,data,table):&#xa;      Retorna todos los registros que deben ser actualizados en el servidor&#xa;      ya sean nuevos registros o actualizaciones&#xa;      Args:&#xa;        data(list):lista de diccionarios con los ids y los timestamp&#xa;        de los registros que se quieren sincronizar table(str):nombre de la tabla con la que se quiere hacer&#xa;        la sincronizacion en el servidor&#xa;      Returns:&#xa;        La lista de ids de los registris que se le solicitaran al cliente&#xa;&#xa;      raise NotImplemented()&#xa;&#xa;    def save(self,data,table):&#xa;      Este metodo guarda(insert y update segun corresponda)los registros&#xa;      que se le pasan en data en forma de una lista de diccionarios&#xa;      Args:&#xa;        data(list):lista de diccionarios con la informacion que se desea guardar&#xa;        table(str):nombre de la tabla en la que se guardaran los registros&#xa;&#xa;      raise NotImplemented()&#xa;&#xa;&#xa;  class DatabaseManagerPostgres(DatabaseManagerBase):&#xa;    def generate_conn(self,config=None):&#xa;      if config:&#xa;        conn_str=&quot;host=%s password=%s dbname=%s user=%s port=%s&quot;%\&#xa;        (config.get('host',options.pg_host),config.get('password',options.pg_pass),config.get('database',options.pg_dbname),config.get('user',options.pg_user),config.get('port',options.pg_port))&#xa;      else:&#xa;        conn_str=&quot;host=%s password=%s dbname=%s user=%s port=%s&quot;%\&#xa;        (options.pg_host,options.pg_pass,options.pg_dbname,options.pg_user,options.pg_port)&#xa;      return psycopg2.connect(conn_str)&#xa;&#xa;    def list_tables(self):&#xa;      res=[]&#xa;      try:&#xa;        conn=self.generate_conn()&#xa;        cur=conn.cursor()&#xa;        cur.execute(&quot;SELECT table_name, sync_type FROM sync_tables&quot;&quot;&quot;)&#xa;        rows=cur.fetchall()&#xa;        print rows&#xa;        for r in rows:&#xa;          res.append((r[0],r[1]))&#xa;&#xa;        conn.close()&#xa;&#xa;      except psycopg2.DatabaseError,e:&#xa;        gen_log.error(&quot;Error listando tablas&quot;,exc_info=True)&#xa;        print'Error %s'%e&#xa;&#xa;      return res&#xa;&#xa;    def search_table(self,table):&#xa;      res=[]&#xa;      try:&#xa;        conn=self.generate_conn()&#xa;        cur=conn.cursor()&#xa;        cur.execute(&quot;SELECT table_name, sync_type FROM sync_tables WHERE table_name=%s&quot;&quot;&quot;,(table,))&#xa;        rows=cur.fetchall()&#xa;        for r in rows:&#xa;          res.append((r[0],r[1]))&#xa;&#xa;        conn.close()&#xa;&#xa;      except psycopg2.DatabaseError,e:&#xa;        gen_log.error(&quot;Error buscando tablas&quot;,exc_info=True)&#xa;        print'Error %s'%e&#xa;&#xa;      return res&#xa;&#xa;    def query(self,table,ids=None,limit=None,offset=None):&#xa;      conn=self.generate_conn()&#xa;      cur=conn.cursor(cursor_factory=psycopg2.extras.DictCursor)&#xa;      sql=&quot;SELECT * FROM %s &quot;%(table)&#xa;      if ids:&#xa;        sql=sql+&quot;WHERE id IN (&quot;+&quot;, &quot;.join([&quot;%s&quot;]*len(ids))+&quot;)&quot;&#xa;        print cur.mogrify(sql,ids)&#xa;        cur.execute(sql,ids)&#xa;&#xa;      else:&#xa;        cur.execute(sql)&#xa;&#xa;      res=copyListDicts(cur.fetchall())&#xa;      print res&#xa;      return res&#xa;&#xa;    def query_sync(self,table,limit=None,offset=None):&#xa;      conn=self.generate_conn()&#xa;      cur=conn.cursor(cursor_factory=psycopg2.extras.DictCursor)&#xa;      sql=&quot;SELECT id, write_date FROM %s &quot;&quot;&quot;%(table)&#xa;      cur.execute(sql)&#xa;      return copyListDicts(cur.fetchall())&#xa;&#xa;    def get_updated(self,data,table):&#xa;      res=[]&#xa;      if data:&#xa;        sql=&quot;SELECT id from %s &quot;%table&#xa;        values=[]&#xa;        sql=sql+&quot;WHERE &quot;+&quot; or &quot;.join([&quot;(id = %s AND write_date > %s )&quot;]*len(data))&#xa;        for d in data:&#xa;          values=values+d.values()&#xa;&#xa;        conn=self.generate_conn()&#xa;        cur=conn.cursor(cursor_factory=psycopg2.extras.DictCursor)&#xa;        cur.execute(sql,values)&#xa;        res=[r.get('id')for r in cur.fetchall()]&#xa;&#xa;      return res&#xa;&#xa;    def get_uploads(self,data,table):&#xa;      res=[]&#xa;      if data:&#xa;        sql=&quot;SELECT id from %s &quot;%table&#xa;        values=[]&#xa;        conn=self.generate_conn()&#xa;        cur=conn.cursor(cursor_factory=psycopg2.extras.DictCursor)&#xa;        sql=sql+&quot;WHERE &quot;+&quot; or &quot;.join([&quot;(id = %s AND write_date &lt; %s )&quot;]*len(data))&#xa;        for d in data:&#xa;          values=values+d.values()&#xa;&#xa;        cur.execute(sql,values)&#xa;        res=[r.get('id')for r in cur.fetchall()]&#xa;&#xa;      return res&#xa;&#xa;    def get_full_uploads(self,data,table):&#xa;      res=[]&#xa;      if data:&#xa;        conn=self.generate_conn()&#xa;        cur=conn.cursor(cursor_factory=psycopg2.extras.DictCursor)&#xa;        res=self.get_uploads(data,table)&#xa;        sql_insert=&quot;SELECT id FROM %s WHERE id = %s&quot;%(table,&quot;%s&quot;)&#xa;        for d in data:&#xa;          cur.execute(sql_insert,(d.get('id'),))&#xa;          if cur.rowcount==0:&#xa;            res.append(d.get('id'))&#xa;&#xa;&#xa;&#xa;      return res&#xa;&#xa;    def get_inserts(self,data,table):&#xa;      sql=&quot;SELECT id from %s &quot;%table&#xa;      values=[]&#xa;      conn=self.generate_conn()&#xa;      cur=conn.cursor(cursor_factory=psycopg2.extras.DictCursor)&#xa;      if data:&#xa;        print&quot;Hay dataaaaaa...&quot;,data&#xa;        sql=sql+&quot; WHERE id NOT IN (&quot;+&quot;, &quot;.join([&quot;%s&quot;]*len(data))+&quot;)&quot;&#xa;        for d in data:&#xa;          values.append(d.get('id'))&#xa;&#xa;        cur.execute(sql,values)&#xa;&#xa;      else:&#xa;        cur.execute(sql)&#xa;&#xa;      return[r.get('id')for r in cur.fetchall()]&#xa;&#xa;    def get_deleted(self,data,table):&#xa;      sql=&quot;SELECT id from %s &quot;%table&#xa;      values=[]&#xa;      if data:&#xa;        conn=self.generate_conn()&#xa;        cur=conn.cursor(cursor_factory=psycopg2.extras.DictCursor)&#xa;        sql=sql+&quot;WHERE id = %s &quot;&#xa;        for d in data:&#xa;          cur.execute(sql,d.get('id'))&#xa;          print cur.rowcount&#xa;&#xa;&#xa;      else:&#xa;        return:&#xa;&#xa;&#xa;&#xa;      return[r.get('id')for r in cur.fetchall()]&#xa;&#xa;    def save(self,data,table):&#xa;      conn=self.generate_conn()&#xa;      cur=conn.cursor()&#xa;      for d in data:&#xa;        del d['server_act']&#xa;        f=str(tuple(str(x)for x in d)).replace(&quot;'&quot;,&quot;&quot;)&#xa;        v=str(tuple(['%s']*len(d))).replace(&quot;'&quot;,&quot;&quot;)&#xa;        sql='INSERT INTO %(name)s %(fields)s VALUES %(values)s'%:&#xa;          'name':table,'fields':f,'values':v&#xa;&#xa;        try:&#xa;          cur.execute(sql,d.values())&#xa;          conn.commit()&#xa;&#xa;        except psycopg2.IntegrityError,e:&#xa;          fields=&quot;, &quot;.join(['%s = %s'%(f,&quot;%s&quot;)for f in d])&#xa;          sql=&quot;UPDATE %(name)s SET %(fields)s WHERE id = '%(id)s'&quot;%:&#xa;            'name':table,'fields':fields,'id':d.get('id')&#xa;&#xa;          conn.rollback()&#xa;          cur.execute(sql,d.values())&#xa;          conn.commit()" id="eI7dxa0kMl3Z"/>
+   </codegenerator>
+  </codegeneration>
+ </XMI.extensions>
+</XMI>
