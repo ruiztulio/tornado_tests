@@ -21,7 +21,6 @@ class SyncronizerBase():
 
         self._dm = dm()
 
-
     def sync_this(self, data, table):
         """
         Sincroniza unicamente la informacion que se pasa en el parametro data en la tabla indicada,

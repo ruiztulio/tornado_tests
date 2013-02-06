@@ -32,13 +32,11 @@ class DatabaseManagerPostgres(DatabaseManagerBase):
             cur = conn.cursor() 
             cur.execute("""SELECT table_name, sync_type FROM sync_tables""")    
             rows = cur.fetchall()
-            #print rows
             for r in rows:
                 res.append( (r[0], r[1]) )
             conn.close()
         except psycopg2.DatabaseError:
             gen_log.error("Error listando tablas", exc_info=True)
-            #print 'Error %s' % e    
         return res
 
     def search_table(self, table):
@@ -62,12 +60,10 @@ class DatabaseManagerPostgres(DatabaseManagerBase):
         sql = "SELECT * FROM %s "%(table)
         if ids:
             sql = sql + "WHERE id IN ("+", ".join(["%s"]*len(ids))+")"
-            #print cur.mogrify(sql, ids)
             cur.execute(sql, ids)
         else:
             cur.execute(sql)
         res = copyListDicts(cur.fetchall())
-        #print res
         return res
 
     def query_sync(self, table, limit=None, offset=None):
@@ -124,9 +120,7 @@ class DatabaseManagerPostgres(DatabaseManagerBase):
         conn = self.generate_conn()
         cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor) 
         if data:
-            #print "Hay dataaaaaa...", data
             sql = sql + " WHERE id NOT IN (" +  ", ".join(["%s"]*len(data)) + ")"
-            #sql = sql + " WHERE id NOT IN (%s)"
             for d in data:
                 values.append(d.get('id'))
             cur.execute(sql, values)
@@ -142,7 +136,6 @@ class DatabaseManagerPostgres(DatabaseManagerBase):
             sql = sql + "WHERE id = %s "
             for d in data:
                 cur.execute(sql, d.get('id'))
-                #print cur.rowcount
         else:
             return {}
         return [r.get('id') for r in cur.fetchall()]

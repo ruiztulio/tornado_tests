@@ -39,8 +39,6 @@ class Application(tornado.web.Application):
         handlers = [
             (r"/", MainHandler),
             (r"/form/([^/]*)", FormHandler),
-#            (r"/products([^/]*)", products.ProductHandler),
-#            (r"/clients([^/]*)", clients.ClientHandler),
             (r"/database([^/]*)", database.DatabaseHandler),
         ]
 

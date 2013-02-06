@@ -23,7 +23,6 @@ class DatabaseHandler(base.BaseHandler):
             if not table or not dm.search_table(table):
                 res = {'status': {'id': 'ERROR', 'message': 'Ne se encuentra la tabla'}}
             elif ids:
-                #print "Buscando ids ", ids
                 rows = dm.query(table, ids=json.loads(ids))
                 res = {'status': {'id': 'OK', 'message': ''}, 'rows': rows}
             else:
@@ -38,7 +37,6 @@ class DatabaseHandler(base.BaseHandler):
                 res = {'status': {'id': 'OK', 'message': ''}, 'rows': rows}
         else:
         	res = {'status': {'id': 'ERROR', 'message': 'Metodo no encontrado'}}
-        #elif action == 'list_tables_config':
         self._send_response(res)
 
     def post(self, p):
@@ -56,7 +54,6 @@ class DatabaseHandler(base.BaseHandler):
             res.update({'status': {'id': 'OK', 'message': ''}})
             sync = SyncronizerBase(options.DabaseManager)
             r = sync.sync(data, table)
-            #print "Respuesta : ", r
             res.update({'response' :  r})
         elif action == 'upload':
             dm = options.DabaseManager()
