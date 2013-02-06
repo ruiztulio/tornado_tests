@@ -36,7 +36,7 @@ class DatabaseManagerPostgres(DatabaseManagerBase):
             for r in rows:
                 res.append( (r[0], r[1]) )
             conn.close()
-        except psycopg2.DatabaseError, e:
+        except psycopg2.DatabaseError:
             gen_log.error("Error listando tablas", exc_info=True)
             #print 'Error %s' % e    
         return res
@@ -136,7 +136,6 @@ class DatabaseManagerPostgres(DatabaseManagerBase):
 
     def get_deleted(self, data, table):
         sql = "SELECT id from %s "%table
-        values = []
         if data:
             conn = self.generate_conn()
             cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor) 
@@ -160,7 +159,7 @@ class DatabaseManagerPostgres(DatabaseManagerBase):
             try:
                 cur.execute(sql, d.values())
                 conn.commit()
-            except psycopg2.IntegrityError, e:
+            except psycopg2.IntegrityError:
                 fields = ", ".join(['%s = %s'%(f, "%s") for f in d])
                 sql = "UPDATE %(name)s SET %(fields)s WHERE id = '%(id)s'"%{'name':table, 'fields': fields, 'id': d.get('id')}
                 conn.rollback()
