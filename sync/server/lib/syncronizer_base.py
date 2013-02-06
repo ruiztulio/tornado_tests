@@ -52,6 +52,4 @@ class SyncronizerBase():
         updates = self._dm.get_updated(data, table)
         uploads = self._dm.get_full_uploads(data, table)
         inserts = self._dm.get_inserts(data, table)
-        print "Sync"
-        print "Inserts ", inserts
         return {'updates': updates, 'uploads': uploads, 'inserts': inserts}
