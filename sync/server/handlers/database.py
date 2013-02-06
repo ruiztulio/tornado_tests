@@ -23,7 +23,7 @@ class DatabaseHandler(base.BaseHandler):
             if not table or not dm.search_table(table):
                 res = {'status': {'id': 'ERROR', 'message': 'Ne se encuentra la tabla'}}
             elif ids:
-                print "Buscando ids ", ids
+                #print "Buscando ids ", ids
                 rows = dm.query(table, ids=json.loads(ids))
                 res = {'status': {'id': 'OK', 'message': ''}, 'rows': rows}
             else:
@@ -56,7 +56,7 @@ class DatabaseHandler(base.BaseHandler):
             res.update({'status': {'id': 'OK', 'message': ''}})
             sync = SyncronizerBase(options.DabaseManager)
             r = sync.sync(data, table)
-            print "Respuesta : ", r
+            #print "Respuesta : ", r
             res.update({'response' :  r})
         elif action == 'upload':
             dm = options.DabaseManager()
