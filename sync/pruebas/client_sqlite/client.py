@@ -1,10 +1,14 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from lib.databasemanager_sqlite import DatabaseManagerClientSqlite
 import urllib
 import urllib2
 import json
+import sys
+sys.path.append('../../client')
+from lib.databasemanager_sqlite import DatabaseManagerClientSqlite
+from lib.databasemanager_postgres import DatabaseManagerClientPostgres
+
 
 url = "http://localhost:8888"
 
@@ -19,7 +23,7 @@ def read_url(url, data = None):
     the_page = response.read()
     return json.loads(the_page)
 
-dm = DatabaseManagerClientSqlite()
+dm = DatabaseManagerClientPostgres()
 # tables = read_url('%s/%s?%s'%(url, 'database', urllib.urlencode({'action' : 'list_tables'})))
 # if tables.get('status').get('id') == u'OK':
 #      for t in tables.get('tables'):
@@ -48,10 +52,14 @@ dm = DatabaseManagerClientSqlite()
 
 print "Full sync"
 res = dm.query_sync('products')
-res_sync = read_url('%s/%s'%(url, 'database'), data = {'action':'sync', 'table' : 'products', 'data': json.dumps(res)})
+res_sync = read_url('%s/%s'%(url, 'database'), 
+                    data = {'action':'sync', 
+                            'table' : 'products', 
+                            'data': json.dumps(res)})
 print "Sincronizar inserts"
 if res_sync.get('response').get('inserts'):
-    res = read_url('%s/%s?%s'%(url, 'database', 
+    res = read_url('%s/%s?%s'%(url, 
+                                'database', 
 								urllib.urlencode({'action' : 'query', 
 													'table' : 'products', 
 													'ids' : json.dumps(res_sync.get('response').get('inserts'))})))
